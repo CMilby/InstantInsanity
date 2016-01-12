@@ -16,3 +16,4 @@ float const MAX_ZOOM = 30.0f;
 float const ZOOM_SPEED = 0.15f;
 
 float const ROTATION_AMOUNT = 6.0f;
+float const CAMERA_ANGLE = 60.0f;

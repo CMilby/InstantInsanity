@@ -28,7 +28,10 @@
     UISwipeGestureRecognizer *m_swipeGestureRecognizerRight;
     UISwipeGestureRecognizer *m_swipeGestureRecognizerUp;
     UISwipeGestureRecognizer *m_swipeGestureRecognizerDown;
-    UIRotationGestureRecognizer *m_rotationGestureRecognizer;
+    UISwipeGestureRecognizer *m_swipeGestureRecognizerLeftTwo;
+    UISwipeGestureRecognizer *m_swipeGestureRecognizerRightTwo;
+    
+    // UIRotationGestureRecognizer *m_rotationGestureRecognizer;
     
     Cube *m_cube1;
     Cube *m_cube2;

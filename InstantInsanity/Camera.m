@@ -9,7 +9,6 @@
 #include "Camera.h"
 
 #include "Constants.h"
-#include "Ray.h"
 
 @implementation Camera {
     
@@ -40,8 +39,8 @@
     m_angles.y = yAngle;
     
     // Lock
-    if ( m_angles.y > 89.9f ) m_angles.y = 89.9f;
-    if ( m_angles.y < -89.9f ) m_angles.y = -89.9f;
+    if ( m_angles.y > CAMERA_ANGLE ) m_angles.y = CAMERA_ANGLE;
+    if ( m_angles.y < -CAMERA_ANGLE) m_angles.y = -CAMERA_ANGLE;
     
     GLKQuaternion q1 = GLKQuaternionMakeWithAngleAndVector3Axis( GLKMathDegreesToRadians( m_angles.x ), GLKVector3Make( 0.0f, 1.0f, 0.0f ) );
     GLKQuaternion q2 = GLKQuaternionMakeWithAngleAndVector3Axis( GLKMathDegreesToRadians( m_angles.y ), GLKVector3Make( 1.0f, 0.0f, 0.0f ) );
@@ -101,8 +100,8 @@
             m_angles.x += delta.x * ROTATION_SPEED;
             m_angles.y -= delta.y * ROTATION_SPEED;
             
-            if ( m_angles.y > 89.9f ) m_angles.y = 89.9f;
-            if ( m_angles.y < -89.9f ) m_angles.y = -89.9f;
+            if ( m_angles.y > CAMERA_ANGLE ) m_angles.y = CAMERA_ANGLE;
+            if ( m_angles.y < -CAMERA_ANGLE ) m_angles.y = -CAMERA_ANGLE;
             
             if ( fabsf( oldAngles.x - m_angles.x ) > 1E-5 || fabsf( oldAngles.y - m_angles.y ) > 1E-5 ) {
                 GLKQuaternion q1 = GLKQuaternionMakeWithAngleAndVector3Axis( GLKMathDegreesToRadians( m_angles.x ), GLKVector3Make( 0.0f, 1.0f, 0.0f ) );

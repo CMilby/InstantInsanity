@@ -50,10 +50,21 @@
         m_swipeGestureRecognizerDown = [ [ UISwipeGestureRecognizer alloc ] initWithTarget: self action: @selector( handleSwipe: ) ];
         m_swipeGestureRecognizerDown.direction = UISwipeGestureRecognizerDirectionDown;
         [ m_view addGestureRecognizer: m_swipeGestureRecognizerDown ];
+        
+        m_swipeGestureRecognizerLeftTwo = [ [ UISwipeGestureRecognizer alloc ] initWithTarget: self action: @selector( handleSwipe: ) ];
+        m_swipeGestureRecognizerLeftTwo.direction = UISwipeGestureRecognizerDirectionLeft;
+        m_swipeGestureRecognizerLeftTwo.numberOfTouchesRequired = 2;
+        [ m_view addGestureRecognizer: m_swipeGestureRecognizerLeftTwo ];
+        
+        
+        m_swipeGestureRecognizerRightTwo = [ [ UISwipeGestureRecognizer alloc ] initWithTarget: self action: @selector( handleSwipe: ) ];
+        m_swipeGestureRecognizerRightTwo.direction = UISwipeGestureRecognizerDirectionRight;
+        m_swipeGestureRecognizerRightTwo.numberOfTouchesRequired = 2;
+        [ m_view addGestureRecognizer: m_swipeGestureRecognizerRightTwo ];
         // Swipe Gestures End
         
-        m_rotationGestureRecognizer = [ [ UIRotationGestureRecognizer alloc ] initWithTarget: self action: @selector( handleRotation: ) ];
-        [ m_view addGestureRecognizer: m_rotationGestureRecognizer ];
+        // m_rotationGestureRecognizer = [ [ UIRotationGestureRecognizer alloc ] initWithTarget: self action: @selector( handleRotation: ) ];
+        // [ m_view addGestureRecognizer: m_rotationGestureRecognizer ];
         
         m_cube1 = [ [ Cube alloc ] init: @"Cube1" ];
         [ [ m_cube1 transform ] setPosition: GLKVector3Make( 0.0, -4.5f, 0.0 ) ];
@@ -277,39 +288,97 @@
         return;
     }
 
-    if ( sender.direction == UISwipeGestureRecognizerDirectionLeft ) {
-        m_totalRotation = 0;
-        m_shouldRotateY = true;
-        m_rotateY = -ROTATION_AMOUNT;
-    } else if ( sender.direction == UISwipeGestureRecognizerDirectionRight ) {
-        m_totalRotation = 0;
-        m_shouldRotateY = true;
-        m_rotateY = ROTATION_AMOUNT;
-    } else if ( sender.direction == UISwipeGestureRecognizerDirectionUp ) {
-        GLKVector3 forward = [ m_camera getCurrentViewPosition ];
-        if ( fabsf( forward.x ) > fabs( forward.z ) ) {
-            m_rotateZ = ( forward.x < 0 ) ? -ROTATION_AMOUNT : ROTATION_AMOUNT;
-            m_shouldRotateZ = true;
-        } else {
-            m_rotateX = ( forward.z < 0 ) ? ROTATION_AMOUNT : -ROTATION_AMOUNT;
-            m_shouldRotateX = true;
+    if ( sender.numberOfTouches == 1 ) {
+        if ( sender.direction == UISwipeGestureRecognizerDirectionLeft ) {
+            m_totalRotation = 0;
+            m_shouldRotateY = true;
+            m_rotateY = -ROTATION_AMOUNT;
+        } else if ( sender.direction == UISwipeGestureRecognizerDirectionRight ) {
+            m_totalRotation = 0;
+            m_shouldRotateY = true;
+            m_rotateY = ROTATION_AMOUNT;
+        } else if ( sender.direction == UISwipeGestureRecognizerDirectionUp ) {
+            GLKVector3 forward = [ m_camera getCurrentViewPosition ];
+            if ( fabsf( forward.x ) > fabs( forward.z ) ) {
+                m_rotateZ = ( forward.x < 0 ) ? -ROTATION_AMOUNT : ROTATION_AMOUNT;
+                m_shouldRotateZ = true;
+            } else {
+                m_rotateX = ( forward.z < 0 ) ? ROTATION_AMOUNT : -ROTATION_AMOUNT;
+                m_shouldRotateX = true;
+            }
+            m_totalRotation = 0;
+        } else if ( sender.direction == UISwipeGestureRecognizerDirectionDown ) {
+            GLKVector3 forward = [ m_camera getCurrentViewPosition ];
+            if ( fabsf( forward.x ) > fabs( forward.z ) ) {
+                m_rotateZ = ( forward.x < 0 ) ? ROTATION_AMOUNT : -ROTATION_AMOUNT;
+                m_shouldRotateZ = true;
+            } else {
+                m_rotateX = ( forward.z < 0 ) ? -ROTATION_AMOUNT : ROTATION_AMOUNT;
+                m_shouldRotateX = true;
+            }
+            m_totalRotation = 0;
         }
-        m_totalRotation = 0;
-    } else if ( sender.direction == UISwipeGestureRecognizerDirectionDown ) {
+    } else if ( sender.numberOfTouches == 2 ) {
         GLKVector3 forward = [ m_camera getCurrentViewPosition ];
-        if ( fabsf( forward.x ) > fabs( forward.z ) ) {
-            m_rotateZ = ( forward.x < 0 ) ? ROTATION_AMOUNT : -ROTATION_AMOUNT;
-            m_shouldRotateZ = true;
-        } else {
-            m_rotateX = ( forward.z < 0 ) ? -ROTATION_AMOUNT : ROTATION_AMOUNT;
-            m_shouldRotateX = true;
+        if ( sender.direction == UISwipeGestureRecognizerDirectionLeft ) {
+            if ( fabs( forward.x ) > fabs( forward.z ) ) {
+                m_rotateX = ( forward.x < 0 ) ? -ROTATION_AMOUNT : ROTATION_AMOUNT;
+                m_shouldRotateX = true;
+            } else {
+                m_rotateZ = ( forward.z < 0 ) ? -ROTATION_AMOUNT : ROTATION_AMOUNT;
+                m_shouldRotateZ = true;
+            }
+        } else if ( sender.direction == UISwipeGestureRecognizerDirectionRight ) {
+            if ( fabs( forward.x ) > fabs( forward.z ) ) {
+                m_rotateX = ( forward.x < 0 ) ? ROTATION_AMOUNT : -ROTATION_AMOUNT;
+                m_shouldRotateX = true;
+            } else {
+                m_rotateZ = ( forward.z < 0 ) ? ROTATION_AMOUNT : -ROTATION_AMOUNT;
+                m_shouldRotateZ = true;
+            }
         }
-        m_totalRotation = 0;
     }
 }
 
 - ( void ) handleRotation: ( UIRotationGestureRecognizer* ) sender {
+    if ( sender.numberOfTouches != 2 ) {
+        return;
+    }
+    
+    if ( !m_picked ) {
+        return;
+    }
+    
+    if ( m_shouldRotateX || m_shouldRotateY || m_shouldRotateZ ) {
+        return;
+    }
+    
+    // -Velocity == Counter-Clockwise
+    // +Velocity == Clockwise
+    
+    GLKVector3 forward = [ m_camera getCurrentViewPosition ];
+    if ( [ sender velocity ] > 0 ) {
+        if ( fabs( forward.x ) > fabs( forward.z ) ) {
+            m_rotateX = ( forward.x < 0 ) ? ROTATION_AMOUNT : -ROTATION_AMOUNT;
+            m_shouldRotateX = true;
+        } else {
+            m_rotateZ = ( forward.z < 0 ) ? ROTATION_AMOUNT : -ROTATION_AMOUNT;
+            m_shouldRotateZ = true;
+        }
+    } else {
+        if ( fabs( forward.x ) > fabs( forward.z ) ) {
+            m_rotateX = ( forward.x < 0 ) ? -ROTATION_AMOUNT : ROTATION_AMOUNT;
+            m_shouldRotateX = true;
+        } else {
+            m_rotateZ = ( forward.z < 0 ) ? -ROTATION_AMOUNT : ROTATION_AMOUNT;
+            m_shouldRotateZ = true;
+        }
+    }
+    
+    m_totalRotation = 0;
+    
     NSLog( @"Rotation" );
+    // NSLog( @"%f", [ sender velocity ] );
 }
 
 - ( NSMutableArray<Cube*>* ) getNotPickedCubes: ( int ) value {

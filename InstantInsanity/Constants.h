@@ -20,5 +20,6 @@ extern float const MAX_ZOOM;
 extern float const ZOOM_SPEED;
 
 extern float const ROTATION_AMOUNT;
+extern float const CAMERA_ANGLE;
 
 #endif /* Constants_h */
