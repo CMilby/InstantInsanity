@@ -9,17 +9,11 @@
 #ifndef __CAMERA_H__
 #define __CAMERA_H__
 
-#include "Math3D.h"
-
 #import <GLKit/GLKit.h>
 
 @class Transform;
 
 @interface Camera : NSObject {
-    /*GLKView *m_view;
-    UITapGestureRecognizer *m_tapGestureRecognizer;
-    UIPanGestureRecognizer *m_panGestureRecognizer;*/
-    
     GLKVector3 m_lookAt;
     
     bool m_isRotating;

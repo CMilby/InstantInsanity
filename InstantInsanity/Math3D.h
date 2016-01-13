@@ -16,15 +16,7 @@
     
 }
 
-- ( id ) init;
-
-+ ( GLKMatrix4 ) toRotationMatrix: ( GLKQuaternion ) quat;
-
-+ ( GLKMatrix4 ) rotationFromVectors: ( GLKVector3 ) n withV: ( GLKVector3 ) v withU: ( GLKVector3 ) u;
-
 + ( GLKVector3 ) zDirection: ( GLKQuaternion ) quat;
-
-+ ( GLKMatrix4 ) eulerToMatrix: ( float ) heading withAttitude: ( float ) attitude withBank: ( float ) bank;
 
 @end
 

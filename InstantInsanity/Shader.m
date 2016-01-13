@@ -23,8 +23,8 @@
         glAttachShader( m_program, vertShader );
         glAttachShader( m_program, fragShader );
         
-        glBindAttribLocation( m_program, GLKVertexAttribPosition, "position");
-        glBindAttribLocation( m_program, GLKVertexAttribTexCoord0, "texCoord");
+        glBindAttribLocation( m_program, GLKVertexAttribPosition, "position" );
+        glBindAttribLocation( m_program, GLKVertexAttribTexCoord0, "texCoord" );
         glBindAttribLocation( m_program, GLKVertexAttribNormal, "normal" );
         
         if ( ![ self linkShader: m_program ] ) {
@@ -101,7 +101,7 @@
 }
 
 - ( GLuint ) loadVertexShader: ( NSString* ) filename {
-    NSString *path = [ [ NSBundle mainBundle ] pathForResource: filename ofType:@"vsh" ];
+    NSString *path = [ [ NSBundle mainBundle ] pathForResource: filename ofType: @"vsh" ];
     GLuint vertShader;
     if ( ![ self compileShader: &vertShader withType: GL_VERTEX_SHADER withFile: path ] ) {
         NSLog( @"Failed to compile vertex shader" );

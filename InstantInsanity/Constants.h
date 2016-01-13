@@ -27,4 +27,6 @@ extern int const BLUE_COLOR;
 extern int const GREEN_COLOR;
 extern int const YELLOW_COLOR;
 
+extern float const FONT_SIZE;
+
 #endif /* Constants_h */

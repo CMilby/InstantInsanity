@@ -77,6 +77,7 @@
     [ EAGLContext setCurrentContext:self.context ];
     
     glClearColor( 0.65f, 0.65f, 0.65f, 1.0f );
+    // glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
     glEnable( GL_CULL_FACE );
     glCullFace( GL_BACK );
     glEnable( GL_DEPTH_TEST );
@@ -88,8 +89,6 @@
 
 - ( void ) tearDownGL {
     [ EAGLContext setCurrentContext:self.context ];
-    
-    [ m_game cleanup ];
 }
 
 - ( void ) update {

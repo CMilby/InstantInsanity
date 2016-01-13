@@ -14,6 +14,8 @@
 #include "Camera.h"
 #include "Cube.h"
 #include "Shader.h"
+#include "Stopwatch.h"
+#include "TextShader.h"
 
 @interface Game : NSObject <UIGestureRecognizerDelegate> {
     bool m_picked;
@@ -48,8 +50,10 @@
     
     Shader *m_shader;
     Shader *m_selectionShader;
+    TextShader *m_textShader;
     
     Camera *m_camera;
+    Stopwatch *m_stopwatch;
 }
 
 - ( id ) init: ( Camera* ) mainCamera inView: ( GLKView* ) view;

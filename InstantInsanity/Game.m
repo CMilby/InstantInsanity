@@ -9,10 +9,9 @@
 #include "Game.h"
 
 #include "Constants.h"
-#include "Math3D.h"
 
 @implementation Game {
-    CGPoint m_rotationStart;
+    
 }
 
 - ( id ) init: ( Camera* ) mainCamera inView: ( GLKView* ) view {
@@ -102,7 +101,6 @@
         [ m_cube4 setTopColor: YELLOW_COLOR ];
         [ m_cube4 setBottomColor: GREEN_COLOR ];
         
-        
         m_camera = mainCamera;
         
         m_shader = [ [ Shader alloc ] init: @"StandardShader" withFrag: @"StandardShader" ];
@@ -114,7 +112,11 @@
         [ m_selectionShader addUniform: @"mvp" ];
         [ m_selectionShader addUniform: @"code" ];
         
+        m_textShader = [ [ TextShader alloc ] init: @"Courier_New" ];
+        
         m_shouldRotateX = m_shouldRotateY = m_shouldRotateZ = false;
+        
+        m_stopwatch = [ [ Stopwatch alloc ] init ];
     }
     return self;
 }
@@ -152,6 +154,7 @@
             m_totalRotation = 0.0f;
             
             if ( [ self hasWon ] ) {
+                [ m_stopwatch stop ];
                 NSLog( @"Won" );
             }
         }
@@ -159,6 +162,8 @@
 }
 
 - ( void ) render {
+    [ m_textShader render: [ m_stopwatch getTimeString ] withX: 5 withY: 0 withSize: 32 ];
+    
     if ( !m_picked ) {
         // Order doesnt matter
         [ self renderHelperTexture: m_cube1 ];
@@ -185,7 +190,12 @@
     [ m_shader updateUniform: @"mvp" withMatrix4: mvp ];
     [ m_shader updateUniform: @"transparent" withInt: [ entity isPicked ] ? 0 : 1 ];
     
+    glEnable( GL_BLEND );
+    glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+    
     [ entity render: m_shader withCamera: m_camera ];
+    
+    glDisable( GL_BLEND );
 }
 
 - ( void ) renderHelperSelection: ( RenderableEntity* ) entity {
@@ -309,6 +319,10 @@
     
     if ( m_shouldRotateX || m_shouldRotateY || m_shouldRotateZ ) {
         return;
+    }
+    
+    if ( ![ m_stopwatch isRunning ] ) {
+        [ m_stopwatch start ];
     }
 
     if ( sender.numberOfTouches == 1 ) {
@@ -451,10 +465,6 @@
     }
     
     return true;
-}
-
-- ( float ) roundDown: ( float ) value {
-    return floorf( value * 100 ) / 100;
 }
 
 @end

@@ -22,3 +22,5 @@ int const RED_COLOR = 1;
 int const BLUE_COLOR = 2;
 int const GREEN_COLOR = 3;
 int const YELLOW_COLOR = 4;
+
+float const FONT_SIZE = 16.0f;

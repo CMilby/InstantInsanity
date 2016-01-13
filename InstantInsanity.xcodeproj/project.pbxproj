@@ -11,6 +11,9 @@
 		4426F0271C415C82000D661B /* RenderableEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 4426F0261C415C82000D661B /* RenderableEntity.m */; };
 		4426F02A1C415F92000D661B /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 4426F0291C415F92000D661B /* Camera.m */; };
 		4445F38A1C41827B002E82C1 /* Math3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 4445F3891C41827B002E82C1 /* Math3D.m */; };
+		44502DB81C460EB60056734C /* TextShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 44502DB71C460EB60056734C /* TextShader.fsh */; };
+		44502DBA1C460EC10056734C /* TextShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 44502DB91C460EC10056734C /* TextShader.vsh */; };
+		44502DBD1C460F150056734C /* TextShader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44502DBC1C460F150056734C /* TextShader.mm */; };
 		4492B8C91C3F187B006CC877 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4492B8C81C3F187B006CC877 /* main.m */; };
 		4492B8CC1C3F187B006CC877 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4492B8CB1C3F187B006CC877 /* AppDelegate.m */; };
 		4492B8CE1C3F187B006CC877 /* StandardShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 4492B8CD1C3F187B006CC877 /* StandardShader.fsh */; };
@@ -30,6 +33,7 @@
 		4492B92B1C4047D8006CC877 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 4492B92A1C4047D8006CC877 /* Game.m */; };
 		44B4731F1C43020900451EB9 /* SelectionShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 44B4731E1C43020900451EB9 /* SelectionShader.fsh */; };
 		44B473211C43021300451EB9 /* SelectionShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 44B473201C43021300451EB9 /* SelectionShader.vsh */; };
+		44FDCEB71C46B2DD00EB2C0A /* Stopwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEB61C46B2DD00EB2C0A /* Stopwatch.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +62,10 @@
 		4426F0291C415F92000D661B /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Camera.m; sourceTree = "<group>"; };
 		4445F3881C418267002E82C1 /* Math3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Math3D.h; sourceTree = "<group>"; };
 		4445F3891C41827B002E82C1 /* Math3D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Math3D.m; sourceTree = "<group>"; };
+		44502DB71C460EB60056734C /* TextShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TextShader.fsh; sourceTree = "<group>"; };
+		44502DB91C460EC10056734C /* TextShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TextShader.vsh; sourceTree = "<group>"; };
+		44502DBB1C460F0A0056734C /* TextShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextShader.h; sourceTree = "<group>"; };
+		44502DBC1C460F150056734C /* TextShader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TextShader.mm; sourceTree = "<group>"; };
 		4492B8C41C3F187B006CC877 /* InstantInsanity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstantInsanity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4492B8C81C3F187B006CC877 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4492B8CA1C3F187B006CC877 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -92,6 +100,8 @@
 		4492B92C1C4047E3006CC877 /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		44B4731E1C43020900451EB9 /* SelectionShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SelectionShader.fsh; sourceTree = "<group>"; };
 		44B473201C43021300451EB9 /* SelectionShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SelectionShader.vsh; sourceTree = "<group>"; };
+		44FDCEB51C46B2D300EB2C0A /* Stopwatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Stopwatch.h; sourceTree = "<group>"; };
+		44FDCEB61C46B2DD00EB2C0A /* Stopwatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stopwatch.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +174,12 @@
 				4445F3891C41827B002E82C1 /* Math3D.m */,
 				4492B8D11C3F187B006CC877 /* GameViewController.h */,
 				4492B8D21C3F187B006CC877 /* GameViewController.m */,
+				44502DBB1C460F0A0056734C /* TextShader.h */,
+				44502DBC1C460F150056734C /* TextShader.mm */,
+				44FDCEB51C46B2D300EB2C0A /* Stopwatch.h */,
+				44FDCEB61C46B2DD00EB2C0A /* Stopwatch.m */,
+				44502DB71C460EB60056734C /* TextShader.fsh */,
+				44502DB91C460EC10056734C /* TextShader.vsh */,
 				44B4731E1C43020900451EB9 /* SelectionShader.fsh */,
 				44B473201C43021300451EB9 /* SelectionShader.vsh */,
 				4492B8CD1C3F187B006CC877 /* StandardShader.fsh */,
@@ -312,12 +328,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4492B8D61C3F187B006CC877 /* Main.storyboard in Resources */,
+				44502DB81C460EB60056734C /* TextShader.fsh in Resources */,
 				44B4731F1C43020900451EB9 /* SelectionShader.fsh in Resources */,
 				4492B8D01C3F187B006CC877 /* StandardShader.vsh in Resources */,
 				4492B8D81C3F187B006CC877 /* Assets.xcassets in Resources */,
 				44B473211C43021300451EB9 /* SelectionShader.vsh in Resources */,
 				4492B8DB1C3F187B006CC877 /* LaunchScreen.storyboard in Resources */,
 				4492B8CE1C3F187B006CC877 /* StandardShader.fsh in Resources */,
+				44502DBA1C460EC10056734C /* TextShader.vsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +363,7 @@
 				4492B8CC1C3F187B006CC877 /* AppDelegate.m in Sources */,
 				4492B8D31C3F187B006CC877 /* GameViewController.m in Sources */,
 				4426F0271C415C82000D661B /* RenderableEntity.m in Sources */,
+				44FDCEB71C46B2DD00EB2C0A /* Stopwatch.m in Sources */,
 				4492B9161C400D66006CC877 /* Transform.m in Sources */,
 				4492B9001C3F188C006CC877 /* Mesh.m in Sources */,
 				4492B9061C3F18AE006CC877 /* Texture.m in Sources */,
@@ -353,6 +372,7 @@
 				4492B9031C3F189C006CC877 /* Shader.m in Sources */,
 				4445F38A1C41827B002E82C1 /* Math3D.m in Sources */,
 				4492B9131C400807006CC877 /* Cube.m in Sources */,
+				44502DBD1C460F150056734C /* TextShader.mm in Sources */,
 				4492B9191C401E6E006CC877 /* Constants.m in Sources */,
 				4426F0241C415A65000D661B /* Entity.m in Sources */,
 				4426F02A1C415F92000D661B /* Camera.m in Sources */,

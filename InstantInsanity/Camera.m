@@ -9,6 +9,7 @@
 #include "Camera.h"
 
 #include "Constants.h"
+#include "Math3D.h"
 
 @implementation Camera {
     
