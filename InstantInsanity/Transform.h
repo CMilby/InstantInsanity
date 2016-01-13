@@ -47,7 +47,7 @@
 
 - ( GLKMatrix4 ) getProjectionMatrix;
 
-/*- ( GLKVector3 ) getForward;
+- ( GLKVector3 ) getForward;
 
 - ( GLKVector3 ) getBack;
 
@@ -57,7 +57,7 @@
 
 - ( GLKVector3 ) getUp;
 
-- ( GLKVector3 ) getDown;*/
+- ( GLKVector3 ) getDown;
 
 @end
 

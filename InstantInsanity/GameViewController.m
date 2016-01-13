@@ -10,7 +10,6 @@
 #import <OpenGLES/ES2/glext.h>
 
 #include "Game.h"
-#include "Ray.h"
 
 @interface GameViewController () {
     Camera *m_camera;

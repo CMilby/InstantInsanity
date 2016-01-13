@@ -30,7 +30,6 @@
 		4492B92B1C4047D8006CC877 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 4492B92A1C4047D8006CC877 /* Game.m */; };
 		44B4731F1C43020900451EB9 /* SelectionShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 44B4731E1C43020900451EB9 /* SelectionShader.fsh */; };
 		44B473211C43021300451EB9 /* SelectionShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 44B473201C43021300451EB9 /* SelectionShader.vsh */; };
-		44B473241C43463900451EB9 /* Ray.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B473231C43463900451EB9 /* Ray.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,8 +92,6 @@
 		4492B92C1C4047E3006CC877 /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		44B4731E1C43020900451EB9 /* SelectionShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SelectionShader.fsh; sourceTree = "<group>"; };
 		44B473201C43021300451EB9 /* SelectionShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SelectionShader.vsh; sourceTree = "<group>"; };
-		44B473221C43463000451EB9 /* Ray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ray.h; sourceTree = "<group>"; };
-		44B473231C43463900451EB9 /* Ray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ray.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,8 +177,6 @@
 				4492B8D41C3F187B006CC877 /* Main.storyboard */,
 				4492B8D91C3F187B006CC877 /* LaunchScreen.storyboard */,
 				4492B8C71C3F187B006CC877 /* Supporting Files */,
-				44B473221C43463000451EB9 /* Ray.h */,
-				44B473231C43463900451EB9 /* Ray.m */,
 			);
 			path = InstantInsanity;
 			sourceTree = "<group>";
@@ -356,7 +351,6 @@
 				4492B92B1C4047D8006CC877 /* Game.m in Sources */,
 				4492B8C91C3F187B006CC877 /* main.m in Sources */,
 				4492B9031C3F189C006CC877 /* Shader.m in Sources */,
-				44B473241C43463900451EB9 /* Ray.m in Sources */,
 				4445F38A1C41827B002E82C1 /* Math3D.m in Sources */,
 				4492B9131C400807006CC877 /* Cube.m in Sources */,
 				4492B9191C401E6E006CC877 /* Constants.m in Sources */,

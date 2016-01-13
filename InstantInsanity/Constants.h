@@ -22,4 +22,9 @@ extern float const ZOOM_SPEED;
 extern float const ROTATION_AMOUNT;
 extern float const CAMERA_ANGLE;
 
+extern int const RED_COLOR;
+extern int const BLUE_COLOR;
+extern int const GREEN_COLOR;
+extern int const YELLOW_COLOR;
+
 #endif /* Constants_h */

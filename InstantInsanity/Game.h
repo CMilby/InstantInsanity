@@ -21,7 +21,6 @@
     GLKView *m_view;
     UITapGestureRecognizer *m_tapGestureRecognizer;
     UIPanGestureRecognizer *m_panGestureRecognizer;
-    UILongPressGestureRecognizer *m_longPressGestureRecognizer;
     UIPinchGestureRecognizer *m_pinchGestureRecognizer;
     
     UISwipeGestureRecognizer *m_swipeGestureRecognizerLeft;
@@ -30,8 +29,6 @@
     UISwipeGestureRecognizer *m_swipeGestureRecognizerDown;
     UISwipeGestureRecognizer *m_swipeGestureRecognizerLeftTwo;
     UISwipeGestureRecognizer *m_swipeGestureRecognizerRightTwo;
-    
-    // UIRotationGestureRecognizer *m_rotationGestureRecognizer;
     
     Cube *m_cube1;
     Cube *m_cube2;

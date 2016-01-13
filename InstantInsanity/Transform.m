@@ -96,7 +96,7 @@
     return m_projectionMatrix;
 }
 
-/*- ( GLKVector3 ) getForward {
+- ( GLKVector3 ) getForward {
     GLKMatrix4 rotation = GLKMatrix4MakeWithQuaternion( m_rotation );
     return GLKVector3Make( -rotation.m[ 8 ], -rotation.m[ 9 ], -rotation.m[ 10 ] );
 }
@@ -124,7 +124,7 @@
 - ( GLKVector3 ) getDown {
     GLKMatrix4 rotation = GLKMatrix4MakeWithQuaternion( m_rotation );
     return GLKVector3Make( -rotation.m[ 4 ], -rotation.m[ 5 ], -rotation.m[ 6 ] );
-}*/
+}
 
 @end
 
