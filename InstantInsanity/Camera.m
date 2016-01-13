@@ -137,4 +137,8 @@
     return m_currentViewPosition;
 }
 
+- ( GLKQuaternion ) getRotation {
+    return m_rotation;
+}
+
 @end

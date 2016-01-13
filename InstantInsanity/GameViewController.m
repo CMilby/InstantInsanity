@@ -10,10 +10,12 @@
 #import <OpenGLES/ES2/glext.h>
 
 #include "Game.h"
+#include "MainMenu.h"
 
 @interface GameViewController () {
     Camera *m_camera;
     Game *m_game;
+    MainMenu *m_mainMenu;
 }
 
 @property (strong, nonatomic) EAGLContext *context;
@@ -37,7 +39,7 @@
     view.multipleTouchEnabled = true;
     
     m_camera = [ [ Camera alloc ] init: GLKVector3Make( 0.0f, 0.0f, 0.0f ) ];
-    [ m_camera setup: -50.0f yAngle: -20.0f distance: 25.0f ];
+    [ m_camera setup: -45.0f yAngle: 0.0f distance: 10.0f ];
     
     [ self setupGL ];
 }
@@ -77,14 +79,15 @@
     [ EAGLContext setCurrentContext:self.context ];
     
     glClearColor( 0.65f, 0.65f, 0.65f, 1.0f );
-    // glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
-    glEnable( GL_CULL_FACE );
-    glCullFace( GL_BACK );
+    
+    // glEnable( GL_CULL_FACE );
+    // glCullFace( GL_BACK );
     glEnable( GL_DEPTH_TEST );
     glEnable( GL_BLEND );
     glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
     
-    m_game = [ [ Game alloc ] init: m_camera inView: ( GLKView* ) self.view ];
+    // m_game = [ [ Game alloc ] init: m_camera inView: ( GLKView* ) self.view ];
+    m_mainMenu = [ [ MainMenu alloc ] init: m_camera inView: ( GLKView* ) self.view ];
 }
 
 - ( void ) tearDownGL {
@@ -93,13 +96,15 @@
 
 - ( void ) update {
     [ m_camera updateView ];
-    [ m_game update ];
+    // [ m_game update ];
+    [ m_mainMenu update ];
 }
 
 - ( void ) glkView: ( GLKView* ) view drawInRect: ( CGRect ) rect {
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     
-    [ m_game render ];
+    // [ m_game render ];
+    [ m_mainMenu render ];
 }
 
 @end

@@ -59,6 +59,8 @@
 
 - ( void ) reset;
 
+- ( GLKQuaternion ) getRotation;
+
 @end
 
 #endif /* Camera_h */

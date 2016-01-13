@@ -11,7 +11,7 @@
 #include "Constants.h"
 
 @implementation Game {
-    
+  
 }
 
 - ( id ) init: ( Camera* ) mainCamera inView: ( GLKView* ) view {
