@@ -30,7 +30,6 @@
 		4492B9131C400807006CC877 /* Cube.m in Sources */ = {isa = PBXBuildFile; fileRef = 4492B9121C400806006CC877 /* Cube.m */; };
 		4492B9161C400D66006CC877 /* Transform.m in Sources */ = {isa = PBXBuildFile; fileRef = 4492B9151C400D66006CC877 /* Transform.m */; };
 		4492B9191C401E6E006CC877 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4492B9181C401E6E006CC877 /* Constants.m */; };
-		4492B92B1C4047D8006CC877 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 4492B92A1C4047D8006CC877 /* Game.m */; };
 		44B4731F1C43020900451EB9 /* SelectionShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 44B4731E1C43020900451EB9 /* SelectionShader.fsh */; };
 		44B473211C43021300451EB9 /* SelectionShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 44B473201C43021300451EB9 /* SelectionShader.vsh */; };
 		44FDCEB71C46B2DD00EB2C0A /* Stopwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEB61C46B2DD00EB2C0A /* Stopwatch.m */; };
@@ -41,6 +40,8 @@
 		44FDCEF61C47078100EB2C0A /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEF51C47078100EB2C0A /* Scene.m */; };
 		44FDCEF91C470A8F00EB2C0A /* StandardShader.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEF81C470A8F00EB2C0A /* StandardShader.m */; };
 		44FDCEFC1C470AA000EB2C0A /* SelectionShader.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEFB1C470AA000EB2C0A /* SelectionShader.m */; };
+		44FDCEFF1C47201900EB2C0A /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEFE1C47201900EB2C0A /* GameScene.m */; };
+		44FDCF021C4724E800EB2C0A /* FourCubeGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCF011C4724E800EB2C0A /* FourCubeGameScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,8 +104,6 @@
 		4492B9151C400D66006CC877 /* Transform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transform.m; sourceTree = "<group>"; };
 		4492B9171C401E64006CC877 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		4492B9181C401E6E006CC877 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
-		4492B92A1C4047D8006CC877 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
-		4492B92C1C4047E3006CC877 /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		44B4731E1C43020900451EB9 /* SelectionShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SelectionShader.fsh; sourceTree = "<group>"; };
 		44B473201C43021300451EB9 /* SelectionShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SelectionShader.vsh; sourceTree = "<group>"; };
 		44FDCEB51C46B2D300EB2C0A /* Stopwatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Stopwatch.h; sourceTree = "<group>"; };
@@ -123,6 +122,10 @@
 		44FDCEF81C470A8F00EB2C0A /* StandardShader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardShader.m; sourceTree = "<group>"; };
 		44FDCEFA1C470A9700EB2C0A /* SelectionShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectionShader.h; sourceTree = "<group>"; };
 		44FDCEFB1C470AA000EB2C0A /* SelectionShader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionShader.m; sourceTree = "<group>"; };
+		44FDCEFD1C47200D00EB2C0A /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		44FDCEFE1C47201900EB2C0A /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		44FDCF001C4724DE00EB2C0A /* FourCubeGameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FourCubeGameScene.h; sourceTree = "<group>"; };
+		44FDCF011C4724E800EB2C0A /* FourCubeGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourCubeGameScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,16 +279,18 @@
 		44FDCEC11C46C6E900EB2C0A /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				44FDCEF41C47077800EB2C0A /* Scene.h */,
+				44FDCEF51C47078100EB2C0A /* Scene.m */,
+				44FDCEFD1C47200D00EB2C0A /* GameScene.h */,
+				44FDCEFE1C47201900EB2C0A /* GameScene.m */,
 				44FDCEBE1C46C6CD00EB2C0A /* MainMenu.h */,
 				44FDCEBF1C46C6DB00EB2C0A /* MainMenu.m */,
 				44FDCEEE1C46D81700EB2C0A /* HowToPlayMenu.h */,
 				44FDCEEF1C46D82000EB2C0A /* HowToPlayMenu.m */,
 				44FDCEF11C46D82B00EB2C0A /* PlayGameMenu.h */,
 				44FDCEF21C46D83400EB2C0A /* PlayGameMenu.m */,
-				4492B92C1C4047E3006CC877 /* Game.h */,
-				4492B92A1C4047D8006CC877 /* Game.m */,
-				44FDCEF41C47077800EB2C0A /* Scene.h */,
-				44FDCEF51C47078100EB2C0A /* Scene.m */,
+				44FDCF001C4724DE00EB2C0A /* FourCubeGameScene.h */,
+				44FDCF011C4724E800EB2C0A /* FourCubeGameScene.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -436,7 +441,6 @@
 				44FDCEB91C46C1E000EB2C0A /* Plane.m in Sources */,
 				4492B9001C3F188C006CC877 /* Mesh.m in Sources */,
 				4492B9061C3F18AE006CC877 /* Texture.m in Sources */,
-				4492B92B1C4047D8006CC877 /* Game.m in Sources */,
 				4492B8C91C3F187B006CC877 /* main.m in Sources */,
 				4492B9031C3F189C006CC877 /* Shader.m in Sources */,
 				44FDCEF61C47078100EB2C0A /* Scene.m in Sources */,
@@ -445,10 +449,12 @@
 				4492B9131C400807006CC877 /* Cube.m in Sources */,
 				44502DBD1C460F150056734C /* TextShader.mm in Sources */,
 				4492B9191C401E6E006CC877 /* Constants.m in Sources */,
+				44FDCF021C4724E800EB2C0A /* FourCubeGameScene.m in Sources */,
 				44FDCEF91C470A8F00EB2C0A /* StandardShader.m in Sources */,
 				4426F0241C415A65000D661B /* Entity.m in Sources */,
 				4426F02A1C415F92000D661B /* Camera.m in Sources */,
 				44FDCEF31C46D83400EB2C0A /* PlayGameMenu.m in Sources */,
+				44FDCEFF1C47201900EB2C0A /* GameScene.m in Sources */,
 				44FDCEC01C46C6DB00EB2C0A /* MainMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

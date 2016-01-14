@@ -9,7 +9,7 @@
 #import "GameViewController.h"
 #import <OpenGLES/ES2/glext.h>
 
-#include "Game.h"
+#include "FourCubeGameScene.h"
 #include "MainMenu.h"
 #include "PlayGameMenu.h"
 #include "Scene.h"
@@ -26,10 +26,9 @@
     NSMutableArray<Scene*> *m_scenes;
     int m_lastScene;
     
-    Scene *m_game;
     Scene *m_mainMenu;
     Scene *m_playGameMenu;
-    
+    Scene *m_fourCubeGameScene;
 }
 
 @property (strong, nonatomic) EAGLContext *context;
@@ -62,7 +61,9 @@
         [ EAGLContext setCurrentContext: nil ];
     }
     
-    [ m_game cleanup ];
+    for ( int i = 0; i < [ m_scenes count ]; i++ ) {
+        [ m_scenes[ i ] cleanup ];
+    }
 }
 
 - ( void ) didReceiveMemoryWarning {
@@ -107,11 +108,11 @@
     m_scenes = [ [ NSMutableArray alloc ] init ];
     m_mainMenu = [ [ MainMenu alloc ] initWithView: ( GLKView* ) self.view withShaders: m_shaders withCamera: m_camera ];
     m_playGameMenu = [ [ PlayGameMenu alloc ] initWithView: ( GLKView* ) self.view withShaders: m_shaders withCamera: m_camera ];
-    m_game = [ [ Game alloc ] initWithView: ( GLKView* ) self.view withShaders: m_shaders withCamera: m_camera ];
+    m_fourCubeGameScene = [ [ FourCubeGameScene alloc ] initWithView: ( GLKView* ) self.view withShaders: m_shaders withCamera: m_camera ];
     
     [ m_scenes addObject: m_mainMenu ];
     [ m_scenes addObject: m_playGameMenu ];
-    [ m_scenes addObject: m_game ];
+    [ m_scenes addObject: m_fourCubeGameScene ];
     
     [ m_scenes[ CurrentScene ] receivedFocus ];
     m_lastScene = CurrentScene;

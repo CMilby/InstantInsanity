@@ -1,23 +1,20 @@
 //
-//  Game.h
+//  GameScene.h
 //  InstantInsanity
 //
-//  Created by Craig Milby on 1/8/16.
+//  Created by Craig Milby on 1/13/16.
 //  Copyright © 2016 Craig Milby. All rights reserved.
 //
 
-#ifndef __GAME_H__
-#define __GAME_H__
-
-#import <Foundation/Foundation.h>
-#import <GLKit/GLKit.h>
+#ifndef __GAME_SCENE_H__
+#define __GAME_SCENE_H__
 
 #include "Cube.h"
 #include "Scene.h"
 #include "Stopwatch.h"
 #include "TextShader.h"
 
-@interface Game : Scene <UIGestureRecognizerDelegate> {
+@interface GameScene : Scene <UIGestureRecognizerDelegate> {
     UITapGestureRecognizer *m_tapGestureRecognizer;
     UIPanGestureRecognizer *m_panGestureRecognizer;
     UIPinchGestureRecognizer *m_pinchGestureRecognizer;
@@ -29,10 +26,7 @@
     UISwipeGestureRecognizer *m_swipeGestureRecognizerLeftTwo;
     UISwipeGestureRecognizer *m_swipeGestureRecognizerRightTwo;
     
-    Cube *m_cube1;
-    Cube *m_cube2;
-    Cube *m_cube3;
-    Cube *m_cube4;
+    NSMutableArray<Cube*> *m_cubes;
     
     Cube *m_pickedCube;
     bool m_picked;
@@ -44,7 +38,7 @@
     bool m_shouldRotateX;
     bool m_shouldRotateY;
     bool m_shouldRotateZ;
-
+    
     int m_totalRotation;
     
     TextShader *m_textShader;
@@ -63,6 +57,19 @@
 
 - ( void ) lostFocus;
 
+- ( void ) setCubes: ( NSMutableArray<Cube*>* ) cubes;
+
+- ( NSMutableArray<RenderableEntity*>* ) getPickedRender;
+
+- ( bool ) hasWon;
+
 @end
 
-#endif /* Game_h */
+#endif /* GameScene_h */
+
+
+
+
+
+
+

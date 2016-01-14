@@ -1,102 +1,46 @@
 //
-//  Game.m
+//  GameScene.m
 //  InstantInsanity
 //
-//  Created by Craig Milby on 1/8/16.
+//  Created by Craig Milby on 1/13/16.
 //  Copyright © 2016 Craig Milby. All rights reserved.
 //
 
-#include "Game.h"
+#include "GameScene.h"
 
 #include "Constants.h"
 
-@implementation Game {
-  
+@implementation GameScene {
+    
 }
 
 - ( id ) initWithView: ( GLKView* ) view withShaders: ( NSMutableArray<Shader*>* ) shaders withCamera: ( Camera* ) camera {
     if ( self = [ super initWithView: view withShaders: shaders withCamera: camera ] ) {
         m_tapGestureRecognizer = [ [ UITapGestureRecognizer alloc ] initWithTarget: self action: @selector( handleTap: ) ];
-        // [ m_view addGestureRecognizer: m_tapGestureRecognizer ];
-        
         m_pinchGestureRecognizer = [ [ UIPinchGestureRecognizer alloc ] initWithTarget: self action: @selector( handlePinch: ) ];
-        // [ m_view addGestureRecognizer: m_pinchGestureRecognizer ];
-        
         m_panGestureRecognizer = [ [ UIPanGestureRecognizer alloc ] initWithTarget: self action: @selector( handlePan: ) ];
-        // [ m_view addGestureRecognizer: m_panGestureRecognizer ];
-
+        
         // Swipe Gestures Start
         m_swipeGestureRecognizerLeft = [ [ UISwipeGestureRecognizer alloc ] initWithTarget: self action: @selector( handleSwipe: ) ];
         m_swipeGestureRecognizerLeft.direction = UISwipeGestureRecognizerDirectionLeft;
-        // [ m_view addGestureRecognizer: m_swipeGestureRecognizerLeft ];
         
         m_swipeGestureRecognizerRight = [ [ UISwipeGestureRecognizer alloc ] initWithTarget: self action: @selector( handleSwipe: ) ];
         m_swipeGestureRecognizerRight.direction = UISwipeGestureRecognizerDirectionRight;
-        // [ m_view addGestureRecognizer: m_swipeGestureRecognizerRight ];
         
         m_swipeGestureRecognizerUp = [ [ UISwipeGestureRecognizer alloc ] initWithTarget: self action: @selector( handleSwipe: ) ];
         m_swipeGestureRecognizerUp.direction = UISwipeGestureRecognizerDirectionUp;
-        // [ m_view addGestureRecognizer: m_swipeGestureRecognizerUp ];
         
         m_swipeGestureRecognizerDown = [ [ UISwipeGestureRecognizer alloc ] initWithTarget: self action: @selector( handleSwipe: ) ];
         m_swipeGestureRecognizerDown.direction = UISwipeGestureRecognizerDirectionDown;
-        // [ m_view addGestureRecognizer: m_swipeGestureRecognizerDown ];
         
         m_swipeGestureRecognizerLeftTwo = [ [ UISwipeGestureRecognizer alloc ] initWithTarget: self action: @selector( handleSwipe: ) ];
         m_swipeGestureRecognizerLeftTwo.direction = UISwipeGestureRecognizerDirectionLeft;
         m_swipeGestureRecognizerLeftTwo.numberOfTouchesRequired = 2;
-        // [ m_view addGestureRecognizer: m_swipeGestureRecognizerLeftTwo ];
-        
         
         m_swipeGestureRecognizerRightTwo = [ [ UISwipeGestureRecognizer alloc ] initWithTarget: self action: @selector( handleSwipe: ) ];
         m_swipeGestureRecognizerRightTwo.direction = UISwipeGestureRecognizerDirectionRight;
         m_swipeGestureRecognizerRightTwo.numberOfTouchesRequired = 2;
-        // [ m_view addGestureRecognizer: m_swipeGestureRecognizerRightTwo ];
         // Swipe Gestures End
-    
-        
-        m_cube1 = [ [ Cube alloc ] init: @"Cube1" ];
-        [ [ m_cube1 transform ] setPosition: GLKVector3Make( 0.0, -4.5f, 0.0 ) ];
-        [ m_cube1 setCode: 8 ];
-        [ m_cube1 setFrontColor: RED_COLOR ];
-        [ m_cube1 setBackColor: RED_COLOR ];
-        [ m_cube1 setLeftColor: RED_COLOR ];
-        [ m_cube1 setRightColor: GREEN_COLOR ];
-        [ m_cube1 setTopColor: YELLOW_COLOR ];
-        [ m_cube1 setBottomColor: BLUE_COLOR ];
-        
-        
-        m_cube2 = [ [ Cube alloc ] init: @"Cube2" ];
-        [ [ m_cube2 transform ] setPosition: GLKVector3Make( 0.0, -1.5f, 0.0 ) ];
-        [ m_cube2 setCode: 32 ];
-        [ m_cube2 setFrontColor: YELLOW_COLOR ];
-        [ m_cube2 setBackColor: RED_COLOR ];
-        [ m_cube2 setLeftColor: RED_COLOR ];
-        [ m_cube2 setRightColor: BLUE_COLOR ];
-        [ m_cube2 setTopColor: YELLOW_COLOR ];
-        [ m_cube2 setBottomColor: GREEN_COLOR ];
-        
-        
-        m_cube3 = [ [ Cube alloc ] init: @"Cube3" ];
-        [ [ m_cube3 transform ] setPosition: GLKVector3Make( 0.0, 1.5f, 0.0 ) ];
-        [ m_cube3 setCode: 64 ];
-        [ m_cube3 setFrontColor: GREEN_COLOR ];
-        [ m_cube3 setBackColor: GREEN_COLOR ];
-        [ m_cube3 setLeftColor: BLUE_COLOR ];
-        [ m_cube3 setRightColor: RED_COLOR ];
-        [ m_cube3 setTopColor: BLUE_COLOR];
-        [ m_cube3 setBottomColor: YELLOW_COLOR ];
-        
-        
-        m_cube4 = [ [ Cube alloc ] init: @"Cube4" ];
-        [ [ m_cube4 transform ] setPosition: GLKVector3Make( 0.0, 4.5f, 0.0 ) ];
-        [ m_cube4 setCode: 128 ];
-        [ m_cube4 setFrontColor: YELLOW_COLOR ];
-        [ m_cube4 setBackColor: BLUE_COLOR ];
-        [ m_cube4 setLeftColor: GREEN_COLOR ];
-        [ m_cube4 setRightColor: RED_COLOR ];
-        [ m_cube4 setTopColor: YELLOW_COLOR ];
-        [ m_cube4 setBottomColor: GREEN_COLOR ];
         
         m_textShader = [ [ TextShader alloc ] init: @"Courier_New" ];
         m_stopwatch = [ [ Stopwatch alloc ] init ];
@@ -109,11 +53,6 @@
 
 - ( void ) cleanup {
     [ super cleanup ];
-    
-    [ m_cube1 cleanup ];
-    [ m_cube2 cleanup ];
-    [ m_cube3 cleanup ];
-    [ m_cube4 cleanup ];
     
     [ m_textShader cleanup ];
 }
@@ -153,15 +92,14 @@
     
     if ( !m_picked ) {
         // Order doesnt matter
-        [ m_shaders[ 0 ] update: m_cube1 withProjection: [ [ m_cube1 transform ] getProjectionMatrix ] withCamera: m_camera ];
-        [ m_shaders[ 0 ] update: m_cube2 withProjection: [ [ m_cube2 transform ] getProjectionMatrix ] withCamera: m_camera ];
-        [ m_shaders[ 0 ] update: m_cube3 withProjection: [ [ m_cube3 transform ] getProjectionMatrix ] withCamera: m_camera ];
-        [ m_shaders[ 0 ] update: m_cube4 withProjection: [ [ m_cube4 transform ] getProjectionMatrix ] withCamera: m_camera ];
+        for ( int i = 0; i < [ m_cubes count ]; i++ ) {
+            [ m_shaders[ SHADER_STANDARD ] update: m_cubes[ i ] withProjection: [ [ m_cubes[ i ] transform ] getProjectionMatrix ] withCamera: m_camera ];
+        }
     } else {
         // Render picked last
         NSMutableArray<RenderableEntity*> *array = [ self getPickedRender ];
         for ( int i = 0; i < [ array count ]; i++ ) {
-            [ m_shaders[ 0 ] update: array[ i ] withProjection: [ [ array[ i ] transform ] getProjectionMatrix ] withCamera: m_camera ];
+            [ m_shaders[ SHADER_STANDARD ] update: array[ i ] withProjection: [ [ array[ i ] transform ] getProjectionMatrix ] withCamera: m_camera ];
         }
     }
 }
@@ -192,6 +130,10 @@
     [ m_view removeGestureRecognizer: m_swipeGestureRecognizerRightTwo ];
 }
 
+- ( void ) setCubes: ( NSMutableArray<Cube*>* ) cubes {
+    m_cubes = cubes;
+}
+
 - ( void ) handleTap: ( UITapGestureRecognizer* ) sender {
     if ( m_shouldRotateX || m_shouldRotateY || m_shouldRotateZ ) {
         return;
@@ -199,30 +141,29 @@
     
     if ( !m_picked ) {
         CGPoint point = [ sender locationInView: m_view ];
-    
+        
         NSInteger height = m_view.drawableHeight;
         NSInteger width = m_view.drawableWidth;
         Byte pixelColor[ 4 ] = { 0, };
         GLuint colorRenderbuffer;
         GLuint framebuffer;
-    
+        
         glGenFramebuffers( 1, &framebuffer );
         glBindFramebuffer( GL_FRAMEBUFFER, framebuffer );
         glGenRenderbuffers( 1, &colorRenderbuffer );
         glBindRenderbuffer( GL_RENDERBUFFER, colorRenderbuffer );
-    
+        
         glRenderbufferStorage( GL_RENDERBUFFER, GL_RGBA8_OES, ( int ) width, ( int ) height );
         glFramebufferRenderbuffer( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, colorRenderbuffer );
-    
+        
         GLenum status = glCheckFramebufferStatus( GL_FRAMEBUFFER );
         if ( status != GL_FRAMEBUFFER_COMPLETE ) {
             NSLog( @"Framebuffer status: %x", ( int ) status );
         }
-    
-        [ m_shaders[ SHADER_SELECTION ] update: m_cube1 withProjection: [ [ m_cube1 transform ] getProjectionMatrix ] withCamera: m_camera ];
-        [ m_shaders[ SHADER_SELECTION ] update: m_cube2 withProjection: [ [ m_cube2 transform ] getProjectionMatrix ] withCamera: m_camera ];
-        [ m_shaders[ SHADER_SELECTION ] update: m_cube3 withProjection: [ [ m_cube3 transform ] getProjectionMatrix ] withCamera: m_camera ];
-        [ m_shaders[ SHADER_SELECTION ] update: m_cube4 withProjection: [ [ m_cube4 transform ] getProjectionMatrix ] withCamera: m_camera ];
+        
+        for ( int i = 0; i < [ m_cubes count ]; i++ ) {
+            [ m_shaders[ SHADER_SELECTION ] update: m_cubes[ i ] withProjection: [ [ m_cubes[ i ] transform ] getProjectionMatrix ] withCamera:m_camera ];
+        }
         
         CGFloat scale = UIScreen.mainScreen.scale;
         glReadPixels (point.x * scale, ( height - ( point.y * scale ) ), 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixelColor );
@@ -238,7 +179,7 @@
         }
         
         m_picked = true;
-    
+        
         [ self render ];
         
         m_panGestureRecognizer.enabled = false;
@@ -246,10 +187,10 @@
         glDeleteRenderbuffers(1, &colorRenderbuffer);
         glDeleteFramebuffers(1, &framebuffer);
     } else {
-        [ m_cube1 setIsPicked: false ];
-        [ m_cube2 setIsPicked: false ];
-        [ m_cube3 setIsPicked: false ];
-        [ m_cube4 setIsPicked: false ];
+        for ( int i = 0; i < [ m_cubes count ]; i++ ) {
+            [ m_cubes[ i ] setIsPicked: false ];
+        }
+        
         m_pickedCube = NULL;
         m_picked = false;
         
@@ -308,7 +249,7 @@
     if ( ![ m_stopwatch isRunning ] ) {
         [ m_stopwatch start ];
     }
-
+    
     if ( sender.numberOfTouches == 1 ) {
         if ( sender.direction == UISwipeGestureRecognizerDirectionLeft ) {
             m_totalRotation = 0;
@@ -372,37 +313,35 @@
 }
 
 - ( NSMutableArray<Cube*>* ) getNotPickedCubes: ( int ) value {
-    NSMutableArray<Cube*> *array = [ [ NSMutableArray alloc ] initWithCapacity: 3 ];
-    if ( value == [ m_cube1 getCode ] ) {
-        [ array addObject: m_cube2 ];
-        [ array addObject: m_cube3 ];
-        [ array addObject: m_cube4 ];
-        m_pickedCube = m_cube1;
+    NSMutableArray<Cube*> *array = [ [ NSMutableArray alloc ] initWithCapacity: [ m_cubes count ] - 1 ];
+    for ( int i = 0; i < [ m_cubes count ]; i++ ) {
+        if ( value == [ m_cubes[ i ] getCode ] ) {
+            for ( int j = 0; j < [ m_cubes count ]; j++ ) {
+                if ( i != j ) [ array addObject: m_cubes[ j ] ];
+            }
+            m_pickedCube = m_cubes[ i ];
+            break;
+        }
     }
-    if ( value == [ m_cube2 getCode ] ) {
-        [ array addObject: m_cube1 ];
-        [ array addObject: m_cube3 ];
-        [ array addObject: m_cube4 ];
-        m_pickedCube = m_cube2;
-    }
-    if ( value == [ m_cube3 getCode ] ) {
-        [ array addObject: m_cube1 ];
-        [ array addObject: m_cube2 ];
-        [ array addObject: m_cube4 ];
-        m_pickedCube = m_cube3;
-    }
-    if ( value == [ m_cube4 getCode ] ) {
-        [ array addObject: m_cube1 ];
-        [ array addObject: m_cube2 ];
-        [ array addObject: m_cube3 ];
-        m_pickedCube = m_cube4;
-    }
+    
     return array;
 }
 
+// Generic picker
+// May need overriden
 - ( NSMutableArray<RenderableEntity*>* ) getPickedRender {
-    NSMutableArray<RenderableEntity*> *array = [ [ NSMutableArray alloc ] initWithCapacity: 4 ];
-    if ( ![ m_cube1 isPicked ] ) {
+    NSMutableArray<RenderableEntity*> *array = [ [ NSMutableArray alloc ] initWithCapacity: [ m_cubes count ] ];
+    for ( int i = 0; i < [ m_cubes count ]; i++ ) {
+        if ( ![ m_cubes[ i ] isPicked ] ) {
+            [ array addObject: m_cubes[ i ] ];
+            for ( int j = 0; j < [ m_cubes count ]; j++ ) {
+                if ( i != j ) [ array addObject: m_cubes[ j ] ];
+            }
+            break;
+        }
+    }
+    
+    /*if ( ![ m_cube1 isPicked ] ) {
         [ array addObject: m_cube1 ];
         [ array addObject: m_cube2 ];
         [ array addObject: m_cube3 ];
@@ -425,19 +364,21 @@
         [ array addObject: m_cube3 ];
         [ array addObject: m_cube2 ];
         [ array addObject: m_cube1 ];
-    }
+    }*/
+    
     return array;
 }
 
+// Will need overriden
 - ( bool ) hasWon {
-    NSMutableArray *array = [ [ NSMutableArray alloc ] initWithCapacity: 3 ];
+    /*NSMutableArray *array = [ [ NSMutableArray alloc ] initWithCapacity: 3 ];
     for ( int i = 0; i < 4; i++ ) {
         [ array addObject: [ NSNumber numberWithInt: [ m_cube1 color: i ] ] ];
         
         if ( [ array containsObject: [ NSNumber numberWithInt: [ m_cube2 color: i ] ] ] )
             return false;
         [ array addObject: [ NSNumber numberWithInt: [ m_cube2 color: i ] ] ];
-    
+        
         if ( [ array containsObject: [ NSNumber numberWithInt: [ m_cube3 color: i ] ] ] )
             return false;
         [ array addObject: [ NSNumber numberWithInt: [ m_cube3 color: i ] ] ];
@@ -448,28 +389,8 @@
         [ array removeAllObjects ];
     }
     
-    return true;
+    return true;*/
+    return false;
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,5 +1,5 @@
 //
-//  PlayGameMeny.m
+//  PlayGameMenu.m
 //  InstantInsanity
 //
 //  Created by Craig Milby on 1/13/16.
