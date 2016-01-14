@@ -9,11 +9,15 @@
 #import "GameViewController.h"
 #import <OpenGLES/ES2/glext.h>
 
-#include "FourCubeGameScene.h"
+#include "ClassicOneGameScene.h"
+#include "ClassicTwoGameScene.h"
+#include "ClocksGameScene.h"
+#include "FiveCubeGameScene.h"
 #include "MainMenu.h"
 #include "PlayGameMenu.h"
-#include "Scene.h"
 #include "SelectionShader.h"
+#include "SixCubeGameScene.h"
+#include "SquareGameScene.h"
 #include "StandardShader.h"
 
 @interface GameViewController () {
@@ -28,7 +32,13 @@
     
     Scene *m_mainMenu;
     Scene *m_playGameMenu;
-    Scene *m_fourCubeGameScene;
+    
+    Scene *m_classic1GameScene;
+    Scene *m_classic2GameScene;
+    Scene *m_fiveCubeScene;
+    Scene *m_sixCubeScene;
+    Scene *m_squareScene;
+    Scene *m_clocksScene;
 }
 
 @property (strong, nonatomic) EAGLContext *context;
@@ -105,14 +115,26 @@
     m_camera = [ [ Camera alloc ] init: GLKVector3Make( 0.0f, 0.0f, 0.0f ) ];
     [ m_camera setup: -45.0f yAngle: 0.0f distance: 10.0f ];
     
+    GLKView *glView = ( GLKView* ) self.view;
     m_scenes = [ [ NSMutableArray alloc ] init ];
-    m_mainMenu = [ [ MainMenu alloc ] initWithView: ( GLKView* ) self.view withShaders: m_shaders withCamera: m_camera ];
-    m_playGameMenu = [ [ PlayGameMenu alloc ] initWithView: ( GLKView* ) self.view withShaders: m_shaders withCamera: m_camera ];
-    m_fourCubeGameScene = [ [ FourCubeGameScene alloc ] initWithView: ( GLKView* ) self.view withShaders: m_shaders withCamera: m_camera ];
+    m_mainMenu = [ [ MainMenu alloc ] initWithView: glView withShaders: m_shaders withCamera: m_camera ];
+    m_playGameMenu = [ [ PlayGameMenu alloc ] initWithView: glView withShaders: m_shaders withCamera: m_camera ];
+    
+    m_classic1GameScene = [ [ ClassicOneGameScene alloc ] initWithView: glView withShaders: m_shaders withCamera: m_camera ];
+    m_classic2GameScene = [ [ ClassicTwoGameScene alloc ] initWithView: glView withShaders: m_shaders withCamera: m_camera ];
+    m_fiveCubeScene = [ [ FiveCubeGameScene alloc ] initWithView: glView withShaders: m_shaders withCamera: m_camera ];
+    m_sixCubeScene = [ [ SixCubeGameScene alloc ] initWithView: glView withShaders: m_shaders withCamera: m_camera ];
+    m_squareScene = [ [ SquareGameScene alloc ] initWithView: glView withShaders: m_shaders withCamera: m_camera ];
+    m_clocksScene = [ [ ClocksGameScene alloc ] initWithView: glView withShaders: m_shaders withCamera: m_camera ];
     
     [ m_scenes addObject: m_mainMenu ];
     [ m_scenes addObject: m_playGameMenu ];
-    [ m_scenes addObject: m_fourCubeGameScene ];
+    [ m_scenes addObject: m_classic1GameScene ];
+    [ m_scenes addObject: m_classic2GameScene ];
+    [ m_scenes addObject: m_fiveCubeScene ];
+    [ m_scenes addObject: m_sixCubeScene ];
+    [ m_scenes addObject: m_squareScene ];
+    [ m_scenes addObject: m_clocksScene ];
     
     [ m_scenes[ CurrentScene ] receivedFocus ];
     m_lastScene = CurrentScene;

@@ -41,7 +41,12 @@
 		44FDCEF91C470A8F00EB2C0A /* StandardShader.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEF81C470A8F00EB2C0A /* StandardShader.m */; };
 		44FDCEFC1C470AA000EB2C0A /* SelectionShader.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEFB1C470AA000EB2C0A /* SelectionShader.m */; };
 		44FDCEFF1C47201900EB2C0A /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEFE1C47201900EB2C0A /* GameScene.m */; };
-		44FDCF021C4724E800EB2C0A /* FourCubeGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCF011C4724E800EB2C0A /* FourCubeGameScene.m */; };
+		44FDCF021C4724E800EB2C0A /* ClassicOneGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCF011C4724E800EB2C0A /* ClassicOneGameScene.m */; };
+		44FDCF051C472B9000EB2C0A /* FiveCubeGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCF041C472B9000EB2C0A /* FiveCubeGameScene.m */; };
+		44FDCF081C472BA700EB2C0A /* SixCubeGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCF071C472BA700EB2C0A /* SixCubeGameScene.m */; };
+		44FDCF0B1C472BD700EB2C0A /* ClocksGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCF0A1C472BD700EB2C0A /* ClocksGameScene.m */; };
+		44FDCF0E1C472BEB00EB2C0A /* SquareGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCF0D1C472BEB00EB2C0A /* SquareGameScene.m */; };
+		44FDCF2F1C47401B00EB2C0A /* ClassicTwoGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCF2E1C47401B00EB2C0A /* ClassicTwoGameScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,8 +129,18 @@
 		44FDCEFB1C470AA000EB2C0A /* SelectionShader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionShader.m; sourceTree = "<group>"; };
 		44FDCEFD1C47200D00EB2C0A /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		44FDCEFE1C47201900EB2C0A /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
-		44FDCF001C4724DE00EB2C0A /* FourCubeGameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FourCubeGameScene.h; sourceTree = "<group>"; };
-		44FDCF011C4724E800EB2C0A /* FourCubeGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourCubeGameScene.m; sourceTree = "<group>"; };
+		44FDCF001C4724DE00EB2C0A /* ClassicOneGameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassicOneGameScene.h; sourceTree = "<group>"; };
+		44FDCF011C4724E800EB2C0A /* ClassicOneGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassicOneGameScene.m; sourceTree = "<group>"; };
+		44FDCF031C472B8100EB2C0A /* FiveCubeGameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiveCubeGameScene.h; sourceTree = "<group>"; };
+		44FDCF041C472B9000EB2C0A /* FiveCubeGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiveCubeGameScene.m; sourceTree = "<group>"; };
+		44FDCF061C472B9B00EB2C0A /* SixCubeGameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SixCubeGameScene.h; sourceTree = "<group>"; };
+		44FDCF071C472BA700EB2C0A /* SixCubeGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SixCubeGameScene.m; sourceTree = "<group>"; };
+		44FDCF091C472BCC00EB2C0A /* ClocksGameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClocksGameScene.h; sourceTree = "<group>"; };
+		44FDCF0A1C472BD700EB2C0A /* ClocksGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClocksGameScene.m; sourceTree = "<group>"; };
+		44FDCF0C1C472BE100EB2C0A /* SquareGameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SquareGameScene.h; sourceTree = "<group>"; };
+		44FDCF0D1C472BEB00EB2C0A /* SquareGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareGameScene.m; sourceTree = "<group>"; };
+		44FDCF2D1C47400F00EB2C0A /* ClassicTwoGameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassicTwoGameScene.h; sourceTree = "<group>"; };
+		44FDCF2E1C47401B00EB2C0A /* ClassicTwoGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassicTwoGameScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,8 +304,18 @@
 				44FDCEEF1C46D82000EB2C0A /* HowToPlayMenu.m */,
 				44FDCEF11C46D82B00EB2C0A /* PlayGameMenu.h */,
 				44FDCEF21C46D83400EB2C0A /* PlayGameMenu.m */,
-				44FDCF001C4724DE00EB2C0A /* FourCubeGameScene.h */,
-				44FDCF011C4724E800EB2C0A /* FourCubeGameScene.m */,
+				44FDCF001C4724DE00EB2C0A /* ClassicOneGameScene.h */,
+				44FDCF011C4724E800EB2C0A /* ClassicOneGameScene.m */,
+				44FDCF2D1C47400F00EB2C0A /* ClassicTwoGameScene.h */,
+				44FDCF2E1C47401B00EB2C0A /* ClassicTwoGameScene.m */,
+				44FDCF031C472B8100EB2C0A /* FiveCubeGameScene.h */,
+				44FDCF041C472B9000EB2C0A /* FiveCubeGameScene.m */,
+				44FDCF061C472B9B00EB2C0A /* SixCubeGameScene.h */,
+				44FDCF071C472BA700EB2C0A /* SixCubeGameScene.m */,
+				44FDCF0C1C472BE100EB2C0A /* SquareGameScene.h */,
+				44FDCF0D1C472BEB00EB2C0A /* SquareGameScene.m */,
+				44FDCF091C472BCC00EB2C0A /* ClocksGameScene.h */,
+				44FDCF0A1C472BD700EB2C0A /* ClocksGameScene.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -433,14 +458,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				4492B8CC1C3F187B006CC877 /* AppDelegate.m in Sources */,
+				44FDCF0E1C472BEB00EB2C0A /* SquareGameScene.m in Sources */,
 				44FDCEF01C46D82000EB2C0A /* HowToPlayMenu.m in Sources */,
+				44FDCF081C472BA700EB2C0A /* SixCubeGameScene.m in Sources */,
 				4492B8D31C3F187B006CC877 /* GameViewController.m in Sources */,
 				4426F0271C415C82000D661B /* RenderableEntity.m in Sources */,
+				44FDCF051C472B9000EB2C0A /* FiveCubeGameScene.m in Sources */,
 				44FDCEB71C46B2DD00EB2C0A /* Stopwatch.m in Sources */,
 				4492B9161C400D66006CC877 /* Transform.m in Sources */,
 				44FDCEB91C46C1E000EB2C0A /* Plane.m in Sources */,
+				44FDCF2F1C47401B00EB2C0A /* ClassicTwoGameScene.m in Sources */,
 				4492B9001C3F188C006CC877 /* Mesh.m in Sources */,
 				4492B9061C3F18AE006CC877 /* Texture.m in Sources */,
+				44FDCF0B1C472BD700EB2C0A /* ClocksGameScene.m in Sources */,
 				4492B8C91C3F187B006CC877 /* main.m in Sources */,
 				4492B9031C3F189C006CC877 /* Shader.m in Sources */,
 				44FDCEF61C47078100EB2C0A /* Scene.m in Sources */,
@@ -449,7 +479,7 @@
 				4492B9131C400807006CC877 /* Cube.m in Sources */,
 				44502DBD1C460F150056734C /* TextShader.mm in Sources */,
 				4492B9191C401E6E006CC877 /* Constants.m in Sources */,
-				44FDCF021C4724E800EB2C0A /* FourCubeGameScene.m in Sources */,
+				44FDCF021C4724E800EB2C0A /* ClassicOneGameScene.m in Sources */,
 				44FDCEF91C470A8F00EB2C0A /* StandardShader.m in Sources */,
 				4426F0241C415A65000D661B /* Entity.m in Sources */,
 				4426F02A1C415F92000D661B /* Camera.m in Sources */,

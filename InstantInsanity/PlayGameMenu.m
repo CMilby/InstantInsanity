@@ -18,15 +18,14 @@
         m_orthProjection = GLKMatrix4MakeOrtho( 0.0f, [ UIScreen mainScreen ].bounds.size.width, 0.0f, [ UIScreen mainScreen ].bounds.size.height, 0.1f, 100.0f );
         
         m_tapGestureRecognizer = [ [ UITapGestureRecognizer alloc ] initWithTarget: self action: @selector( handleTap: ) ];
-        // [ m_view addGestureRecognizer: m_tapGestureRecognizer ];
         
-        m_cube1 = [ [ Cube alloc ] init: @"Cube1" ];
+        m_cube1 = [ [ Cube alloc ] init: @"Classic_Cube_1" ];
         [ [ m_cube1 transform ] setPosition: GLKVector3Make( 0.0, -4.5f, 0.0 ) ];
-        m_cube2 = [ [ Cube alloc ] init: @"Cube2" ];
+        m_cube2 = [ [ Cube alloc ] init: @"Classic_Cube_2" ];
         [ [ m_cube2 transform ] setPosition: GLKVector3Make( 0.0, -1.5f, 0.0 ) ];
-        m_cube3 = [ [ Cube alloc ] init: @"Cube3" ];
+        m_cube3 = [ [ Cube alloc ] init: @"Classic_Cube_3" ];
         [ [ m_cube3 transform ] setPosition: GLKVector3Make( 0.0, 1.5f, 0.0 ) ];
-        m_cube4 = [ [ Cube alloc ] init: @"Cube4" ];
+        m_cube4 = [ [ Cube alloc ] init: @"Classic_Cube_4" ];
         [ [ m_cube4 transform ] setPosition: GLKVector3Make( 0.0, 4.5f, 0.0 ) ];
         
         m_gameTitle = [ [ Plane alloc ] init: @"GameTitle" ];
@@ -34,17 +33,17 @@
         [ [ m_gameTitle transform ] setPosition: GLKVector3Make( -1.0f, 4.5f, 1.0f ) ];
         [ [ m_gameTitle transform ] setScale: GLKVector3Make( 4.0f, 1.0f, 0.85f ) ];
         
-        m_3Cube = [ [ Plane alloc ] init: @"3Cubes" ];
-        [ m_3Cube setCode: 1 ];
-        [ [ m_3Cube transform ] rotate: GLKVector3Make( 0.0f, 1.0f, 0.0f ) withAngle: -225.0f ];
-        [ [ m_3Cube transform ] setPosition: GLKVector3Make( -1.0f, 2.2f, 1.0f ) ];
-        [ [ m_3Cube transform ] setScale: GLKVector3Make( 2.66, 0.66, 0.56 ) ];
+        m_classic1 = [ [ Plane alloc ] init: @"ClassicOne" ];
+        [ m_classic1 setCode: 1 ];
+        [ [ m_classic1 transform ] rotate: GLKVector3Make( 0.0f, 1.0f, 0.0f ) withAngle: -225.0f ];
+        [ [ m_classic1 transform ] setPosition: GLKVector3Make( -1.0f, 2.2f, 1.0f ) ];
+        [ [ m_classic1 transform ] setScale: GLKVector3Make( 2.66, 0.66, 0.56 ) ];
         
-        m_4Cube = [ [ Plane alloc ] init: @"4Cubes" ];
-        [ m_4Cube setCode: 2 ];
-        [ [ m_4Cube transform ] rotate: GLKVector3Make( 0.0f, 1.0f, 0.0f ) withAngle: -225.0f ];
-        [ [ m_4Cube transform ] setPosition: GLKVector3Make( -1.0f, 0.85f, 1.0f ) ];
-        [ [ m_4Cube transform ] setScale: GLKVector3Make( 2.66, 0.66, 0.56 ) ];
+        m_classic2 = [ [ Plane alloc ] init: @"ClassicTwo" ];
+        [ m_classic2 setCode: 2 ];
+        [ [ m_classic2 transform ] rotate: GLKVector3Make( 0.0f, 1.0f, 0.0f ) withAngle: -225.0f ];
+        [ [ m_classic2 transform ] setPosition: GLKVector3Make( -1.0f, 0.85f, 1.0f ) ];
+        [ [ m_classic2 transform ] setScale: GLKVector3Make( 2.66, 0.66, 0.56 ) ];
         
         m_5Cube = [ [ Plane alloc ] init: @"5Cubes" ];
         [ m_5Cube setCode: 3 ];
@@ -83,18 +82,18 @@
 }
 
 - ( void ) render {
-    [ m_shaders[ 0 ] update: m_cube1 withProjection: [ [ m_cube1 transform ] getProjectionMatrix ] withCamera: m_camera ];
-    [ m_shaders[ 0 ] update: m_cube2 withProjection: [ [ m_cube2 transform ] getProjectionMatrix ] withCamera: m_camera ];
-    [ m_shaders[ 0 ] update: m_cube3 withProjection: [ [ m_cube3 transform ] getProjectionMatrix ] withCamera: m_camera ];
-    [ m_shaders[ 0 ] update: m_cube4 withProjection: [ [ m_cube4 transform ] getProjectionMatrix ] withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] update: m_cube1 withProjection: [ [ m_cube1 transform ] getProjectionMatrix ] withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] update: m_cube2 withProjection: [ [ m_cube2 transform ] getProjectionMatrix ] withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] update: m_cube3 withProjection: [ [ m_cube3 transform ] getProjectionMatrix ] withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] update: m_cube4 withProjection: [ [ m_cube4 transform ] getProjectionMatrix ] withCamera: m_camera ];
     
-    [ m_shaders[ 0 ] update: m_gameTitle withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ 0 ] update: m_3Cube withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ 0 ] update: m_4Cube withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ 0 ] update: m_5Cube withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ 0 ] update: m_6Cube withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ 0 ] update: m_2x2x1 withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ 0 ] update: m_clocks withProjection: m_orthProjection withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] update: m_gameTitle withProjection: m_orthProjection withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] update: m_classic1 withProjection: m_orthProjection withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] update: m_classic2 withProjection: m_orthProjection withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] update: m_5Cube withProjection: m_orthProjection withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] update: m_6Cube withProjection: m_orthProjection withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] update: m_2x2x1 withProjection: m_orthProjection withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] update: m_clocks withProjection: m_orthProjection withCamera: m_camera ];
 }
 
 - ( void ) receivedFocus {
@@ -127,12 +126,12 @@
         NSLog( @"Framebuffer status: %x", ( int ) status );
     }
     
-    [ m_shaders[ 1 ] update: m_3Cube withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ 1 ] update: m_4Cube withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ 1 ] update: m_5Cube withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ 1 ] update: m_6Cube withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ 1 ] update: m_2x2x1 withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ 1 ] update: m_clocks withProjection: m_orthProjection withCamera: m_camera ];
+    [ m_shaders[ SHADER_SELECTION ] update: m_classic1 withProjection: m_orthProjection withCamera: m_camera ];
+    [ m_shaders[ SHADER_SELECTION ] update: m_classic2 withProjection: m_orthProjection withCamera: m_camera ];
+    [ m_shaders[ SHADER_SELECTION ] update: m_5Cube withProjection: m_orthProjection withCamera: m_camera ];
+    [ m_shaders[ SHADER_SELECTION ] update: m_6Cube withProjection: m_orthProjection withCamera: m_camera ];
+    [ m_shaders[ SHADER_SELECTION ] update: m_2x2x1 withProjection: m_orthProjection withCamera: m_camera ];
+    [ m_shaders[ SHADER_SELECTION ] update: m_clocks withProjection: m_orthProjection withCamera: m_camera ];
     
     CGFloat scale = UIScreen.mainScreen.scale;
     glReadPixels( point.x * scale, ( height - ( point.y * scale ) ), 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixelColor );
@@ -142,19 +141,18 @@
         return;
     }
     
-    if ( value == [ m_3Cube getCode ] ) {
-        NSLog( @"3 Cube" );
-    } else if ( value == [ m_4Cube getCode ] ) {
-        // NSLog( @"4 Cube" );
-        CurrentScene = SCENE_4_CUBE_GAME;
+    if ( value == [ m_classic1 getCode ] ) {
+        CurrentScene = SCENE_CLASSIC_1_GAME;
+    } else if ( value == [ m_classic2 getCode ] ) {
+        CurrentScene = SCENE_CLASSIC_2_GAME;
     } else if ( value == [ m_5Cube getCode ] ) {
-        NSLog( @"5 Cube" );
+        CurrentScene = SCENE_FIVE_CUBE_GAME;
     } else if ( value == [ m_6Cube getCode ] ) {
-        NSLog( @"6 Cube" );
+        CurrentScene = SCENE_SIX_CUBE_GAME;
     } else if ( value == [ m_2x2x1 getCode ] ) {
-        NSLog( @"2x2x1 Cube" );
+        CurrentScene = SCENE_SQUARE_GAME;
     } else if ( value == [ m_clocks getCode ] ) {
-        NSLog( @"Clocks Game" );
+        CurrentScene = SCENE_CLOCKS_GAME;
     }
     
     [ self render ];

@@ -27,8 +27,8 @@
     GLKMatrix4 m_orthProjection;
     
     Plane *m_gameTitle;
-    Plane *m_3Cube;
-    Plane *m_4Cube;
+    Plane *m_classic1;
+    Plane *m_classic2;
     Plane *m_5Cube;
     Plane *m_6Cube;
     Plane *m_2x2x1;

@@ -17,15 +17,14 @@
         m_orthMatrix = GLKMatrix4MakeOrtho( 0.0f, [ UIScreen mainScreen ].bounds.size.width, 0.0f, [ UIScreen mainScreen ].bounds.size.height, 0.1f, 100.0f );
         
         m_tapGestureRecognizer = [ [ UITapGestureRecognizer alloc ] initWithTarget: self action: @selector( handleTap: ) ];
-        // [ view addGestureRecognizer: m_tapGestureRecognizer ];
         
-        m_cube1 = [ [ Cube alloc ] init: @"Cube1" ];
+        m_cube1 = [ [ Cube alloc ] init: @"Classic_Cube_1" ];
         [ [ m_cube1 transform ] setPosition: GLKVector3Make( 0.0, -4.5f, 0.0 ) ];
-        m_cube2 = [ [ Cube alloc ] init: @"Cube2" ];
+        m_cube2 = [ [ Cube alloc ] init: @"Classic_Cube_2" ];
         [ [ m_cube2 transform ] setPosition: GLKVector3Make( 0.0, -1.5f, 0.0 ) ];
-        m_cube3 = [ [ Cube alloc ] init: @"Cube3" ];
+        m_cube3 = [ [ Cube alloc ] init: @"Classic_Cube_3" ];
         [ [ m_cube3 transform ] setPosition: GLKVector3Make( 0.0, 1.5f, 0.0 ) ];
-        m_cube4 = [ [ Cube alloc ] init: @"Cube4" ];
+        m_cube4 = [ [ Cube alloc ] init: @"Classic_Cube_4" ];
         [ [ m_cube4 transform ] setPosition: GLKVector3Make( 0.0, 4.5f, 0.0 ) ];
         
         m_gameTitle = [ [ Plane alloc ] init: @"GameTitle" ];
