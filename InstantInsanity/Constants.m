@@ -22,5 +22,13 @@ int const RED_COLOR = 1;
 int const BLUE_COLOR = 2;
 int const GREEN_COLOR = 3;
 int const YELLOW_COLOR = 4;
+int const ORANGE_COLOR = 5;
+int const CYAN_COLOR = 6;
+int const PINK_COLOR = 7;
+
+int const CLOCK_2 = 2;
+int const CLOCK_4 = 4;
+int const CLOCK_8 = 8;
+int const CLOCK_10 = 10;
 
 float const FONT_SIZE = 16.0f;

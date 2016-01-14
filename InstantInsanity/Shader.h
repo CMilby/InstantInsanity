@@ -14,12 +14,15 @@
 #import <OpenGLES/ES2/glext.h>
 
 #include "Camera.h"
+#include "Texture.h"
 
 @class RenderableEntity;
 
 typedef enum MyShaders {
     SHADER_STANDARD,
     SHADER_SELECTION,
+    SHADER_TEXT,
+    SHADER_OVERLAY,
     NUMBER_SHADERS
 } SHADERS;
 
@@ -32,7 +35,11 @@ typedef enum MyShaders {
 
 - ( void ) cleanup;
 
-- ( void ) update: ( RenderableEntity* ) entity withProjection: ( GLKMatrix4 ) projection withCamera: ( Camera* ) camera;
+- ( void ) updateEntity: ( RenderableEntity* ) entity withProjection: ( GLKMatrix4 ) projection withCamera: ( Camera* ) camera;
+
+- ( void ) updateString: ( NSString* ) text withX: ( int ) x withY: ( int ) y withSize: ( int ) size;
+
+- ( void ) updateTexture: ( Texture* ) texture withX: ( int ) x withY: ( int ) y withSize: ( int ) size;
 
 - ( GLuint ) loadVertexShader: ( NSString* ) filename;
 

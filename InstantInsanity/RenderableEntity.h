@@ -20,7 +20,6 @@
 @interface RenderableEntity : Entity {
     Mesh *m_mesh;
     Texture *m_texture;
-    int m_code;
 }
 
 - ( id ) init: ( Mesh* ) mesh withTexture: ( Texture* ) texture withTransform: ( Transform* ) transform;
@@ -29,7 +28,7 @@
 
 - ( void ) update;
 
-- ( void ) render: ( Shader* ) shader withCamera: ( Camera* ) camera;
+- ( void ) render;
 
 - ( void ) bind;
 

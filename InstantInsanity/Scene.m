@@ -19,6 +19,12 @@ int CurrentScene = 0;
         m_view = view;
         m_shaders = shaders;
         m_camera = camera;
+        
+        CGFloat width = [ UIScreen mainScreen ].bounds.size.width;
+        CGFloat height = [ UIScreen mainScreen ].bounds.size.height;
+        
+        // m_orthMatrix = GLKMatrix4MakeOrtho( 0.0f, width, 0.0f, height, -100.0f, 100.0f );
+        m_orthMatrix = GLKMatrix4MakePerspective( GLKMathDegreesToRadians( 70.0f ), width / height, 0.1f, 100.0f );
     }
     return self;
 }

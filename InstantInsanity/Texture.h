@@ -15,6 +15,7 @@
 
 @interface Texture : NSObject {
     GLuint m_texture;
+    int m_code;
 }
 
 - ( id ) init: ( NSString* ) filename;
@@ -22,6 +23,10 @@
 - ( void ) cleanup;
 
 - ( void ) bind;
+
+- ( void ) setCode: ( int ) code;
+
+- ( int ) getCode;
 
 @end
 

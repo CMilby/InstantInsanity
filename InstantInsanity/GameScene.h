@@ -10,9 +10,12 @@
 #define __GAME_SCENE_H__
 
 #include "Cube.h"
+#include "PauseMenu.h"
+#include "QuitMenu.h"
 #include "Scene.h"
 #include "Stopwatch.h"
 #include "TextShader.h"
+#include "WinMenu.h"
 
 @interface GameScene : Scene <UIGestureRecognizerDelegate> {
     UITapGestureRecognizer *m_tapGestureRecognizer;
@@ -41,13 +44,19 @@
     
     int m_totalRotation;
     
-    TextShader *m_textShader;
     Stopwatch *m_stopwatch;
+    
+    Texture *m_pauseButton;
+    WinMenu *m_winMenu;
+    PauseMenu *m_pauseMenu;
+    QuitMenu *m_quitMenu;
 }
 
 - ( id ) initWithView: ( GLKView* ) view withShaders: ( NSMutableArray<Shader*>* ) shaders withCamera: ( Camera* ) camera;
 
 - ( void ) cleanup;
+
+- ( void ) reset;
 
 - ( void ) update;
 

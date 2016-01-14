@@ -15,8 +15,6 @@
 }
 - ( id ) initWithView: ( GLKView* ) view withShaders: ( NSMutableArray<Shader*>* ) shaders withCamera: ( Camera* ) camera {
     if ( self = [ super initWithView: view withShaders: shaders withCamera: camera ] ) {
-        m_orthProjection = GLKMatrix4MakeOrtho( 0.0f, [ UIScreen mainScreen ].bounds.size.width, 0.0f, [ UIScreen mainScreen ].bounds.size.height, 0.1f, 100.0f );
-        
         m_tapGestureRecognizer = [ [ UITapGestureRecognizer alloc ] initWithTarget: self action: @selector( handleTap: ) ];
         
         m_cube1 = [ [ Cube alloc ] init: @"Classic_Cube_1" ];
@@ -82,18 +80,18 @@
 }
 
 - ( void ) render {
-    [ m_shaders[ SHADER_STANDARD ] update: m_cube1 withProjection: [ [ m_cube1 transform ] getProjectionMatrix ] withCamera: m_camera ];
-    [ m_shaders[ SHADER_STANDARD ] update: m_cube2 withProjection: [ [ m_cube2 transform ] getProjectionMatrix ] withCamera: m_camera ];
-    [ m_shaders[ SHADER_STANDARD ] update: m_cube3 withProjection: [ [ m_cube3 transform ] getProjectionMatrix ] withCamera: m_camera ];
-    [ m_shaders[ SHADER_STANDARD ] update: m_cube4 withProjection: [ [ m_cube4 transform ] getProjectionMatrix ] withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] updateEntity: m_cube1 withProjection: [ [ m_cube1 transform ] getProjectionMatrix ] withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] updateEntity: m_cube2 withProjection: [ [ m_cube2 transform ] getProjectionMatrix ] withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] updateEntity: m_cube3 withProjection: [ [ m_cube3 transform ] getProjectionMatrix ] withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] updateEntity: m_cube4 withProjection: [ [ m_cube4 transform ] getProjectionMatrix ] withCamera: m_camera ];
     
-    [ m_shaders[ SHADER_STANDARD ] update: m_gameTitle withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ SHADER_STANDARD ] update: m_classic1 withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ SHADER_STANDARD ] update: m_classic2 withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ SHADER_STANDARD ] update: m_5Cube withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ SHADER_STANDARD ] update: m_6Cube withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ SHADER_STANDARD ] update: m_2x2x1 withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ SHADER_STANDARD ] update: m_clocks withProjection: m_orthProjection withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] updateEntity: m_gameTitle withProjection: m_orthMatrix withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] updateEntity: m_classic1 withProjection: m_orthMatrix withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] updateEntity: m_classic2 withProjection: m_orthMatrix withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] updateEntity: m_5Cube withProjection: m_orthMatrix withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] updateEntity: m_6Cube withProjection: m_orthMatrix withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] updateEntity: m_2x2x1 withProjection: m_orthMatrix withCamera: m_camera ];
+    [ m_shaders[ SHADER_STANDARD ] updateEntity: m_clocks withProjection: m_orthMatrix withCamera: m_camera ];
 }
 
 - ( void ) receivedFocus {
@@ -126,12 +124,12 @@
         NSLog( @"Framebuffer status: %x", ( int ) status );
     }
     
-    [ m_shaders[ SHADER_SELECTION ] update: m_classic1 withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ SHADER_SELECTION ] update: m_classic2 withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ SHADER_SELECTION ] update: m_5Cube withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ SHADER_SELECTION ] update: m_6Cube withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ SHADER_SELECTION ] update: m_2x2x1 withProjection: m_orthProjection withCamera: m_camera ];
-    [ m_shaders[ SHADER_SELECTION ] update: m_clocks withProjection: m_orthProjection withCamera: m_camera ];
+    [ m_shaders[ SHADER_SELECTION ] updateEntity: m_classic1 withProjection: m_orthMatrix withCamera: m_camera ];
+    [ m_shaders[ SHADER_SELECTION ] updateEntity: m_classic2 withProjection: m_orthMatrix withCamera: m_camera ];
+    [ m_shaders[ SHADER_SELECTION ] updateEntity: m_5Cube withProjection: m_orthMatrix withCamera: m_camera ];
+    [ m_shaders[ SHADER_SELECTION ] updateEntity: m_6Cube withProjection: m_orthMatrix withCamera: m_camera ];
+    [ m_shaders[ SHADER_SELECTION ] updateEntity: m_2x2x1 withProjection: m_orthMatrix withCamera: m_camera ];
+    [ m_shaders[ SHADER_SELECTION ] updateEntity: m_clocks withProjection: m_orthMatrix withCamera: m_camera ];
     
     CGFloat scale = UIScreen.mainScreen.scale;
     glReadPixels( point.x * scale, ( height - ( point.y * scale ) ), 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixelColor );

@@ -22,14 +22,14 @@
     return self;
 }
 
-- ( void ) update: ( RenderableEntity* ) entity withProjection: ( GLKMatrix4 ) projection withCamera: ( Camera* ) camera {
+- ( void ) updateEntity: ( RenderableEntity* ) entity withProjection: ( GLKMatrix4 ) projection withCamera: ( Camera* ) camera {
     [ self bind ];
     
     GLKMatrix4 mvp = GLKMatrix4Multiply( GLKMatrix4Multiply( projection, [ camera getViewMatrix ] ), [ [ entity transform ] getModelMatrix ] );
     [ self updateUniform: @"mvp" withMatrix4: mvp ];
     [ self updateUniform: @"code" withFloat: [ entity getCode ] ];
     
-    [ entity render: self withCamera: camera ];
+    [ entity render ];
 }
 
 @end

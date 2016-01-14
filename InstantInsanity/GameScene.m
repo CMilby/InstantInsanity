@@ -42,19 +42,26 @@
         m_swipeGestureRecognizerRightTwo.numberOfTouchesRequired = 2;
         // Swipe Gestures End
         
-        m_textShader = [ [ TextShader alloc ] init: @"Courier_New" ];
         m_stopwatch = [ [ Stopwatch alloc ] init ];
         
         m_picked = false;
         m_shouldRotateX = m_shouldRotateY = m_shouldRotateZ = false;
+        
+        m_pauseButton = [ [ Texture alloc ] init: @"PauseImage" ];
+        // m_pauseButton = [ [ Plane alloc ] init: @"PauseImage" ];
+        // [ m_pauseButton setCode: 200 ];
+        // [ [ m_pauseButton transform ] setPosition: GLKVector3Make( 0.45f, 0.61f, -1.0f ) ];
+        // [ [ m_pauseButton transform ] setScale: GLKVector3Make( 0.05f, 0.05f, 0.05f ) ];
     }
     return self;
 }
 
 - ( void ) cleanup {
     [ super cleanup ];
+}
+
+- ( void ) reset {
     
-    [ m_textShader cleanup ];
 }
 
 - ( void ) update {
@@ -88,20 +95,21 @@
 }
 
 - ( void ) render {
-    [ m_textShader render: [ m_stopwatch getTimeString ] withX: 5 withY: 0 withSize: 32 ];
-    
     if ( !m_picked ) {
         // Order doesnt matter
         for ( int i = 0; i < [ m_cubes count ]; i++ ) {
-            [ m_shaders[ SHADER_STANDARD ] update: m_cubes[ i ] withProjection: [ [ m_cubes[ i ] transform ] getProjectionMatrix ] withCamera: m_camera ];
+            [ m_shaders[ SHADER_STANDARD ] updateEntity: m_cubes[ i ] withProjection: [ [ m_cubes[ i ] transform ] getProjectionMatrix ] withCamera: m_camera ];
         }
     } else {
         // Render picked last
         NSMutableArray<RenderableEntity*> *array = [ self getPickedRender ];
         for ( int i = 0; i < [ array count ]; i++ ) {
-            [ m_shaders[ SHADER_STANDARD ] update: array[ i ] withProjection: [ [ array[ i ] transform ] getProjectionMatrix ] withCamera: m_camera ];
+            [ m_shaders[ SHADER_STANDARD ] updateEntity: array[ i ] withProjection: [ [ array[ i ] transform ] getProjectionMatrix ] withCamera: m_camera ];
         }
     }
+    
+    [ m_shaders[ SHADER_TEXT ] updateString: [ m_stopwatch getTimeString ] withX: 5 withY: 0 withSize: 32 ];
+    [ m_shaders[ SHADER_OVERLAY ] updateTexture: m_pauseButton withX: 370 withY: 270 withSize: 30 ];
 }
 
 - ( void ) receivedFocus {
@@ -162,8 +170,9 @@
         }
         
         for ( int i = 0; i < [ m_cubes count ]; i++ ) {
-            [ m_shaders[ SHADER_SELECTION ] update: m_cubes[ i ] withProjection: [ [ m_cubes[ i ] transform ] getProjectionMatrix ] withCamera:m_camera ];
+            [ m_shaders[ SHADER_SELECTION ] updateEntity: m_cubes[ i ] withProjection: [ [ m_cubes[ i ] transform ] getProjectionMatrix ] withCamera:m_camera ];
         }
+        [ m_shaders[ SHADER_SELECTION ] updateTexture: m_pauseButton withX: 370 withY: 270 withSize: 30 ];
         
         CGFloat scale = UIScreen.mainScreen.scale;
         glReadPixels (point.x * scale, ( height - ( point.y * scale ) ), 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixelColor );
@@ -176,6 +185,10 @@
         NSMutableArray<Cube*> *array = [ self getNotPickedCubes: ( int ) value ];
         for ( int i = 0; i < [ array count ]; i++ ) {
             [ array[ i ] setIsPicked: true ];
+        }
+        
+        if ( value == [ m_pauseButton getCode ] ) {
+            NSLog( @"Pause Button" );
         }
         
         m_picked = true;
@@ -341,55 +354,11 @@
         }
     }
     
-    /*if ( ![ m_cube1 isPicked ] ) {
-        [ array addObject: m_cube1 ];
-        [ array addObject: m_cube2 ];
-        [ array addObject: m_cube3 ];
-        [ array addObject: m_cube4 ];
-    }
-    if ( ![ m_cube2 isPicked ] ) {
-        [ array addObject: m_cube2 ];
-        [ array addObject: m_cube1 ];
-        [ array addObject: m_cube3 ];
-        [ array addObject: m_cube4 ];
-    }
-    if ( ![ m_cube3 isPicked ] ) {
-        [ array addObject: m_cube3 ];
-        [ array addObject: m_cube2 ];
-        [ array addObject: m_cube1 ];
-        [ array addObject: m_cube4 ];
-    }
-    if ( ![ m_cube4 isPicked ] ) {
-        [ array addObject: m_cube4 ];
-        [ array addObject: m_cube3 ];
-        [ array addObject: m_cube2 ];
-        [ array addObject: m_cube1 ];
-    }*/
-    
     return array;
 }
 
 // Will need overriden
 - ( bool ) hasWon {
-    /*NSMutableArray *array = [ [ NSMutableArray alloc ] initWithCapacity: 3 ];
-    for ( int i = 0; i < 4; i++ ) {
-        [ array addObject: [ NSNumber numberWithInt: [ m_cube1 color: i ] ] ];
-        
-        if ( [ array containsObject: [ NSNumber numberWithInt: [ m_cube2 color: i ] ] ] )
-            return false;
-        [ array addObject: [ NSNumber numberWithInt: [ m_cube2 color: i ] ] ];
-        
-        if ( [ array containsObject: [ NSNumber numberWithInt: [ m_cube3 color: i ] ] ] )
-            return false;
-        [ array addObject: [ NSNumber numberWithInt: [ m_cube3 color: i ] ] ];
-        
-        if ( [ array containsObject: [ NSNumber numberWithInt: [ m_cube4 color: i ] ] ] )
-            return false;
-        
-        [ array removeAllObjects ];
-    }
-    
-    return true;*/
     return false;
 }
 

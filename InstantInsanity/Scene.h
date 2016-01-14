@@ -31,6 +31,7 @@ typedef enum MyScenes {
 
 @interface Scene : NSObject {
     GLKView *m_view;
+    GLKMatrix4 m_orthMatrix;
     
     NSMutableArray<Shader*> *m_shaders;
     Camera *m_camera;

@@ -13,7 +13,7 @@
 #include "Constants.h"
 
 @implementation TextShader {
-    
+
 }
 
 typedef struct {
@@ -47,7 +47,7 @@ typedef struct {
     }
 }
 
-- ( void ) render: ( NSString* ) text withX: ( int ) x withY: ( int ) y withSize: ( int ) size {
+- ( void ) updateString: ( NSString* ) text withX: ( int ) x withY: ( int ) y withSize: ( int ) size {
     std::vector<Vector2> vertices;
     std::vector<Vector2> uvs;
     

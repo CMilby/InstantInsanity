@@ -18,9 +18,7 @@
 
 @interface MainMenu : Scene <UIGestureRecognizerDelegate> {
     UITapGestureRecognizer *m_tapGestureRecognizer;
-    
-    GLKMatrix4 m_orthMatrix;
-    
+
     Cube *m_cube1;
     Cube *m_cube2;
     Cube *m_cube3;

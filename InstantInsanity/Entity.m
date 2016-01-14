@@ -59,14 +59,14 @@
     }
 }
 
-- ( void ) render: ( Shader* ) shader withCamera: ( Camera* ) camera {
+- ( void ) render {
     
 }
 
-- ( void ) renderAll: ( Shader* ) shader withCamera: ( Camera* ) camera {
-    [ self render: shader withCamera: camera ];
+- ( void ) renderAll {
+    [ self render ];
     for ( int i = 0; i < [ m_children count ]; i++ ) {
-        [ [ m_children objectAtIndex: i ] renderAll: shader withCamera: camera ];
+        [ [ m_children objectAtIndex: i ] renderAll ];
     }
 }
 

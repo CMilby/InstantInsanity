@@ -15,6 +15,10 @@
     
 }
 
+- ( id ) initWithView: ( GLKView* ) view withShaders: ( NSMutableArray<Shader*>* ) shaders withCamera: ( Camera* ) camera;
+
+- ( bool ) hasWon;
+
 @end
 
 #endif /* ClocksGameScene_h */

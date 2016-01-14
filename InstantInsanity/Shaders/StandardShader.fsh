@@ -1,5 +1,5 @@
 //
-//  Shader.fsh
+//  StandardShader.fsh
 //  InstantInsanity
 //
 //  Created by Craig Milby on 1/7/16.

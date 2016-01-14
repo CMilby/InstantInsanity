@@ -51,4 +51,12 @@
     glBindTexture( GL_TEXTURE_2D, m_texture );
 }
 
+- ( void ) setCode: ( int ) code {
+    m_code = code;
+}
+
+- ( int ) getCode {
+    return m_code;
+}
+
 @end

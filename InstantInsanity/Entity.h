@@ -37,9 +37,9 @@
 
 - ( void ) updateAll;
 
-- ( void ) render: ( Shader* ) shader withCamera: ( Camera* ) camera;
+- ( void ) render;
 
-- ( void ) renderAll: ( Shader* ) shader withCamera: ( Camera* ) camera;
+- ( void ) renderAll;
 
 - ( Transform* ) transform;
 

@@ -29,21 +29,7 @@
     
 }
 
-- ( void ) render: ( Shader* ) shader withCamera: ( Camera* ) camera {
-    [ shader bind ];
-    
-    [ m_texture bind ];
-    [ shader updateUniform: @"sampler" withInt: 0 ];
-    
-    GLKMatrix4 mvp = GLKMatrix4Multiply( GLKMatrix4Multiply( [ m_transform getProjectionMatrix ], [ camera getViewMatrix ] ), [ m_transform getModelMatrix ] );
-    [ shader updateUniform: @"mvp" withMatrix4: mvp ];
-    bool isPicked = [ self isPicked ];
-    if ( isPicked ) {
-        [ shader updateUniform: @"transparent" withInt: 1 ];
-    } else {
-        [ shader updateUniform: @"transparent" withInt: 0 ];
-    }
-    
+- ( void ) render {
     [ m_mesh render ];
 }
 
@@ -52,11 +38,11 @@
 }
 
 - ( int ) getCode {
-    return m_code;
+    return [ m_texture getCode ];
 }
 
 - ( void ) setCode: ( int ) code {
-    m_code = code;
+    [ m_texture setCode: code ];
 }
 
 @end

@@ -71,7 +71,15 @@
     }
 }
 
-- ( void ) update: ( RenderableEntity* ) entity withProjection: ( GLKMatrix4 ) projection withCamera: ( Camera* ) camera {
+- ( void ) updateEntity: ( RenderableEntity* ) entity withProjection: ( GLKMatrix4 ) projection withCamera: ( Camera* ) camera {
+    
+}
+
+- ( void ) updateString: ( NSString* ) text withX: ( int ) x withY: ( int ) y withSize: ( int ) size {
+    
+}
+
+- ( void ) updateTexture: ( Texture* ) texture withX: ( int ) x withY: ( int ) y withSize: ( int ) size {
     
 }
 
@@ -84,7 +92,7 @@
 }
 
 - ( void ) updateUniform: ( NSString* ) name withMatrix4: ( GLKMatrix4 ) matrix {
-    glUniformMatrix4fv( [ [ m_uniformMap valueForKey: name ] intValue ], 1, 0, matrix.m );
+    glUniformMatrix4fv( [ [ m_uniformMap valueForKey: name ] intValue ], 1, GL_FALSE, &matrix.m[ 0 ] );
 }
 
 - ( void ) updateUniform: ( NSString* ) name withInt: ( GLint ) integer {

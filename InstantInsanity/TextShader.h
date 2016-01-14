@@ -23,7 +23,7 @@
 
 - ( id ) init: ( NSString* ) textureFile;
 
-- ( void ) render: ( NSString* ) text withX: ( int ) x withY: ( int ) y withSize: ( int ) size;
+- ( void ) updateString: ( NSString* ) text withX: ( int ) x withY: ( int ) y withSize: ( int ) size;
 
 @end
 

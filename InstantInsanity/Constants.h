@@ -26,6 +26,14 @@ extern int const RED_COLOR;
 extern int const BLUE_COLOR;
 extern int const GREEN_COLOR;
 extern int const YELLOW_COLOR;
+extern int const ORANGE_COLOR;
+extern int const CYAN_COLOR;
+extern int const PINK_COLOR;
+
+extern int const CLOCK_2;
+extern int const CLOCK_4;
+extern int const CLOCK_8;
+extern int const CLOCK_10;
 
 extern float const FONT_SIZE;
 

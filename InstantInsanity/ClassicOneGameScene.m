@@ -18,7 +18,7 @@
     if ( self = [ super initWithView: view withShaders: shaders withCamera: camera ] ) {
         Cube *cube1 = [ [ Cube alloc ] init: @"Classic_Cube_1" ];
         [ [ cube1 transform ] setPosition: GLKVector3Make( 0.0, -4.5f, 0.0 ) ];
-        [ cube1 setCode: 8 ];
+        [ cube1 setCode: 1 ];
         [ cube1 setFrontColor: RED_COLOR ];
         [ cube1 setBackColor: RED_COLOR ];
         [ cube1 setLeftColor: RED_COLOR ];
@@ -28,7 +28,7 @@
         
         Cube *cube2 = [ [ Cube alloc ] init: @"Classic_Cube_2" ];
         [ [ cube2 transform ] setPosition: GLKVector3Make( 0.0, -1.5f, 0.0 ) ];
-        [ cube2 setCode: 32 ];
+        [ cube2 setCode: 2 ];
         [ cube2 setFrontColor: YELLOW_COLOR ];
         [ cube2 setBackColor: RED_COLOR ];
         [ cube2 setLeftColor: RED_COLOR ];
@@ -38,7 +38,7 @@
         
         Cube *cube3 = [ [ Cube alloc ] init: @"Classic_Cube_3" ];
         [ [ cube3 transform ] setPosition: GLKVector3Make( 0.0, 1.5f, 0.0 ) ];
-        [ cube3 setCode: 64 ];
+        [ cube3 setCode: 3 ];
         [ cube3 setFrontColor: GREEN_COLOR ];
         [ cube3 setBackColor: GREEN_COLOR ];
         [ cube3 setLeftColor: BLUE_COLOR ];
@@ -48,7 +48,7 @@
         
         Cube *cube4 = [ [ Cube alloc ] init: @"Classic_Cube_4" ];
         [ [ cube4 transform ] setPosition: GLKVector3Make( 0.0, 4.5f, 0.0 ) ];
-        [ cube4 setCode: 128 ];
+        [ cube4 setCode: 4 ];
         [ cube4 setFrontColor: YELLOW_COLOR ];
         [ cube4 setBackColor: BLUE_COLOR ];
         [ cube4 setLeftColor: GREEN_COLOR ];
@@ -56,12 +56,11 @@
         [ cube4 setTopColor: YELLOW_COLOR ];
         [ cube4 setBottomColor: GREEN_COLOR ];
         
-        NSMutableArray<Cube*> *cubes = [ [ NSMutableArray alloc ] initWithCapacity: 4 ];
-        [ cubes addObject: cube1 ];
-        [ cubes addObject: cube2 ];
-        [ cubes addObject: cube3 ];
-        [ cubes addObject: cube4 ];
-        [ self setCubes: cubes ];
+        m_cubes = [ [ NSMutableArray alloc ] initWithCapacity: 4 ];
+        [ m_cubes addObject: cube1 ];
+        [ m_cubes addObject: cube2 ];
+        [ m_cubes addObject: cube3 ];
+        [ m_cubes addObject: cube4 ];
     }
     return self;
 }

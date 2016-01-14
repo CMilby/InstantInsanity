@@ -14,11 +14,13 @@
 #include "ClocksGameScene.h"
 #include "FiveCubeGameScene.h"
 #include "MainMenu.h"
+#include "OverlayShader.h"
 #include "PlayGameMenu.h"
 #include "SelectionShader.h"
 #include "SixCubeGameScene.h"
 #include "SquareGameScene.h"
 #include "StandardShader.h"
+#include "TextShader.h"
 
 @interface GameViewController () {
     Camera *m_camera;
@@ -26,6 +28,8 @@
     NSMutableArray<Shader*> *m_shaders;
     Shader *m_standardShader;
     Shader *m_selectionShader;
+    Shader *m_textShader;
+    Shader *m_overlayShader;
     
     NSMutableArray<Scene*> *m_scenes;
     int m_lastScene;
@@ -106,17 +110,21 @@
     glEnable( GL_BLEND );
     glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
     
-    m_shaders = [ [ NSMutableArray alloc ] initWithCapacity: 2 ];
+    m_shaders = [ [ NSMutableArray alloc ] initWithCapacity: NUMBER_SHADERS ];
     m_standardShader = [ [ StandardShader alloc ] init ];
     m_selectionShader = [ [ SelectionShader alloc ] init ];
+    m_textShader = [ [ TextShader alloc ] init: @"Courier_New" ];
+    m_overlayShader = [ [ OverlayShader alloc ] init ];
     [ m_shaders addObject: m_standardShader ];
     [ m_shaders addObject: m_selectionShader ];
+    [ m_shaders addObject: m_textShader ];
+    [ m_shaders addObject: m_overlayShader ];
     
     m_camera = [ [ Camera alloc ] init: GLKVector3Make( 0.0f, 0.0f, 0.0f ) ];
     [ m_camera setup: -45.0f yAngle: 0.0f distance: 10.0f ];
     
     GLKView *glView = ( GLKView* ) self.view;
-    m_scenes = [ [ NSMutableArray alloc ] init ];
+    m_scenes = [ [ NSMutableArray alloc ] initWithCapacity: NUMBER_SCENES ];
     m_mainMenu = [ [ MainMenu alloc ] initWithView: glView withShaders: m_shaders withCamera: m_camera ];
     m_playGameMenu = [ [ PlayGameMenu alloc ] initWithView: glView withShaders: m_shaders withCamera: m_camera ];
     
