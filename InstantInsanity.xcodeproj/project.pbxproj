@@ -37,7 +37,10 @@
 		44FDCEB91C46C1E000EB2C0A /* Plane.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEB81C46C1E000EB2C0A /* Plane.m */; };
 		44FDCEC01C46C6DB00EB2C0A /* MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEBF1C46C6DB00EB2C0A /* MainMenu.m */; };
 		44FDCEF01C46D82000EB2C0A /* HowToPlayMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEEF1C46D82000EB2C0A /* HowToPlayMenu.m */; };
-		44FDCEF31C46D83400EB2C0A /* PlayGameMeny.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEF21C46D83400EB2C0A /* PlayGameMeny.m */; };
+		44FDCEF31C46D83400EB2C0A /* PlayGameMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEF21C46D83400EB2C0A /* PlayGameMenu.m */; };
+		44FDCEF61C47078100EB2C0A /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEF51C47078100EB2C0A /* Scene.m */; };
+		44FDCEF91C470A8F00EB2C0A /* StandardShader.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEF81C470A8F00EB2C0A /* StandardShader.m */; };
+		44FDCEFC1C470AA000EB2C0A /* SelectionShader.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEFB1C470AA000EB2C0A /* SelectionShader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,7 +116,13 @@
 		44FDCEEE1C46D81700EB2C0A /* HowToPlayMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HowToPlayMenu.h; sourceTree = "<group>"; };
 		44FDCEEF1C46D82000EB2C0A /* HowToPlayMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToPlayMenu.m; sourceTree = "<group>"; };
 		44FDCEF11C46D82B00EB2C0A /* PlayGameMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayGameMenu.h; sourceTree = "<group>"; };
-		44FDCEF21C46D83400EB2C0A /* PlayGameMeny.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayGameMeny.m; sourceTree = "<group>"; };
+		44FDCEF21C46D83400EB2C0A /* PlayGameMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayGameMenu.m; sourceTree = "<group>"; };
+		44FDCEF41C47077800EB2C0A /* Scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
+		44FDCEF51C47078100EB2C0A /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
+		44FDCEF71C470A8600EB2C0A /* StandardShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StandardShader.h; sourceTree = "<group>"; };
+		44FDCEF81C470A8F00EB2C0A /* StandardShader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardShader.m; sourceTree = "<group>"; };
+		44FDCEFA1C470A9700EB2C0A /* SelectionShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectionShader.h; sourceTree = "<group>"; };
+		44FDCEFB1C470AA000EB2C0A /* SelectionShader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionShader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,11 +173,9 @@
 		4492B8C61C3F187B006CC877 /* InstantInsanity */ = {
 			isa = PBXGroup;
 			children = (
-				44FDCEC11C46C6E900EB2C0A /* Menus */,
+				44FDCEC11C46C6E900EB2C0A /* Scenes */,
 				44FDCEBC1C46C21F00EB2C0A /* Mesh */,
 				44FDCEBB1C46C20100EB2C0A /* Rendering */,
-				4492B9141C400D5E006CC877 /* Transform.h */,
-				4492B9151C400D66006CC877 /* Transform.m */,
 				4426F0221C415A5D000D661B /* Entity.h */,
 				4426F0231C415A65000D661B /* Entity.m */,
 				4426F0251C415C79000D661B /* RenderableEntity.h */,
@@ -179,8 +186,6 @@
 				4426F0291C415F92000D661B /* Camera.m */,
 				4445F3881C418267002E82C1 /* Math3D.h */,
 				4445F3891C41827B002E82C1 /* Math3D.m */,
-				4492B92C1C4047E3006CC877 /* Game.h */,
-				4492B92A1C4047D8006CC877 /* Game.m */,
 				4492B8D11C3F187B006CC877 /* GameViewController.h */,
 				4492B8D21C3F187B006CC877 /* GameViewController.m */,
 				4492B9171C401E64006CC877 /* Constants.h */,
@@ -225,13 +230,17 @@
 		44FDCEBB1C46C20100EB2C0A /* Rendering */ = {
 			isa = PBXGroup;
 			children = (
-				44502DBB1C460F0A0056734C /* TextShader.h */,
-				44502DBC1C460F150056734C /* TextShader.mm */,
 				44FDCEBD1C46C23200EB2C0A /* Shaders */,
 				4492B9011C3F1893006CC877 /* Shader.h */,
 				4492B9021C3F189C006CC877 /* Shader.m */,
+				44502DBB1C460F0A0056734C /* TextShader.h */,
+				44502DBC1C460F150056734C /* TextShader.mm */,
 				4492B9041C3F18A4006CC877 /* Texture.h */,
 				4492B9051C3F18AE006CC877 /* Texture.m */,
+				44FDCEF71C470A8600EB2C0A /* StandardShader.h */,
+				44FDCEF81C470A8F00EB2C0A /* StandardShader.m */,
+				44FDCEFA1C470A9700EB2C0A /* SelectionShader.h */,
+				44FDCEFB1C470AA000EB2C0A /* SelectionShader.m */,
 			);
 			name = Rendering;
 			sourceTree = "<group>";
@@ -239,6 +248,8 @@
 		44FDCEBC1C46C21F00EB2C0A /* Mesh */ = {
 			isa = PBXGroup;
 			children = (
+				4492B9141C400D5E006CC877 /* Transform.h */,
+				4492B9151C400D66006CC877 /* Transform.m */,
 				4492B8FE1C3F1884006CC877 /* Mesh.h */,
 				4492B8FF1C3F188C006CC877 /* Mesh.m */,
 				4492B9111C4007BE006CC877 /* Cube.h */,
@@ -262,7 +273,7 @@
 			name = Shaders;
 			sourceTree = "<group>";
 		};
-		44FDCEC11C46C6E900EB2C0A /* Menus */ = {
+		44FDCEC11C46C6E900EB2C0A /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				44FDCEBE1C46C6CD00EB2C0A /* MainMenu.h */,
@@ -270,9 +281,13 @@
 				44FDCEEE1C46D81700EB2C0A /* HowToPlayMenu.h */,
 				44FDCEEF1C46D82000EB2C0A /* HowToPlayMenu.m */,
 				44FDCEF11C46D82B00EB2C0A /* PlayGameMenu.h */,
-				44FDCEF21C46D83400EB2C0A /* PlayGameMeny.m */,
+				44FDCEF21C46D83400EB2C0A /* PlayGameMenu.m */,
+				4492B92C1C4047E3006CC877 /* Game.h */,
+				4492B92A1C4047D8006CC877 /* Game.m */,
+				44FDCEF41C47077800EB2C0A /* Scene.h */,
+				44FDCEF51C47078100EB2C0A /* Scene.m */,
 			);
-			name = Menus;
+			name = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -424,13 +439,16 @@
 				4492B92B1C4047D8006CC877 /* Game.m in Sources */,
 				4492B8C91C3F187B006CC877 /* main.m in Sources */,
 				4492B9031C3F189C006CC877 /* Shader.m in Sources */,
+				44FDCEF61C47078100EB2C0A /* Scene.m in Sources */,
 				4445F38A1C41827B002E82C1 /* Math3D.m in Sources */,
+				44FDCEFC1C470AA000EB2C0A /* SelectionShader.m in Sources */,
 				4492B9131C400807006CC877 /* Cube.m in Sources */,
 				44502DBD1C460F150056734C /* TextShader.mm in Sources */,
 				4492B9191C401E6E006CC877 /* Constants.m in Sources */,
+				44FDCEF91C470A8F00EB2C0A /* StandardShader.m in Sources */,
 				4426F0241C415A65000D661B /* Entity.m in Sources */,
 				4426F02A1C415F92000D661B /* Camera.m in Sources */,
-				44FDCEF31C46D83400EB2C0A /* PlayGameMeny.m in Sources */,
+				44FDCEF31C46D83400EB2C0A /* PlayGameMenu.m in Sources */,
 				44FDCEC01C46C6DB00EB2C0A /* MainMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

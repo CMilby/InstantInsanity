@@ -12,12 +12,12 @@
     
 }
 
-- ( id ) init: ( Camera* ) camera inView: ( GLKView* ) view {
-    if ( self = [ super init ] ) {
-        m_view = view;
+- ( id ) initWithView: ( GLKView* ) view withShaders: ( NSMutableArray<Shader*>* ) shaders withCamera: ( Camera* ) camera {
+    if ( self = [ super initWithView: view withShaders: shaders withCamera: camera ] ) {
+        m_orthMatrix = GLKMatrix4MakeOrtho( 0.0f, [ UIScreen mainScreen ].bounds.size.width, 0.0f, [ UIScreen mainScreen ].bounds.size.height, 0.1f, 100.0f );
         
         m_tapGestureRecognizer = [ [ UITapGestureRecognizer alloc ] initWithTarget: self action: @selector( handleTap: ) ];
-        [ m_view addGestureRecognizer: m_tapGestureRecognizer ];
+        // [ view addGestureRecognizer: m_tapGestureRecognizer ];
         
         m_cube1 = [ [ Cube alloc ] init: @"Cube1" ];
         [ [ m_cube1 transform ] setPosition: GLKVector3Make( 0.0, -4.5f, 0.0 ) ];
@@ -45,19 +45,12 @@
         [ [ m_howToPlay transform ] rotate: GLKVector3Make( 0.0f, 1.0f, 0.0f ) withAngle: -225.0f ];
         [ [ m_howToPlay transform ] setPosition: GLKVector3Make( -1, -2.0f, 1 ) ];
         [ [ m_howToPlay transform ] setScale: GLKVector3Make( 2.66, 0.66, 0.56 ) ];
-        
-        m_standardShader = [ [ Shader alloc ] init: @"StandardShader" withFrag: @"StandardShader" ];
-        [ m_standardShader addUniform: @"mvp" ];
-        [ m_standardShader addUniform: @"sampler" ];
-        [ m_standardShader addUniform: @"transparent" ];
-        
-        m_selectionShader = [ [ Shader alloc ] init: @"SelectionShader" withFrag: @"SelectionShader" ];
-        [ m_selectionShader addUniform: @"mvp" ];
-        [ m_selectionShader addUniform: @"code" ];
-        
-        m_camera = camera;
     }
     return self;
+}
+
+- ( void ) cleanup {
+    [ super cleanup ];
 }
 
 - ( void ) update {
@@ -65,42 +58,22 @@
 }
 
 - ( void ) render {
-    [ self renderHelperTexture: m_cube1 ];
-    [ self renderHelperTexture: m_cube2 ];
-    [ self renderHelperTexture: m_cube3 ];
-    [ self renderHelperTexture: m_cube4 ];
+    [ m_shaders[ 0 ] update: m_cube1 withProjection: [ [ m_cube1 transform ] getProjectionMatrix ] withCamera: m_camera ];
+    [ m_shaders[ 0 ] update: m_cube2 withProjection: [ [ m_cube2 transform ] getProjectionMatrix ] withCamera: m_camera ];
+    [ m_shaders[ 0 ] update: m_cube3 withProjection: [ [ m_cube3 transform ] getProjectionMatrix ] withCamera: m_camera ];
+    [ m_shaders[ 0 ] update: m_cube4 withProjection: [ [ m_cube4 transform ] getProjectionMatrix ] withCamera: m_camera ];
     
-    [ self renderHelperTexture: m_gameTitle ];
-    [ self renderHelperTexture: m_playGame ];
-    [ self renderHelperTexture: m_howToPlay ];
+    [ m_shaders[ 0 ] update: m_gameTitle withProjection: m_orthMatrix withCamera: m_camera ];
+    [ m_shaders[ 0 ] update: m_playGame withProjection: m_orthMatrix withCamera: m_camera ];
+    [ m_shaders[ 0 ] update: m_howToPlay withProjection: m_orthMatrix withCamera: m_camera ];
 }
 
-- ( void ) renderHelperTexture: ( RenderableEntity* ) entity {
-    [ m_standardShader bind ];
-    
-    [ entity bind ];
-    [ m_standardShader updateUniform: @"sampler" withInt: 0 ];
-    
-    GLKMatrix4 mvp = GLKMatrix4Multiply( GLKMatrix4Multiply( [ [ entity transform ] getProjectionMatrix ], [ m_camera getViewMatrix ] ), [ [ entity transform ] getModelMatrix ] );
-    [ m_standardShader updateUniform: @"mvp" withMatrix4: mvp ];
-    [ m_standardShader updateUniform: @"transparent" withInt: [ entity isPicked ] ? 0 : 1 ];
-    
-    glEnable( GL_BLEND );
-    glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-    
-    [ entity render: m_standardShader withCamera: m_camera ];
-    
-    glDisable( GL_BLEND );
+- ( void ) receivedFocus {
+    [ m_view addGestureRecognizer: m_tapGestureRecognizer ];
 }
 
-- ( void ) renderHelperSelection: ( RenderableEntity* ) entity {
-    [ m_selectionShader bind ];
-    
-    GLKMatrix4 mvp = GLKMatrix4Multiply( GLKMatrix4Multiply( [ [ entity transform ] getProjectionMatrix ], [ m_camera getViewMatrix ] ), [ [ entity transform ] getModelMatrix ] );
-    [ m_selectionShader updateUniform: @"mvp" withMatrix4: mvp ];
-    [ m_selectionShader updateUniform: @"code" withFloat: [ entity getCode ] ];
-    
-    [ entity render: m_selectionShader withCamera: m_camera ];
+- ( void ) lostFocus {
+    [ m_view removeGestureRecognizer: m_tapGestureRecognizer ];
 }
 
 - ( void ) handleTap: ( UITapGestureRecognizer* ) sender {
@@ -125,9 +98,9 @@
         NSLog( @"Framebuffer status: %x", ( int ) status );
     }
     
-    [ self renderHelperSelection: m_gameTitle ];
-    [ self renderHelperSelection: m_playGame ];
-    [ self renderHelperSelection: m_howToPlay ];
+    [ m_shaders[ 1 ] update: m_gameTitle withProjection: m_orthMatrix withCamera: m_camera ];
+    [ m_shaders[ 1 ] update: m_playGame withProjection: m_orthMatrix withCamera: m_camera ];
+    [ m_shaders[ 1 ] update: m_howToPlay withProjection: m_orthMatrix withCamera: m_camera ];
     
     CGFloat scale = UIScreen.mainScreen.scale;
     glReadPixels( point.x * scale, ( height - ( point.y * scale ) ), 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixelColor );
@@ -138,7 +111,7 @@
     }
     
     if ( value == [ m_playGame getCode ] ) {
-        NSLog( @"Play game" );
+        CurrentScene = SCENE_PLAY_GAME_MENU;
     } else if ( value == [ m_howToPlay getCode ] ) {
         NSLog( @"How to play" );
     }

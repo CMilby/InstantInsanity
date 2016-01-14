@@ -12,4 +12,11 @@
     
 }
 
+- ( id ) initWithView: ( GLKView* ) view withShaders: ( NSMutableArray<Shader*>* ) shaders withCamera: ( Camera* ) camera {
+    if ( self = [ super initWithView: view withShaders: shaders withCamera: camera ] ) {
+        
+    }
+    return self;
+}
+
 @end

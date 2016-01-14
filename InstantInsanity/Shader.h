@@ -13,6 +13,16 @@
 #import <GLKit/GLKit.h>
 #import <OpenGLES/ES2/glext.h>
 
+#include "Camera.h"
+
+@class RenderableEntity;
+
+typedef enum MyShaders {
+    SHADER_STANDARD,
+    SHADER_SELECTION,
+    NUMBER_SHADERS
+} SHADERS;
+
 @interface Shader : NSObject {
     NSMutableDictionary *m_uniformMap;
     GLuint m_program;
@@ -21,6 +31,8 @@
 - ( id ) init: ( NSString* ) vertexShader withFrag: ( NSString* ) fragmentShader;
 
 - ( void ) cleanup;
+
+- ( void ) update: ( RenderableEntity* ) entity withProjection: ( GLKMatrix4 ) projection withCamera: ( Camera* ) camera;
 
 - ( GLuint ) loadVertexShader: ( NSString* ) filename;
 

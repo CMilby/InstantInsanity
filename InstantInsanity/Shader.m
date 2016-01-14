@@ -9,6 +9,7 @@
 #include "Shader.h"
 
 #include "Constants.h"
+#include "RenderableEntity.h"
 
 @implementation Shader {
     
@@ -68,6 +69,10 @@
         glDeleteProgram( m_program );
         m_program = 0;
     }
+}
+
+- ( void ) update: ( RenderableEntity* ) entity withProjection: ( GLKMatrix4 ) projection withCamera: ( Camera* ) camera {
+    
 }
 
 - ( void ) addUniform:( NSString* ) name {

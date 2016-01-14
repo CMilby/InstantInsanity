@@ -10,10 +10,15 @@
 #define __HOW_TO_PLAY_MENU_H__
 
 #import <Foundation/Foundation.h>
+#import <GLKit/GLKit.h>
 
-@interface HowToPlayMenu : NSObject {
+#include "Scene.h"
+
+@interface HowToPlayMenu : Scene {
     
 }
+
+- ( id ) initWithView: ( GLKView* ) view withShaders: ( NSMutableArray<Shader*>* ) shaders withCamera: ( Camera* ) camera;
 
 @end
 

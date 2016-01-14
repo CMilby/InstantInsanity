@@ -14,47 +14,44 @@
   
 }
 
-- ( id ) init: ( Camera* ) mainCamera inView: ( GLKView* ) view {
-    if ( self = [ super init ] ) {
-        m_picked = false;
-        m_view = view;
-        
+- ( id ) initWithView: ( GLKView* ) view withShaders: ( NSMutableArray<Shader*>* ) shaders withCamera: ( Camera* ) camera {
+    if ( self = [ super initWithView: view withShaders: shaders withCamera: camera ] ) {
         m_tapGestureRecognizer = [ [ UITapGestureRecognizer alloc ] initWithTarget: self action: @selector( handleTap: ) ];
-        [ m_view addGestureRecognizer: m_tapGestureRecognizer ];
+        // [ m_view addGestureRecognizer: m_tapGestureRecognizer ];
         
         m_pinchGestureRecognizer = [ [ UIPinchGestureRecognizer alloc ] initWithTarget: self action: @selector( handlePinch: ) ];
-        [ m_view addGestureRecognizer: m_pinchGestureRecognizer ];
+        // [ m_view addGestureRecognizer: m_pinchGestureRecognizer ];
         
         m_panGestureRecognizer = [ [ UIPanGestureRecognizer alloc ] initWithTarget: self action: @selector( handlePan: ) ];
-        [ m_view addGestureRecognizer: m_panGestureRecognizer ];
+        // [ m_view addGestureRecognizer: m_panGestureRecognizer ];
 
         // Swipe Gestures Start
         m_swipeGestureRecognizerLeft = [ [ UISwipeGestureRecognizer alloc ] initWithTarget: self action: @selector( handleSwipe: ) ];
         m_swipeGestureRecognizerLeft.direction = UISwipeGestureRecognizerDirectionLeft;
-        [ m_view addGestureRecognizer: m_swipeGestureRecognizerLeft ];
+        // [ m_view addGestureRecognizer: m_swipeGestureRecognizerLeft ];
         
         m_swipeGestureRecognizerRight = [ [ UISwipeGestureRecognizer alloc ] initWithTarget: self action: @selector( handleSwipe: ) ];
         m_swipeGestureRecognizerRight.direction = UISwipeGestureRecognizerDirectionRight;
-        [ m_view addGestureRecognizer: m_swipeGestureRecognizerRight ];
+        // [ m_view addGestureRecognizer: m_swipeGestureRecognizerRight ];
         
         m_swipeGestureRecognizerUp = [ [ UISwipeGestureRecognizer alloc ] initWithTarget: self action: @selector( handleSwipe: ) ];
         m_swipeGestureRecognizerUp.direction = UISwipeGestureRecognizerDirectionUp;
-        [ m_view addGestureRecognizer: m_swipeGestureRecognizerUp ];
+        // [ m_view addGestureRecognizer: m_swipeGestureRecognizerUp ];
         
         m_swipeGestureRecognizerDown = [ [ UISwipeGestureRecognizer alloc ] initWithTarget: self action: @selector( handleSwipe: ) ];
         m_swipeGestureRecognizerDown.direction = UISwipeGestureRecognizerDirectionDown;
-        [ m_view addGestureRecognizer: m_swipeGestureRecognizerDown ];
+        // [ m_view addGestureRecognizer: m_swipeGestureRecognizerDown ];
         
         m_swipeGestureRecognizerLeftTwo = [ [ UISwipeGestureRecognizer alloc ] initWithTarget: self action: @selector( handleSwipe: ) ];
         m_swipeGestureRecognizerLeftTwo.direction = UISwipeGestureRecognizerDirectionLeft;
         m_swipeGestureRecognizerLeftTwo.numberOfTouchesRequired = 2;
-        [ m_view addGestureRecognizer: m_swipeGestureRecognizerLeftTwo ];
+        // [ m_view addGestureRecognizer: m_swipeGestureRecognizerLeftTwo ];
         
         
         m_swipeGestureRecognizerRightTwo = [ [ UISwipeGestureRecognizer alloc ] initWithTarget: self action: @selector( handleSwipe: ) ];
         m_swipeGestureRecognizerRightTwo.direction = UISwipeGestureRecognizerDirectionRight;
         m_swipeGestureRecognizerRightTwo.numberOfTouchesRequired = 2;
-        [ m_view addGestureRecognizer: m_swipeGestureRecognizerRightTwo ];
+        // [ m_view addGestureRecognizer: m_swipeGestureRecognizerRightTwo ];
         // Swipe Gestures End
     
         
@@ -101,34 +98,24 @@
         [ m_cube4 setTopColor: YELLOW_COLOR ];
         [ m_cube4 setBottomColor: GREEN_COLOR ];
         
-        m_camera = mainCamera;
-        
-        m_shader = [ [ Shader alloc ] init: @"StandardShader" withFrag: @"StandardShader" ];
-        [ m_shader addUniform: @"mvp" ];
-        [ m_shader addUniform: @"sampler" ];
-        [ m_shader addUniform: @"transparent" ];
-        
-        m_selectionShader = [ [ Shader alloc ] init: @"SelectionShader" withFrag: @"SelectionShader" ];
-        [ m_selectionShader addUniform: @"mvp" ];
-        [ m_selectionShader addUniform: @"code" ];
-        
         m_textShader = [ [ TextShader alloc ] init: @"Courier_New" ];
-        
-        m_shouldRotateX = m_shouldRotateY = m_shouldRotateZ = false;
-        
         m_stopwatch = [ [ Stopwatch alloc ] init ];
+        
+        m_picked = false;
+        m_shouldRotateX = m_shouldRotateY = m_shouldRotateZ = false;
     }
     return self;
 }
 
 - ( void ) cleanup {
-    [ m_shader cleanup ];
-    [ m_selectionShader cleanup ];
+    [ super cleanup ];
     
     [ m_cube1 cleanup ];
     [ m_cube2 cleanup ];
     [ m_cube3 cleanup ];
     [ m_cube4 cleanup ];
+    
+    [ m_textShader cleanup ];
 }
 
 - ( void ) update {
@@ -166,46 +153,43 @@
     
     if ( !m_picked ) {
         // Order doesnt matter
-        [ self renderHelperTexture: m_cube1 ];
-        [ self renderHelperTexture: m_cube2 ];
-        [ self renderHelperTexture: m_cube3 ];
-        [ self renderHelperTexture: m_cube4 ];
+        [ m_shaders[ 0 ] update: m_cube1 withProjection: [ [ m_cube1 transform ] getProjectionMatrix ] withCamera: m_camera ];
+        [ m_shaders[ 0 ] update: m_cube2 withProjection: [ [ m_cube2 transform ] getProjectionMatrix ] withCamera: m_camera ];
+        [ m_shaders[ 0 ] update: m_cube3 withProjection: [ [ m_cube3 transform ] getProjectionMatrix ] withCamera: m_camera ];
+        [ m_shaders[ 0 ] update: m_cube4 withProjection: [ [ m_cube4 transform ] getProjectionMatrix ] withCamera: m_camera ];
     } else {
         // Render picked last
         NSMutableArray<RenderableEntity*> *array = [ self getPickedRender ];
-        [ self renderHelperTexture: array[ 0 ] ];
-        [ self renderHelperTexture: array[ 1 ] ];
-        [ self renderHelperTexture: array[ 2 ] ];
-        [ self renderHelperTexture: array[ 3 ] ];
+        for ( int i = 0; i < [ array count ]; i++ ) {
+            [ m_shaders[ 0 ] update: array[ i ] withProjection: [ [ array[ i ] transform ] getProjectionMatrix ] withCamera: m_camera ];
+        }
     }
 }
 
-- ( void ) renderHelperTexture: ( RenderableEntity* ) entity {
-    [ m_shader bind ];
+- ( void ) receivedFocus {
+    [ m_view addGestureRecognizer: m_tapGestureRecognizer ];
+    [ m_view addGestureRecognizer: m_panGestureRecognizer ];
+    [ m_view addGestureRecognizer: m_pinchGestureRecognizer ];
     
-    [ entity bind ];
-    [ m_shader updateUniform: @"sampler" withInt: 0 ];
-    
-    GLKMatrix4 mvp = GLKMatrix4Multiply( GLKMatrix4Multiply( [ [ entity transform ] getProjectionMatrix ], [ m_camera getViewMatrix ] ), [ [ entity transform ] getModelMatrix ] );
-    [ m_shader updateUniform: @"mvp" withMatrix4: mvp ];
-    [ m_shader updateUniform: @"transparent" withInt: [ entity isPicked ] ? 0 : 1 ];
-    
-    glEnable( GL_BLEND );
-    glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-    
-    [ entity render: m_shader withCamera: m_camera ];
-    
-    glDisable( GL_BLEND );
+    [ m_view addGestureRecognizer: m_swipeGestureRecognizerLeft ];
+    [ m_view addGestureRecognizer: m_swipeGestureRecognizerRight ];
+    [ m_view addGestureRecognizer: m_swipeGestureRecognizerUp ];
+    [ m_view addGestureRecognizer: m_swipeGestureRecognizerDown ];
+    [ m_view addGestureRecognizer: m_swipeGestureRecognizerLeftTwo ];
+    [ m_view addGestureRecognizer: m_swipeGestureRecognizerRightTwo ];
 }
 
-- ( void ) renderHelperSelection: ( RenderableEntity* ) entity {
-    [ m_selectionShader bind ];
-   
-    GLKMatrix4 mvp = GLKMatrix4Multiply( GLKMatrix4Multiply( [ [ entity transform ] getProjectionMatrix ], [ m_camera getViewMatrix ] ), [ [ entity transform ] getModelMatrix ] );
-    [ m_selectionShader updateUniform: @"mvp" withMatrix4: mvp ];
-    [ m_selectionShader updateUniform: @"code" withFloat: [ entity getCode ] ];
+- ( void ) lostFocus {
+    [ m_view removeGestureRecognizer: m_tapGestureRecognizer ];
+    [ m_view removeGestureRecognizer: m_panGestureRecognizer ];
+    [ m_view removeGestureRecognizer: m_pinchGestureRecognizer ];
     
-    [ entity render: m_selectionShader withCamera: m_camera ];
+    [ m_view removeGestureRecognizer: m_swipeGestureRecognizerLeft ];
+    [ m_view removeGestureRecognizer: m_swipeGestureRecognizerRight ];
+    [ m_view removeGestureRecognizer: m_swipeGestureRecognizerUp ];
+    [ m_view removeGestureRecognizer: m_swipeGestureRecognizerDown ];
+    [ m_view removeGestureRecognizer: m_swipeGestureRecognizerLeftTwo ];
+    [ m_view removeGestureRecognizer: m_swipeGestureRecognizerRightTwo ];
 }
 
 - ( void ) handleTap: ( UITapGestureRecognizer* ) sender {
@@ -235,11 +219,11 @@
             NSLog( @"Framebuffer status: %x", ( int ) status );
         }
     
-        [ self renderHelperSelection: m_cube1 ];
-        [ self renderHelperSelection: m_cube2 ];
-        [ self renderHelperSelection: m_cube3 ];
-        [ self renderHelperSelection: m_cube4 ];
-    
+        [ m_shaders[ SHADER_SELECTION ] update: m_cube1 withProjection: [ [ m_cube1 transform ] getProjectionMatrix ] withCamera: m_camera ];
+        [ m_shaders[ SHADER_SELECTION ] update: m_cube2 withProjection: [ [ m_cube2 transform ] getProjectionMatrix ] withCamera: m_camera ];
+        [ m_shaders[ SHADER_SELECTION ] update: m_cube3 withProjection: [ [ m_cube3 transform ] getProjectionMatrix ] withCamera: m_camera ];
+        [ m_shaders[ SHADER_SELECTION ] update: m_cube4 withProjection: [ [ m_cube4 transform ] getProjectionMatrix ] withCamera: m_camera ];
+        
         CGFloat scale = UIScreen.mainScreen.scale;
         glReadPixels (point.x * scale, ( height - ( point.y * scale ) ), 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixelColor );
         

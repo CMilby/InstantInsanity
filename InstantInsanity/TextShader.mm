@@ -33,6 +33,20 @@ typedef struct {
     return self;
 }
 
+- ( void ) cleanup {
+    [ super cleanup ];
+    
+    if ( m_vertexBuffer ) {
+        glDeleteBuffers( 1, &m_vertexBuffer );
+        m_vertexBuffer = 0;
+    }
+    
+    if ( m_uvBuffer ) {
+        glDeleteBuffers( 1, &m_uvBuffer );
+        m_uvBuffer = 0;
+    }
+}
+
 - ( void ) render: ( NSString* ) text withX: ( int ) x withY: ( int ) y withSize: ( int ) size {
     std::vector<Vector2> vertices;
     std::vector<Vector2> uvs;

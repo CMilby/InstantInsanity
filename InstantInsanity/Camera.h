@@ -11,8 +11,6 @@
 
 #import <GLKit/GLKit.h>
 
-@class Transform;
-
 @interface Camera : NSObject {
     GLKVector3 m_lookAt;
     

@@ -19,6 +19,8 @@
     Texture *m_texture;
 }
 
+- ( void ) cleanup;
+
 - ( id ) init: ( NSString* ) textureFile;
 
 - ( void ) render: ( NSString* ) text withX: ( int ) x withY: ( int ) y withSize: ( int ) size;

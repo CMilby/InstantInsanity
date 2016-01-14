@@ -16,7 +16,6 @@
     GLKVector3 m_position;
     GLKVector3 m_scale;
     GLKQuaternion m_rotation;
-    // GLKMatrix4 m_rotation;
     
     GLKMatrix4 m_projectionMatrix;
 }

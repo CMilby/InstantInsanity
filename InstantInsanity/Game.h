@@ -10,17 +10,14 @@
 #define __GAME_H__
 
 #import <Foundation/Foundation.h>
+#import <GLKit/GLKit.h>
 
-#include "Camera.h"
 #include "Cube.h"
-#include "Shader.h"
+#include "Scene.h"
 #include "Stopwatch.h"
 #include "TextShader.h"
 
-@interface Game : NSObject <UIGestureRecognizerDelegate> {
-    bool m_picked;
-    
-    GLKView *m_view;
+@interface Game : Scene <UIGestureRecognizerDelegate> {
     UITapGestureRecognizer *m_tapGestureRecognizer;
     UIPanGestureRecognizer *m_panGestureRecognizer;
     UIPinchGestureRecognizer *m_pinchGestureRecognizer;
@@ -38,6 +35,8 @@
     Cube *m_cube4;
     
     Cube *m_pickedCube;
+    bool m_picked;
+    
     int m_rotateX;
     int m_rotateY;
     int m_rotateZ;
@@ -48,21 +47,21 @@
 
     int m_totalRotation;
     
-    Shader *m_shader;
-    Shader *m_selectionShader;
     TextShader *m_textShader;
-    
-    Camera *m_camera;
     Stopwatch *m_stopwatch;
 }
 
-- ( id ) init: ( Camera* ) mainCamera inView: ( GLKView* ) view;
+- ( id ) initWithView: ( GLKView* ) view withShaders: ( NSMutableArray<Shader*>* ) shaders withCamera: ( Camera* ) camera;
 
 - ( void ) cleanup;
 
 - ( void ) update;
 
 - ( void ) render;
+
+- ( void ) receivedFocus;
+
+- ( void ) lostFocus;
 
 @end
 

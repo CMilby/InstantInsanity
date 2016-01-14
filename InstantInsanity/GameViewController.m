@@ -11,11 +11,25 @@
 
 #include "Game.h"
 #include "MainMenu.h"
+#include "PlayGameMenu.h"
+#include "Scene.h"
+#include "SelectionShader.h"
+#include "StandardShader.h"
 
 @interface GameViewController () {
     Camera *m_camera;
-    Game *m_game;
-    MainMenu *m_mainMenu;
+    
+    NSMutableArray<Shader*> *m_shaders;
+    Shader *m_standardShader;
+    Shader *m_selectionShader;
+    
+    NSMutableArray<Scene*> *m_scenes;
+    int m_lastScene;
+    
+    Scene *m_game;
+    Scene *m_mainMenu;
+    Scene *m_playGameMenu;
+    
 }
 
 @property (strong, nonatomic) EAGLContext *context;
@@ -37,9 +51,6 @@
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     view.multipleTouchEnabled = true;
-    
-    m_camera = [ [ Camera alloc ] init: GLKVector3Make( 0.0f, 0.0f, 0.0f ) ];
-    [ m_camera setup: -45.0f yAngle: 0.0f distance: 10.0f ];
     
     [ self setupGL ];
 }
@@ -67,8 +78,6 @@
         }
         self.context = nil;
     }
-    
-    [ m_game cleanup ];
 }
 
 - ( BOOL ) prefersStatusBarHidden {
@@ -86,25 +95,48 @@
     glEnable( GL_BLEND );
     glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
     
-    // m_game = [ [ Game alloc ] init: m_camera inView: ( GLKView* ) self.view ];
-    m_mainMenu = [ [ MainMenu alloc ] init: m_camera inView: ( GLKView* ) self.view ];
+    m_shaders = [ [ NSMutableArray alloc ] initWithCapacity: 2 ];
+    m_standardShader = [ [ StandardShader alloc ] init ];
+    m_selectionShader = [ [ SelectionShader alloc ] init ];
+    [ m_shaders addObject: m_standardShader ];
+    [ m_shaders addObject: m_selectionShader ];
+    
+    m_camera = [ [ Camera alloc ] init: GLKVector3Make( 0.0f, 0.0f, 0.0f ) ];
+    [ m_camera setup: -45.0f yAngle: 0.0f distance: 10.0f ];
+    
+    m_scenes = [ [ NSMutableArray alloc ] init ];
+    m_mainMenu = [ [ MainMenu alloc ] initWithView: ( GLKView* ) self.view withShaders: m_shaders withCamera: m_camera ];
+    m_playGameMenu = [ [ PlayGameMenu alloc ] initWithView: ( GLKView* ) self.view withShaders: m_shaders withCamera: m_camera ];
+    m_game = [ [ Game alloc ] initWithView: ( GLKView* ) self.view withShaders: m_shaders withCamera: m_camera ];
+    
+    [ m_scenes addObject: m_mainMenu ];
+    [ m_scenes addObject: m_playGameMenu ];
+    [ m_scenes addObject: m_game ];
+    
+    [ m_scenes[ CurrentScene ] receivedFocus ];
+    m_lastScene = CurrentScene;
 }
 
 - ( void ) tearDownGL {
-    [ EAGLContext setCurrentContext:self.context ];
+    [ EAGLContext setCurrentContext: self.context ];
 }
 
 - ( void ) update {
+    if ( m_lastScene != CurrentScene ) {
+        [ m_scenes[ m_lastScene ] lostFocus ];
+        [ m_scenes[ CurrentScene ] receivedFocus ];
+        m_lastScene = CurrentScene;
+    }
+    
     [ m_camera updateView ];
-    // [ m_game update ];
-    [ m_mainMenu update ];
+    
+    [ m_scenes[ CurrentScene ] update ];
 }
 
 - ( void ) glkView: ( GLKView* ) view drawInRect: ( CGRect ) rect {
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     
-    // [ m_game render ];
-    [ m_mainMenu render ];
+    [ m_scenes[ CurrentScene ] render ];
 }
 
 @end

@@ -14,10 +14,12 @@
 
 #include "Cube.h"
 #include "Plane.h"
+#include "Scene.h"
 
-@interface MainMenu : NSObject <UIGestureRecognizerDelegate> {
-    GLKView *m_view;
+@interface MainMenu : Scene <UIGestureRecognizerDelegate> {
     UITapGestureRecognizer *m_tapGestureRecognizer;
+    
+    GLKMatrix4 m_orthMatrix;
     
     Cube *m_cube1;
     Cube *m_cube2;
@@ -27,18 +29,19 @@
     Plane *m_gameTitle;
     Plane *m_playGame;
     Plane *m_howToPlay;
-    
-    Shader *m_standardShader;
-    Shader *m_selectionShader;
-    
-    Camera *m_camera;
 }
 
-- ( id ) init: ( Camera* ) camera inView: ( GLKView* ) view;
+- ( id ) initWithView: ( GLKView* ) view withShaders: ( NSMutableArray<Shader*>* ) shaders withCamera: ( Camera* ) camera;
+
+- ( void ) cleanup;
 
 - ( void ) update;
 
 - ( void ) render;
+
+- ( void ) receivedFocus;
+
+- ( void ) lostFocus;
 
 @end
 

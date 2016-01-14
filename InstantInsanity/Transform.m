@@ -29,7 +29,6 @@
         m_position = position;
         m_scale = GLKVector3Make( 1.0, 1.0, 1.0 );
         m_rotation = GLKQuaternionMake( 0.0, 0.0, 0.0, 1.0 );
-        // m_rotation = GLKMatrix4Identity;
         
         m_projectionMatrix = GLKMatrix4MakePerspective( GLKMathDegreesToRadians( 70.0f ), [ UIScreen mainScreen ].bounds.size.width / [ UIScreen mainScreen ].bounds.size.height, 0.1f, 100.0f );
     }
@@ -41,7 +40,6 @@
         m_position = position;
         m_scale = scale;
         m_rotation = rotation;
-        // m_rotation = GLKMatrix4Identity;
         
         m_projectionMatrix = GLKMatrix4MakePerspective( GLKMathDegreesToRadians( 70.0f ), [ UIScreen mainScreen ].bounds.size.width / [ UIScreen mainScreen ].bounds.size.height, 0.1f, 100.0f );
     }
