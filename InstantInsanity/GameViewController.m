@@ -15,6 +15,7 @@
 #include "FiveCubeGameScene.h"
 #include "MainMenu.h"
 #include "OverlayShader.h"
+#include "OverlaySelectionShader.h"
 #include "PlayGameMenu.h"
 #include "SelectionShader.h"
 #include "SixCubeGameScene.h"
@@ -30,6 +31,7 @@
     Shader *m_selectionShader;
     Shader *m_textShader;
     Shader *m_overlayShader;
+    Shader *m_selectionOverlayShader;
     
     NSMutableArray<Scene*> *m_scenes;
     int m_lastScene;
@@ -115,10 +117,13 @@
     m_selectionShader = [ [ SelectionShader alloc ] init ];
     m_textShader = [ [ TextShader alloc ] init: @"Courier_New" ];
     m_overlayShader = [ [ OverlayShader alloc ] init ];
+    m_selectionOverlayShader = [ [ OverlaySelectionShader alloc ] init ];
+    
     [ m_shaders addObject: m_standardShader ];
     [ m_shaders addObject: m_selectionShader ];
     [ m_shaders addObject: m_textShader ];
     [ m_shaders addObject: m_overlayShader ];
+    [ m_shaders addObject: m_selectionOverlayShader ];
     
     m_camera = [ [ Camera alloc ] init: GLKVector3Make( 0.0f, 0.0f, 0.0f ) ];
     [ m_camera setup: -45.0f yAngle: 0.0f distance: 10.0f ];

@@ -16,20 +16,20 @@
     if ( self = [ super initWithView: view withShaders: shaders withCamera: camera ] ) {
         m_tapGestureRecognizer = [ [ UITapGestureRecognizer alloc ] initWithTarget: self action: @selector( handleTap: ) ];
         
-        m_quitMenu = [ [ Plane alloc ] init: @"QuitMenu" ];
+        m_quitMenu = [ [ Texture alloc ] init: @"QuitMenu" ];
         
-        m_yesButton = [ [ Plane alloc ] init: @"YesButton" ];
+        m_yesButton = [ [ Texture alloc ] init: @"YesButton" ];
         [ m_yesButton setCode: 1 ];
-        m_noButton = [ [ Plane alloc ] init: @"NoButton" ];
+        m_noButton = [ [ Texture alloc ] init: @"NoButton" ];
         [ m_noButton setCode: 2 ];
     }
     return self;
 }
 
 - ( void ) render {
-    [ m_shaders[ SHADER_STANDARD ] updateEntity: m_quitMenu withProjection: m_orthMatrix withCamera:m_camera ];
-    [ m_shaders[ SHADER_STANDARD ] updateEntity: m_yesButton withProjection: m_orthMatrix withCamera:m_camera ];
-    [ m_shaders[ SHADER_STANDARD ] updateEntity: m_noButton withProjection: m_orthMatrix withCamera:m_camera ];
+    [ m_shaders[ SHADER_OVERLAY ] updateTexture: m_yesButton withX: 310 withY: 210 withWidth: 90 withHeight: 50 ];
+    [ m_shaders[ SHADER_OVERLAY ] updateTexture: m_noButton withX: 410 withY: 210 withWidth: 90 withHeight: 50 ];
+    [ m_shaders[ SHADER_OVERLAY ] updateTexture: m_quitMenu withX: 300 withY: 200 withWidth: 200 withHeight: 100 ];
 }
 
 - ( void ) receivedFocus {
@@ -62,8 +62,8 @@
         NSLog( @"Framebuffer status: %x", ( int ) status );
     }
     
-    [ m_shaders[ SHADER_SELECTION ] updateEntity: m_yesButton withProjection: m_orthMatrix withCamera: m_camera ];
-    [ m_shaders[ SHADER_SELECTION ] updateEntity: m_noButton withProjection: m_orthMatrix withCamera: m_camera ];
+    [ m_shaders[ SHADER_SELECTION_OVERLAY ] updateTexture: m_yesButton withX: 310 withY: 210 withWidth: 90 withHeight: 50 ];
+    [ m_shaders[ SHADER_SELECTION_OVERLAY ] updateTexture: m_noButton withX: 410 withY: 210 withWidth: 90 withHeight: 50 ];
     
     CGFloat scale = UIScreen.mainScreen.scale;
     glReadPixels( point.x * scale, ( height - ( point.y * scale ) ), 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixelColor );
@@ -74,9 +74,9 @@
     }
     
     if ( value == [ m_yesButton getCode ] ) {
-    
+        NSLog( @"Yes" );
     } else if ( value == [ m_noButton getCode ] ) {
-        
+        NSLog( @"No" );
     }
     
     [ self render ];

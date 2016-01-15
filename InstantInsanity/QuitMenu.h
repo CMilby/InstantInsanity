@@ -15,9 +15,9 @@
 @interface QuitMenu : Scene {
     UITapGestureRecognizer *m_tapGestureRecognizer;
     
-    Plane *m_quitMenu;
-    Plane *m_yesButton;
-    Plane *m_noButton;
+    Texture *m_quitMenu;
+    Texture *m_yesButton;
+    Texture *m_noButton;
 }
 
 - ( id ) initWithView: ( GLKView* ) view withShaders: ( NSMutableArray<Shader*>* ) shaders withCamera: ( Camera* ) camera;

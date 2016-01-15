@@ -48,10 +48,17 @@
         m_shouldRotateX = m_shouldRotateY = m_shouldRotateZ = false;
         
         m_pauseButton = [ [ Texture alloc ] init: @"PauseImage" ];
-        // m_pauseButton = [ [ Plane alloc ] init: @"PauseImage" ];
-        // [ m_pauseButton setCode: 200 ];
-        // [ [ m_pauseButton transform ] setPosition: GLKVector3Make( 0.45f, 0.61f, -1.0f ) ];
-        // [ [ m_pauseButton transform ] setScale: GLKVector3Make( 0.05f, 0.05f, 0.05f ) ];
+        [ m_pauseButton setCode: 200 ];
+        
+        m_currentMenu = -1;
+        m_menus = [ [ NSMutableArray alloc ] initWithCapacity: NUMBER_MENUS ];
+        m_pauseMenu = [ [ PauseMenu alloc ] initWithView: m_view withShaders: m_shaders withCamera: m_camera ];
+        m_quitMenu = [ [ QuitMenu alloc ] initWithView: m_view withShaders: m_shaders withCamera: m_camera ];
+        m_winMenu = [ [ WinMenu alloc ] initWithView: m_view withShaders: m_shaders withCamera: m_camera ];
+        
+        [ m_menus addObject: m_pauseMenu ];
+        [ m_menus addObject: m_quitMenu ];
+        [ m_menus addObject: m_winMenu ];
     }
     return self;
 }
@@ -65,6 +72,10 @@
 }
 
 - ( void ) update {
+    if ( m_currentMenu != -1 ) {
+        [ m_menus[ m_currentMenu ] update ];
+    }
+    
     if ( m_shouldRotateX || m_shouldRotateY || m_shouldRotateZ ) {
         
         m_totalRotation += m_rotateX + m_rotateY + m_rotateZ;
@@ -109,7 +120,11 @@
     }
     
     [ m_shaders[ SHADER_TEXT ] updateString: [ m_stopwatch getTimeString ] withX: 5 withY: 0 withSize: 32 ];
-    [ m_shaders[ SHADER_OVERLAY ] updateTexture: m_pauseButton withX: 370 withY: 270 withSize: 30 ];
+    [ m_shaders[ SHADER_OVERLAY ] updateTexture: m_pauseButton withX: 760 withY: 560 withSize: 32 ];
+    
+    if ( m_currentMenu != -1 ) {
+        [ m_menus[ m_currentMenu ] render ];
+    }
 }
 
 - ( void ) receivedFocus {
@@ -147,37 +162,43 @@
         return;
     }
     
-    if ( !m_picked ) {
-        CGPoint point = [ sender locationInView: m_view ];
-        
-        NSInteger height = m_view.drawableHeight;
-        NSInteger width = m_view.drawableWidth;
-        Byte pixelColor[ 4 ] = { 0, };
-        GLuint colorRenderbuffer;
-        GLuint framebuffer;
-        
-        glGenFramebuffers( 1, &framebuffer );
-        glBindFramebuffer( GL_FRAMEBUFFER, framebuffer );
-        glGenRenderbuffers( 1, &colorRenderbuffer );
-        glBindRenderbuffer( GL_RENDERBUFFER, colorRenderbuffer );
-        
-        glRenderbufferStorage( GL_RENDERBUFFER, GL_RGBA8_OES, ( int ) width, ( int ) height );
-        glFramebufferRenderbuffer( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, colorRenderbuffer );
-        
-        GLenum status = glCheckFramebufferStatus( GL_FRAMEBUFFER );
-        if ( status != GL_FRAMEBUFFER_COMPLETE ) {
-            NSLog( @"Framebuffer status: %x", ( int ) status );
-        }
-        
-        for ( int i = 0; i < [ m_cubes count ]; i++ ) {
-            [ m_shaders[ SHADER_SELECTION ] updateEntity: m_cubes[ i ] withProjection: [ [ m_cubes[ i ] transform ] getProjectionMatrix ] withCamera:m_camera ];
-        }
-        [ m_shaders[ SHADER_SELECTION ] updateTexture: m_pauseButton withX: 370 withY: 270 withSize: 30 ];
-        
-        CGFloat scale = UIScreen.mainScreen.scale;
-        glReadPixels (point.x * scale, ( height - ( point.y * scale ) ), 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixelColor );
-        
-        NSUInteger value = pixelColor[ 0 ];
+    CGPoint point = [ sender locationInView: m_view ];
+    
+    NSInteger height = m_view.drawableHeight;
+    NSInteger width = m_view.drawableWidth;
+    Byte pixelColor[ 4 ] = { 0, };
+    GLuint colorRenderbuffer;
+    GLuint framebuffer;
+    
+    glGenFramebuffers( 1, &framebuffer );
+    glBindFramebuffer( GL_FRAMEBUFFER, framebuffer );
+    glGenRenderbuffers( 1, &colorRenderbuffer );
+    glBindRenderbuffer( GL_RENDERBUFFER, colorRenderbuffer );
+    
+    glRenderbufferStorage( GL_RENDERBUFFER, GL_RGBA8_OES, ( int ) width, ( int ) height );
+    glFramebufferRenderbuffer( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, colorRenderbuffer );
+    
+    GLenum status = glCheckFramebufferStatus( GL_FRAMEBUFFER );
+    if ( status != GL_FRAMEBUFFER_COMPLETE ) {
+        NSLog( @"Framebuffer status: %x", ( int ) status );
+    }
+    
+    for ( int i = 0; i < [ m_cubes count ]; i++ ) {
+        [ m_shaders[ SHADER_SELECTION ] updateEntity: m_cubes[ i ] withProjection: [ [ m_cubes[ i ] transform ] getProjectionMatrix ] withCamera:m_camera ];
+    }
+    [ m_shaders[ SHADER_SELECTION_OVERLAY ] updateTexture: m_pauseButton withX: 760 withY: 560 withSize: 32 ];
+    
+    CGFloat scale = UIScreen.mainScreen.scale;
+    glReadPixels (point.x * scale, ( height - ( point.y * scale ) ), 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixelColor );
+    
+    NSUInteger value = pixelColor[ 0 ];
+    
+    if ( value == [ m_pauseButton getCode ] ) {
+        m_currentMenu = MENU_QUIT;
+        [ self lostFocus ];
+        [ m_menus[ m_currentMenu ] receivedFocus ];
+        // NSLog( @"Pause Button" );
+    } else if ( !m_picked ) {
         if ( value == 0 ) {
             return;
         }
@@ -187,19 +208,9 @@
             [ array[ i ] setIsPicked: true ];
         }
         
-        if ( value == [ m_pauseButton getCode ] ) {
-            NSLog( @"Pause Button" );
-        }
-        
         m_picked = true;
-        
-        [ self render ];
-        
         m_panGestureRecognizer.enabled = false;
-        
-        glDeleteRenderbuffers(1, &colorRenderbuffer);
-        glDeleteFramebuffers(1, &framebuffer);
-    } else {
+    } else if ( m_picked ) {
         for ( int i = 0; i < [ m_cubes count ]; i++ ) {
             [ m_cubes[ i ] setIsPicked: false ];
         }
@@ -209,6 +220,11 @@
         
         m_panGestureRecognizer.enabled = true;
     }
+    
+    [ self render ];
+    
+    glDeleteRenderbuffers(1, &colorRenderbuffer);
+    glDeleteFramebuffers(1, &framebuffer);
 }
 
 - ( void ) handlePinch: ( UIGestureRecognizer* ) sender {

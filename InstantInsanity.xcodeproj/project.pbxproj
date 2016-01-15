@@ -12,7 +12,10 @@
 		4408998D1C48188400A1E1F3 /* QuitMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4408998C1C48188400A1E1F3 /* QuitMenu.m */; };
 		440899961C48307E00A1E1F3 /* OverlayShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 440899951C48307E00A1E1F3 /* OverlayShader.fsh */; };
 		440899981C48308700A1E1F3 /* OverlayShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 440899971C48308700A1E1F3 /* OverlayShader.vsh */; };
-		4408999B1C4830EA00A1E1F3 /* OverlayShader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4408999A1C4830EA00A1E1F3 /* OverlayShader.mm */; };
+		4408999B1C4830EA00A1E1F3 /* OverlayShader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4408999A1C4830EA00A1E1F3 /* OverlayShader.m */; };
+		4408999E1C488B4B00A1E1F3 /* OverlaySelectionShader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4408999D1C488B4B00A1E1F3 /* OverlaySelectionShader.mm */; };
+		440899A01C488C2E00A1E1F3 /* OverlaySelectionShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 4408999F1C488C2E00A1E1F3 /* OverlaySelectionShader.fsh */; };
+		440899A21C488C3900A1E1F3 /* OverlaySelectionShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 440899A11C488C3900A1E1F3 /* OverlaySelectionShader.vsh */; };
 		4426F0241C415A65000D661B /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = 4426F0231C415A65000D661B /* Entity.m */; };
 		4426F0271C415C82000D661B /* RenderableEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 4426F0261C415C82000D661B /* RenderableEntity.m */; };
 		4426F02A1C415F92000D661B /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 4426F0291C415F92000D661B /* Camera.m */; };
@@ -31,7 +34,7 @@
 		4492B8E61C3F187B006CC877 /* InstantInsanityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4492B8E51C3F187B006CC877 /* InstantInsanityTests.m */; };
 		4492B8F11C3F187B006CC877 /* InstantInsanityUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4492B8F01C3F187B006CC877 /* InstantInsanityUITests.m */; };
 		4492B9001C3F188C006CC877 /* Mesh.m in Sources */ = {isa = PBXBuildFile; fileRef = 4492B8FF1C3F188C006CC877 /* Mesh.m */; };
-		4492B9031C3F189C006CC877 /* Shader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4492B9021C3F189C006CC877 /* Shader.m */; };
+		4492B9031C3F189C006CC877 /* Shader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4492B9021C3F189C006CC877 /* Shader.mm */; };
 		4492B9061C3F18AE006CC877 /* Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 4492B9051C3F18AE006CC877 /* Texture.m */; };
 		4492B9131C400807006CC877 /* Cube.m in Sources */ = {isa = PBXBuildFile; fileRef = 4492B9121C400806006CC877 /* Cube.m */; };
 		4492B9161C400D66006CC877 /* Transform.m in Sources */ = {isa = PBXBuildFile; fileRef = 4492B9151C400D66006CC877 /* Transform.m */; };
@@ -82,7 +85,11 @@
 		440899951C48307E00A1E1F3 /* OverlayShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = OverlayShader.fsh; sourceTree = "<group>"; };
 		440899971C48308700A1E1F3 /* OverlayShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = OverlayShader.vsh; sourceTree = "<group>"; };
 		440899991C4830E000A1E1F3 /* OverlayShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OverlayShader.h; sourceTree = "<group>"; };
-		4408999A1C4830EA00A1E1F3 /* OverlayShader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OverlayShader.mm; sourceTree = "<group>"; };
+		4408999A1C4830EA00A1E1F3 /* OverlayShader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayShader.m; sourceTree = "<group>"; };
+		4408999C1C488B3F00A1E1F3 /* OverlaySelectionShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OverlaySelectionShader.h; sourceTree = "<group>"; };
+		4408999D1C488B4B00A1E1F3 /* OverlaySelectionShader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OverlaySelectionShader.mm; sourceTree = "<group>"; };
+		4408999F1C488C2E00A1E1F3 /* OverlaySelectionShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = OverlaySelectionShader.fsh; sourceTree = "<group>"; };
+		440899A11C488C3900A1E1F3 /* OverlaySelectionShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = OverlaySelectionShader.vsh; sourceTree = "<group>"; };
 		4426F0221C415A5D000D661B /* Entity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
 		4426F0231C415A65000D661B /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
 		4426F0251C415C79000D661B /* RenderableEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenderableEntity.h; sourceTree = "<group>"; };
@@ -116,7 +123,7 @@
 		4492B8FE1C3F1884006CC877 /* Mesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
 		4492B8FF1C3F188C006CC877 /* Mesh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mesh.m; sourceTree = "<group>"; };
 		4492B9011C3F1893006CC877 /* Shader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
-		4492B9021C3F189C006CC877 /* Shader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shader.m; sourceTree = "<group>"; };
+		4492B9021C3F189C006CC877 /* Shader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Shader.mm; sourceTree = "<group>"; };
 		4492B9041C3F18A4006CC877 /* Texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		4492B9051C3F18AE006CC877 /* Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture.m; sourceTree = "<group>"; };
 		4492B9111C4007BE006CC877 /* Cube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cube.h; sourceTree = "<group>"; };
@@ -266,7 +273,7 @@
 			children = (
 				44FDCEBD1C46C23200EB2C0A /* Shaders */,
 				4492B9011C3F1893006CC877 /* Shader.h */,
-				4492B9021C3F189C006CC877 /* Shader.m */,
+				4492B9021C3F189C006CC877 /* Shader.mm */,
 				4492B9041C3F18A4006CC877 /* Texture.h */,
 				4492B9051C3F18AE006CC877 /* Texture.m */,
 				44FDCEF71C470A8600EB2C0A /* StandardShader.h */,
@@ -276,7 +283,9 @@
 				44502DBB1C460F0A0056734C /* TextShader.h */,
 				44502DBC1C460F150056734C /* TextShader.mm */,
 				440899991C4830E000A1E1F3 /* OverlayShader.h */,
-				4408999A1C4830EA00A1E1F3 /* OverlayShader.mm */,
+				4408999A1C4830EA00A1E1F3 /* OverlayShader.m */,
+				4408999C1C488B3F00A1E1F3 /* OverlaySelectionShader.h */,
+				4408999D1C488B4B00A1E1F3 /* OverlaySelectionShader.mm */,
 			);
 			name = Rendering;
 			sourceTree = "<group>";
@@ -299,14 +308,16 @@
 		44FDCEBD1C46C23200EB2C0A /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
-				44B4731E1C43020900451EB9 /* SelectionShader.fsh */,
-				44B473201C43021300451EB9 /* SelectionShader.vsh */,
 				4492B8CD1C3F187B006CC877 /* StandardShader.fsh */,
 				4492B8CF1C3F187B006CC877 /* StandardShader.vsh */,
+				44B4731E1C43020900451EB9 /* SelectionShader.fsh */,
+				44B473201C43021300451EB9 /* SelectionShader.vsh */,
 				44502DB71C460EB60056734C /* TextShader.fsh */,
 				44502DB91C460EC10056734C /* TextShader.vsh */,
 				440899951C48307E00A1E1F3 /* OverlayShader.fsh */,
 				440899971C48308700A1E1F3 /* OverlayShader.vsh */,
+				4408999F1C488C2E00A1E1F3 /* OverlaySelectionShader.fsh */,
+				440899A11C488C3900A1E1F3 /* OverlaySelectionShader.vsh */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -450,9 +461,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				440899A01C488C2E00A1E1F3 /* OverlaySelectionShader.fsh in Resources */,
 				4492B8D61C3F187B006CC877 /* Main.storyboard in Resources */,
 				44502DB81C460EB60056734C /* TextShader.fsh in Resources */,
 				440899981C48308700A1E1F3 /* OverlayShader.vsh in Resources */,
+				440899A21C488C3900A1E1F3 /* OverlaySelectionShader.vsh in Resources */,
 				44B4731F1C43020900451EB9 /* SelectionShader.fsh in Resources */,
 				440899961C48307E00A1E1F3 /* OverlayShader.fsh in Resources */,
 				4492B8D01C3F187B006CC877 /* StandardShader.vsh in Resources */,
@@ -493,6 +506,7 @@
 				4426F0271C415C82000D661B /* RenderableEntity.m in Sources */,
 				44FDCF051C472B9000EB2C0A /* FiveCubeGameScene.m in Sources */,
 				44FDCEB71C46B2DD00EB2C0A /* Stopwatch.m in Sources */,
+				4408999E1C488B4B00A1E1F3 /* OverlaySelectionShader.mm in Sources */,
 				4492B9161C400D66006CC877 /* Transform.m in Sources */,
 				44FDCEB91C46C1E000EB2C0A /* Plane.m in Sources */,
 				44FDCF2F1C47401B00EB2C0A /* ClassicTwoGameScene.m in Sources */,
@@ -500,7 +514,7 @@
 				4492B9061C3F18AE006CC877 /* Texture.m in Sources */,
 				44FDCF0B1C472BD700EB2C0A /* ClocksGameScene.m in Sources */,
 				4492B8C91C3F187B006CC877 /* main.m in Sources */,
-				4492B9031C3F189C006CC877 /* Shader.m in Sources */,
+				4492B9031C3F189C006CC877 /* Shader.mm in Sources */,
 				44FDCEF61C47078100EB2C0A /* Scene.m in Sources */,
 				4445F38A1C41827B002E82C1 /* Math3D.m in Sources */,
 				44FDCEFC1C470AA000EB2C0A /* SelectionShader.m in Sources */,
@@ -510,7 +524,7 @@
 				44FDCF021C4724E800EB2C0A /* ClassicOneGameScene.m in Sources */,
 				44FDCEF91C470A8F00EB2C0A /* StandardShader.m in Sources */,
 				4426F0241C415A65000D661B /* Entity.m in Sources */,
-				4408999B1C4830EA00A1E1F3 /* OverlayShader.mm in Sources */,
+				4408999B1C4830EA00A1E1F3 /* OverlayShader.m in Sources */,
 				4426F02A1C415F92000D661B /* Camera.m in Sources */,
 				44FDCEF31C46D83400EB2C0A /* PlayGameMenu.m in Sources */,
 				440899871C48183300A1E1F3 /* WinMenu.m in Sources */,

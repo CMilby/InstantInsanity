@@ -17,6 +17,13 @@
 #include "TextShader.h"
 #include "WinMenu.h"
 
+typedef enum MyMenus {
+    MENU_PAUSE,
+    MENU_QUIT,
+    MENU_WIN,
+    NUMBER_MENUS
+} Menus;
+
 @interface GameScene : Scene <UIGestureRecognizerDelegate> {
     UITapGestureRecognizer *m_tapGestureRecognizer;
     UIPanGestureRecognizer *m_panGestureRecognizer;
@@ -47,6 +54,9 @@
     Stopwatch *m_stopwatch;
     
     Texture *m_pauseButton;
+    
+    int m_currentMenu;
+    NSMutableArray<Scene*> *m_menus;
     WinMenu *m_winMenu;
     PauseMenu *m_pauseMenu;
     QuitMenu *m_quitMenu;

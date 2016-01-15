@@ -23,12 +23,16 @@ typedef enum MyShaders {
     SHADER_SELECTION,
     SHADER_TEXT,
     SHADER_OVERLAY,
+    SHADER_SELECTION_OVERLAY,
     NUMBER_SHADERS
-} SHADERS;
+} Shaders;
 
 @interface Shader : NSObject {
     NSMutableDictionary *m_uniformMap;
     GLuint m_program;
+    
+    GLuint m_vertexBuffer;
+    GLuint m_uvBuffer;
 }
 
 - ( id ) init: ( NSString* ) vertexShader withFrag: ( NSString* ) fragmentShader;
@@ -40,6 +44,8 @@ typedef enum MyShaders {
 - ( void ) updateString: ( NSString* ) text withX: ( int ) x withY: ( int ) y withSize: ( int ) size;
 
 - ( void ) updateTexture: ( Texture* ) texture withX: ( int ) x withY: ( int ) y withSize: ( int ) size;
+
+- ( void ) updateTexture: ( Texture* ) texture withX: ( int ) x withY: ( int ) y withWidth: ( int ) width withHeight: ( int ) height;
 
 - ( GLuint ) loadVertexShader: ( NSString* ) filename;
 

@@ -13,9 +13,6 @@
 #include "Texture.h"
 
 @interface TextShader : Shader {
-    GLuint m_vertexBuffer;
-    GLuint m_uvBuffer;
-    
     Texture *m_texture;
 }
 
