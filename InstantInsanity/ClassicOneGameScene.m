@@ -61,6 +61,9 @@
         [ m_cubes addObject: cube2 ];
         [ m_cubes addObject: cube3 ];
         [ m_cubes addObject: cube4 ];
+        
+        [ m_winMenu setTexture: [ [ Texture alloc ] init: @"WinScreenClassicOne" ] ];
+        [ self reset ];
     }
     return self;
 }

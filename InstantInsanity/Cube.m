@@ -128,6 +128,30 @@
     }
 }
 
+- ( void ) rotateRandom {
+    int rot = [ self randomInRange: 0 withMax: 4 ];
+    [ [ self transform ] rotate: GLKVector3Make( 1.0f, 0.0f, 0.0f ) withAngle: 90.0f * rot ];
+    for ( int i = 0; i < rot; i++ ) {
+        [ self rotateX: false ];
+    }
+    
+    rot = [ self randomInRange: 0 withMax: 4 ];
+    [ [ self transform ] rotate: GLKVector3Make( 0.0f, 1.0f, 0.0f ) withAngle: 90.0f * rot ];
+    for ( int i = 0; i < rot; i++ ) {
+        [ self rotateY: false ];
+    }
+    
+    rot = [ self randomInRange: 0 withMax: 4 ];
+    [ [ self transform ] rotate: GLKVector3Make( 0.0f, 0.0f, 1.0f ) withAngle: 90.0f * rot ];
+    for ( int i = 0; i < rot; i++ ) {
+        [ self rotateZ: false ];
+    }
+}
+
+- ( int ) randomInRange: ( int ) min withMax: ( int ) max {
+    return min + ( ( float ) arc4random() / UINT32_MAX ) * ( max - min );
+}
+
 GLfloat g_vertices[] = {
     
      // Back

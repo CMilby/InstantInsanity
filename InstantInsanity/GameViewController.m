@@ -162,6 +162,7 @@
         [ m_scenes[ m_lastScene ] lostFocus ];
         [ m_scenes[ CurrentScene ] receivedFocus ];
         m_lastScene = CurrentScene;
+        [ m_camera setup: -45.0f yAngle: 0.0f distance: 10.0f ];
     }
     
     [ m_camera updateView ];

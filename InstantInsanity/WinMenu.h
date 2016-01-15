@@ -16,9 +16,21 @@
 @interface WinMenu : Scene {
     UITapGestureRecognizer *m_tapGestureRecognizer;
     GameScene *m_parent;
+    
+    Texture *m_winTexture;
+    Texture *m_mainMenuButton;
+    Texture *m_playAgainButton;
 }
 
 - ( id ) initWithView: ( GLKView* ) view withShaders: ( NSMutableArray<Shader*>* ) shaders withCamera: ( Camera* ) camera withParent: ( GameScene* ) parent;
+
+- ( void ) render;
+
+- ( void ) receivedFocus;
+
+- ( void ) lostFocus;
+
+- ( void ) setTexture: ( Texture* ) texture;
 
 @end
 

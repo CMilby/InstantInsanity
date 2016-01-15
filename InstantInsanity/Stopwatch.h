@@ -12,9 +12,14 @@
 #import <Foundation/Foundation.h>
 
 @interface Stopwatch : NSObject {
-    NSTimer *m_clockTimer;
-    NSDate *m_startDate;
-    NSDate *m_stopDate;
+    NSTimer *m_timerUp;
+    
+    NSDate *m_pauseStart;
+    NSDate *m_previousDireDate;
+    
+    int m_seconds;
+    int m_minutes;
+    int m_hours;
     
     bool m_isRunning;
 }
@@ -22,6 +27,10 @@
 - ( id ) init;
 
 - ( void ) start;
+
+- ( void ) pause;
+
+- ( void ) resume;
 
 - ( void ) stop;
 

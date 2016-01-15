@@ -83,6 +83,9 @@
         [ m_cubes addObject: cube4 ];
         [ m_cubes addObject: cube5 ];
         [ m_cubes addObject: cube6 ];
+        
+        [ m_winMenu setTexture: [ [ Texture alloc ] init: @"WinScreenSixCube" ] ];
+        [ self reset ];
     }
     return self;
 }

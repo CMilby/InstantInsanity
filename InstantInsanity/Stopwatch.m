@@ -14,43 +14,41 @@
 
 - ( id ) init {
     if ( self = [ super init ] ) {
+        m_seconds = m_minutes = m_hours;
         m_isRunning = false;
     }
     return self;
 }
 
 - ( void ) start {
-    if ( m_isRunning ) {
-        return;
-    }
-    
-    m_startDate = [ NSDate date ];
-    m_stopDate = m_startDate;
-    if ( m_clockTimer == nil ) {
-        m_clockTimer = [ NSTimer timerWithTimeInterval: 1.0f / 100.0f target: self selector: @selector( handleTimerTick ) userInfo: nil repeats: true ];
-    }
-    
+    m_timerUp = [ NSTimer scheduledTimerWithTimeInterval: 1.0 target: self selector: @selector( handleUp ) userInfo: nil repeats: true ];
     m_isRunning = true;
 }
 
+- ( void ) pause {
+    m_pauseStart = [ NSDate dateWithTimeIntervalSinceNow: 0 ];
+    m_previousDireDate = [ m_timerUp fireDate ];
+    [ m_timerUp setFireDate: [ NSDate distantFuture ] ];
+}
+
+- ( void ) resume {
+    float pauseTime = -1 * [ m_pauseStart timeIntervalSinceNow ];
+    [ m_timerUp setFireDate: [ NSDate dateWithTimeInterval: pauseTime sinceDate:m_previousDireDate ] ];
+    m_pauseStart = nil;
+    m_previousDireDate = nil;
+}
+
 - ( void ) stop {
-    if ( !m_isRunning ) {
-        return;
-    }
-    
     m_isRunning = false;
-    [ m_clockTimer invalidate ];
-    m_clockTimer = nil;
-    m_stopDate = [ NSDate date ];
 }
 
 - ( void ) reset {
-    [ m_clockTimer invalidate ];
-    m_clockTimer = nil;
     m_isRunning = false;
     
-    m_startDate = nil;
-    m_stopDate = nil;
+    [ m_timerUp invalidate ];
+    m_timerUp = nil;
+    
+    m_seconds = m_hours = m_minutes = 0;
 }
 
 - ( bool ) isRunning {
@@ -58,28 +56,31 @@
 }
 
 - ( NSString* ) getTimeString {
-    if ( m_startDate == nil ) {
-        return @"00:00.00";
-    }
+    NSString *returnString = [ NSString stringWithFormat: @"%02i:%02i.%02i", m_hours, m_minutes, m_seconds ];
     
-    NSDate *currentDate;
-    NSTimeInterval timeInterval;
-    if ( m_isRunning ) {
-        currentDate = [ NSDate date ];
-    } else {
-        currentDate = m_stopDate;
-    }
-    
-    timeInterval = [ currentDate timeIntervalSinceDate: m_startDate ];
-    NSDate *timerDate = [ NSDate dateWithTimeIntervalSince1970: timeInterval ];
-    NSDateFormatter *dataFormatter = [ [ NSDateFormatter alloc ] init ];
-    [ dataFormatter setDateFormat: @"mm:ss.SS" ];
-    [ dataFormatter setTimeZone: [ NSTimeZone timeZoneForSecondsFromGMT: 0.0 ] ];
-    return [ dataFormatter stringFromDate: timerDate ];
+    return returnString;
 }
 
-- ( void ) handleTimerTick {
-    
+- ( void ) handleUp {
+    m_seconds += 1;
+    if ( m_seconds == 60 ) {
+        m_seconds = 0;
+        m_minutes += 1;
+        if ( m_minutes == 60 ) {
+            m_minutes = 0;
+            m_hours += 1;
+        }
+    }
 }
 
 @end
+
+
+
+
+
+
+
+
+
+

@@ -54,6 +54,8 @@
 
 - ( void ) rotateZ: ( bool ) clockwise;
 
+- ( void ) rotateRandom;
+
 @end
 
 #endif /* Cube_h */

@@ -78,9 +78,10 @@
     }
     
     if ( value == [ m_yesButton getCode ] ) {
-        NSLog( @"Yes" );
+        [ self lostFocus ];
+        CurrentScene = SCENE_MAIN_MENU;
     } else if ( value == [ m_noButton getCode ] ) {
-        NSLog( @"No" );
+        [ m_parent setCurrentMenu: MENU_PAUSE ];
     }
     
     [ self render ];

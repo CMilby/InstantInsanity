@@ -11,7 +11,7 @@
 BOOL const DEBUG_ENABLED = false;
 
 float const ROTATION_SPEED = 0.35f;
-float const MIN_ZOOM = 13.0f;
+float const MIN_ZOOM = 10.0f;
 float const MAX_ZOOM = 30.0f;
 float const ZOOM_SPEED = 0.15f;
 

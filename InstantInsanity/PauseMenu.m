@@ -78,20 +78,16 @@
     }
     
     if ( value == [ m_resumeButton getCode ] ) {
-        NSLog( @"Resume" );
-        [ self lostFocus ];
         [ m_parent setCurrentMenu: MENU_NONE ];
         [ m_parent receivedFocus ];
     } else if ( value == [ m_mainMenuButton getCode ] ) {
-        NSLog( @"Main Menu" );
-        [ self lostFocus ];
         [ m_parent setCurrentMenu: MENU_QUIT ];
     }
     
     [ self render ];
     
-    glDeleteRenderbuffers(1, &colorRenderbuffer);
-    glDeleteFramebuffers(1, &framebuffer);
+    glDeleteRenderbuffers( 1, &colorRenderbuffer );
+    glDeleteFramebuffers( 1, &framebuffer );
 }
 
 @end

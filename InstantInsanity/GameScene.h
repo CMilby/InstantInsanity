@@ -57,6 +57,7 @@ typedef enum MyMenus {
     Texture *m_pauseButton;
     
     int m_currentMenu;
+    int m_lastMenu;
     NSMutableArray<Scene*> *m_menus;
     WinMenu *m_winMenu;
     PauseMenu *m_pauseMenu;

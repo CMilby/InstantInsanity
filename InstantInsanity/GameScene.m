@@ -50,7 +50,7 @@
         m_pauseButton = [ [ Texture alloc ] init: @"PauseImage" ];
         [ m_pauseButton setCode: 200 ];
         
-        m_currentMenu = -1;
+        m_currentMenu = m_lastMenu = -1;
         m_menus = [ [ NSMutableArray alloc ] initWithCapacity: NUMBER_MENUS ];
         m_pauseMenu = [ [ PauseMenu alloc ] initWithView: m_view withShaders: m_shaders withCamera: m_camera withParent: self ];
         m_quitMenu = [ [ QuitMenu alloc ] initWithView: m_view withShaders: m_shaders withCamera: m_camera withParent: self ];
@@ -68,10 +68,40 @@
 }
 
 - ( void ) reset {
+    [ self setCurrentMenu: MENU_NONE ];
+    [ m_stopwatch reset ];
     
+    for ( int i = 0; i < [ m_cubes count ]; i++ ) {
+        [ m_cubes[ i ] setIsPicked: false ];
+    }
+    
+    m_pickedCube = NULL;
+    m_picked = false;
+    
+    m_panGestureRecognizer.enabled = true;
+    
+    // Start each cube at random orientation
+    do {
+        for ( int i = 0; i < [ m_cubes count ]; i++ ) {
+            [ m_cubes[ i ] rotateRandom ];
+        }
+    } while ( [ self hasWon ] );
 }
 
 - ( void ) update {
+    if ( m_lastMenu != m_currentMenu ) {
+        if ( m_lastMenu != MENU_NONE ) {
+            [ m_menus[ m_lastMenu ] lostFocus ];
+        }
+        if ( m_currentMenu != MENU_NONE ) {
+            [ m_stopwatch pause ];
+            [ m_menus[ m_currentMenu ] receivedFocus ];
+        } else {
+            [ m_stopwatch resume ];
+        }
+        m_lastMenu = m_currentMenu;
+    }
+    
     if ( m_currentMenu != MENU_NONE ) {
         [ m_menus[ m_currentMenu ] update ];
     }
@@ -98,8 +128,10 @@
             m_totalRotation = 0.0f;
             
             if ( [ self hasWon ] ) {
-                [ m_stopwatch stop ];
-                NSLog( @"Won" );
+                [ m_stopwatch pause ];
+                [ self lostFocus ];
+                [ m_menus[ MENU_WIN ] receivedFocus ];
+                m_currentMenu = MENU_WIN;
             }
         }
     }
@@ -138,6 +170,8 @@
     [ m_view addGestureRecognizer: m_swipeGestureRecognizerDown ];
     [ m_view addGestureRecognizer: m_swipeGestureRecognizerLeftTwo ];
     [ m_view addGestureRecognizer: m_swipeGestureRecognizerRightTwo ];
+    
+    [ self reset ];
 }
 
 - ( void ) lostFocus {
@@ -151,6 +185,8 @@
     [ m_view removeGestureRecognizer: m_swipeGestureRecognizerDown ];
     [ m_view removeGestureRecognizer: m_swipeGestureRecognizerLeftTwo ];
     [ m_view removeGestureRecognizer: m_swipeGestureRecognizerRightTwo ];
+    
+    [ m_stopwatch stop ];
 }
 
 - ( void ) setCubes: ( NSMutableArray<Cube*>* ) cubes {
@@ -210,6 +246,14 @@
         
         m_picked = true;
         m_panGestureRecognizer.enabled = false;
+        
+        NSLog( @"Front:  %i", [ m_pickedCube frontColor ] );
+        NSLog( @"Back:   %i", [ m_pickedCube backColor ] );
+        NSLog( @"Left:   %i", [ m_pickedCube leftColor ] );
+        NSLog( @"Right:  %i", [ m_pickedCube rightColor ] );
+        NSLog( @"Top:    %i", [ m_pickedCube topColor ] );
+        NSLog( @"Bottom: %i", [ m_pickedCube bottomColor ] );
+        
     } else if ( m_picked ) {
         for ( int i = 0; i < [ m_cubes count ]; i++ ) {
             [ m_cubes[ i ] setIsPicked: false ];
