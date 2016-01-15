@@ -8,13 +8,17 @@
 
 #include "QuitMenu.h"
 
+#include "GameScene.h"
+
 @implementation QuitMenu {
     
 }
 
-- ( id ) initWithView: ( GLKView* ) view withShaders: ( NSMutableArray<Shader*>* ) shaders withCamera: ( Camera* ) camera {
+- ( id ) initWithView: ( GLKView* ) view withShaders: ( NSMutableArray<Shader*>* ) shaders withCamera: ( Camera* ) camera withParent: ( GameScene* ) parent {
     if ( self = [ super initWithView: view withShaders: shaders withCamera: camera ] ) {
         m_tapGestureRecognizer = [ [ UITapGestureRecognizer alloc ] initWithTarget: self action: @selector( handleTap: ) ];
+        
+        m_parent = parent;
         
         m_quitMenu = [ [ Texture alloc ] init: @"QuitMenu" ];
         
@@ -81,8 +85,8 @@
     
     [ self render ];
     
-    glDeleteRenderbuffers(1, &colorRenderbuffer);
-    glDeleteFramebuffers(1, &framebuffer);
+    glDeleteRenderbuffers( 1, &colorRenderbuffer );
+    glDeleteFramebuffers( 1, &framebuffer );
 }
 
 @end

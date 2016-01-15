@@ -9,18 +9,21 @@
 #ifndef __QUIT_MENU_H__
 #define __QUIT_MENU_H__
 
-#include "Plane.h"
 #include "Scene.h"
 
-@interface QuitMenu : Scene {
+@class GameScene;
+
+@interface QuitMenu : Scene <UIGestureRecognizerDelegate> {
     UITapGestureRecognizer *m_tapGestureRecognizer;
+    
+    GameScene *m_parent;
     
     Texture *m_quitMenu;
     Texture *m_yesButton;
     Texture *m_noButton;
 }
 
-- ( id ) initWithView: ( GLKView* ) view withShaders: ( NSMutableArray<Shader*>* ) shaders withCamera: ( Camera* ) camera;
+- ( id ) initWithView: ( GLKView* ) view withShaders: ( NSMutableArray<Shader*>* ) shaders withCamera: ( Camera* ) camera withParent: ( GameScene* ) parent;
 
 - ( void ) render;
 

@@ -18,10 +18,11 @@
 #include "WinMenu.h"
 
 typedef enum MyMenus {
-    MENU_PAUSE,
-    MENU_QUIT,
-    MENU_WIN,
-    NUMBER_MENUS
+    MENU_NONE = -1,
+    MENU_PAUSE = 0,
+    MENU_QUIT = 1,
+    MENU_WIN = 2,
+    NUMBER_MENUS = 3
 } Menus;
 
 @interface GameScene : Scene <UIGestureRecognizerDelegate> {
@@ -81,6 +82,8 @@ typedef enum MyMenus {
 - ( NSMutableArray<RenderableEntity*>* ) getPickedRender;
 
 - ( bool ) hasWon;
+
+- ( void ) setCurrentMenu: ( int ) currentMenu;
 
 @end
 

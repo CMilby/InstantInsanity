@@ -11,9 +11,14 @@
 
 #include "Scene.h"
 
+@class GameScene;
+
 @interface WinMenu : Scene {
-    
+    UITapGestureRecognizer *m_tapGestureRecognizer;
+    GameScene *m_parent;
 }
+
+- ( id ) initWithView: ( GLKView* ) view withShaders: ( NSMutableArray<Shader*>* ) shaders withCamera: ( Camera* ) camera withParent: ( GameScene* ) parent;
 
 @end
 

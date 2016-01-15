@@ -11,9 +11,25 @@
 
 #include "Scene.h"
 
-@interface PauseMenu : Scene {
+@class GameScene;
+
+@interface PauseMenu : Scene <UIGestureRecognizerDelegate> {
+    UITapGestureRecognizer *m_tapGestureRecognizer;
     
+    GameScene *m_parent;
+
+    Texture *m_pauseMenu;
+    Texture *m_mainMenuButton;
+    Texture *m_resumeButton;
 }
+
+- ( id ) initWithView: ( GLKView* ) view withShaders: ( NSMutableArray<Shader*>* ) shaders withCamera: ( Camera* ) camera withParent: ( GameScene* ) parent;
+
+- ( void ) render;
+
+- ( void ) receivedFocus;
+
+- ( void ) lostFocus;
 
 @end
 

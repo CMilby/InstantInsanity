@@ -52,9 +52,9 @@
         
         m_currentMenu = -1;
         m_menus = [ [ NSMutableArray alloc ] initWithCapacity: NUMBER_MENUS ];
-        m_pauseMenu = [ [ PauseMenu alloc ] initWithView: m_view withShaders: m_shaders withCamera: m_camera ];
-        m_quitMenu = [ [ QuitMenu alloc ] initWithView: m_view withShaders: m_shaders withCamera: m_camera ];
-        m_winMenu = [ [ WinMenu alloc ] initWithView: m_view withShaders: m_shaders withCamera: m_camera ];
+        m_pauseMenu = [ [ PauseMenu alloc ] initWithView: m_view withShaders: m_shaders withCamera: m_camera withParent: self ];
+        m_quitMenu = [ [ QuitMenu alloc ] initWithView: m_view withShaders: m_shaders withCamera: m_camera withParent: self ];
+        m_winMenu = [ [ WinMenu alloc ] initWithView: m_view withShaders: m_shaders withCamera: m_camera withParent: self ];
         
         [ m_menus addObject: m_pauseMenu ];
         [ m_menus addObject: m_quitMenu ];
@@ -72,7 +72,7 @@
 }
 
 - ( void ) update {
-    if ( m_currentMenu != -1 ) {
+    if ( m_currentMenu != MENU_NONE ) {
         [ m_menus[ m_currentMenu ] update ];
     }
     
@@ -194,7 +194,7 @@
     NSUInteger value = pixelColor[ 0 ];
     
     if ( value == [ m_pauseButton getCode ] ) {
-        m_currentMenu = MENU_QUIT;
+        m_currentMenu = MENU_PAUSE;
         [ self lostFocus ];
         [ m_menus[ m_currentMenu ] receivedFocus ];
         // NSLog( @"Pause Button" );
@@ -376,6 +376,10 @@
 // Will need overriden
 - ( bool ) hasWon {
     return false;
+}
+
+- ( void ) setCurrentMenu: ( int ) currentMenu {
+    m_currentMenu = currentMenu;
 }
 
 @end
