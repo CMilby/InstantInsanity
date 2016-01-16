@@ -9,6 +9,8 @@
 #ifndef __GAME_SCENE_H__
 #define __GAME_SCENE_H__
 
+#import <AVFoundation/AVFoundation.h>
+
 #include "Cube.h"
 #include "PauseMenu.h"
 #include "Plane.h"
@@ -37,6 +39,8 @@ typedef enum MyMenus {
     UISwipeGestureRecognizer *m_swipeGestureRecognizerDown;
     UISwipeGestureRecognizer *m_swipeGestureRecognizerLeftTwo;
     UISwipeGestureRecognizer *m_swipeGestureRecognizerRightTwo;
+    
+    AVAudioPlayer *m_audioPlayer;
     
     NSMutableArray<Cube*> *m_cubes;
     

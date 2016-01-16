@@ -45,6 +45,12 @@
     Scene *m_sixCubeScene;
     Scene *m_squareScene;
     Scene *m_clocksScene;
+    
+    // Music From:
+    // http://www.freesound.org/people/Setuniman/sounds/332778/
+    // Under Creative Commons License
+    // http://creativecommons.org/licenses/by-nc/3.0/
+    AVAudioPlayer *m_music;
 }
 
 @property (strong, nonatomic) EAGLContext *context;
@@ -104,7 +110,7 @@
 - ( void ) setupGL {
     [ EAGLContext setCurrentContext:self.context ];
     
-    glClearColor( 0.65f, 0.65f, 0.65f, 1.0f );
+    glClearColor( 0.85f, 0.85f, 0.85f, 1.0f );
     
     glEnable( GL_DEPTH_TEST );
     glEnable( GL_BLEND );
@@ -146,6 +152,12 @@
     [ m_scenes addObject: m_sixCubeScene ];
     [ m_scenes addObject: m_squareScene ];
     [ m_scenes addObject: m_clocksScene ];
+    
+    NSString *filePath = [ [ NSBundle mainBundle ] pathForResource: @"BackgroundMusic" ofType: @"mp3" ];
+    NSURL *url = [ NSURL fileURLWithPath: filePath ];
+    m_music = [ [ AVAudioPlayer alloc ] initWithContentsOfURL: url error:nil ];
+    m_music.numberOfLoops = -1;
+    [ m_music play ];
     
     [ m_scenes[ CurrentScene ] receivedFocus ];
     m_lastScene = CurrentScene;

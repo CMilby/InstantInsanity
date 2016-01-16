@@ -42,6 +42,14 @@
         m_swipeGestureRecognizerRightTwo.numberOfTouchesRequired = 2;
         // Swipe Gestures End
         
+        // Music From:
+        // http://www.freesound.org/people/potentjello/sounds/194081/
+        // Under Creative Commons License
+        // http://creativecommons.org/licenses/by-nc/3.0/
+        NSString *filePath = [ [ NSBundle mainBundle ] pathForResource: @"SwipeCube" ofType: @"wav" ];
+        NSURL *url = [ NSURL fileURLWithPath: filePath ];
+        m_audioPlayer = [ [ AVAudioPlayer alloc ] initWithContentsOfURL: url error:nil ];
+        
         m_stopwatch = [ [ Stopwatch alloc ] init ];
         
         m_floor = [ [ Plane alloc ] init: @"Floor" ];
@@ -326,6 +334,8 @@
     if ( ![ m_stopwatch isRunning ] ) {
         [ m_stopwatch start ];
     }
+    
+    [ m_audioPlayer play ];
     
     if ( sender.numberOfTouches == 1 ) {
         if ( sender.direction == UISwipeGestureRecognizerDirectionLeft ) {

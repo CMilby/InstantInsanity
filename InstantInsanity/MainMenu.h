@@ -26,7 +26,6 @@
     
     Plane *m_gameTitle;
     Plane *m_playGame;
-    Plane *m_howToPlay;
 }
 
 - ( id ) initWithView: ( GLKView* ) view withShaders: ( NSMutableArray<Shader*>* ) shaders withCamera: ( Camera* ) camera;

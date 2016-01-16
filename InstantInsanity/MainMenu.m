@@ -36,12 +36,6 @@
         [ [ m_playGame transform ] rotate: GLKVector3Make( 0.0f, 1.0f, 0.0f ) withAngle: -225.0f ];
         [ [ m_playGame transform ] setPosition: GLKVector3Make( -1, -0.5, 1 ) ];
         [ [ m_playGame transform ] setScale: GLKVector3Make( 2.66, 0.66, 0.56 ) ];
-        
-        /*m_howToPlay = [ [ Plane alloc ] init: @"HowToPlay" ];
-        [ m_howToPlay setCode: 3 ];
-        [ [ m_howToPlay transform ] rotate: GLKVector3Make( 0.0f, 1.0f, 0.0f ) withAngle: -225.0f ];
-        [ [ m_howToPlay transform ] setPosition: GLKVector3Make( -1, -2.0f, 1 ) ];
-        [ [ m_howToPlay transform ] setScale: GLKVector3Make( 2.66, 0.66, 0.56 ) ];*/
     }
     return self;
 }
@@ -106,7 +100,7 @@
     
     if ( value == [ m_playGame getCode ] ) {
         CurrentScene = SCENE_PLAY_GAME_MENU;
-    } 
+    }
     
     [ self render ];
     
