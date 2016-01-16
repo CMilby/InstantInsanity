@@ -44,7 +44,6 @@
 		44FDCEB71C46B2DD00EB2C0A /* Stopwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEB61C46B2DD00EB2C0A /* Stopwatch.m */; };
 		44FDCEB91C46C1E000EB2C0A /* Plane.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEB81C46C1E000EB2C0A /* Plane.m */; };
 		44FDCEC01C46C6DB00EB2C0A /* MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEBF1C46C6DB00EB2C0A /* MainMenu.m */; };
-		44FDCEF01C46D82000EB2C0A /* HowToPlayMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEEF1C46D82000EB2C0A /* HowToPlayMenu.m */; };
 		44FDCEF31C46D83400EB2C0A /* PlayGameMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEF21C46D83400EB2C0A /* PlayGameMenu.m */; };
 		44FDCEF61C47078100EB2C0A /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEF51C47078100EB2C0A /* Scene.m */; };
 		44FDCEF91C470A8F00EB2C0A /* StandardShader.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEF81C470A8F00EB2C0A /* StandardShader.m */; };
@@ -140,8 +139,6 @@
 		44FDCEBA1C46C1EB00EB2C0A /* Plane.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
 		44FDCEBE1C46C6CD00EB2C0A /* MainMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
 		44FDCEBF1C46C6DB00EB2C0A /* MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenu.m; sourceTree = "<group>"; };
-		44FDCEEE1C46D81700EB2C0A /* HowToPlayMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HowToPlayMenu.h; sourceTree = "<group>"; };
-		44FDCEEF1C46D82000EB2C0A /* HowToPlayMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToPlayMenu.m; sourceTree = "<group>"; };
 		44FDCEF11C46D82B00EB2C0A /* PlayGameMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayGameMenu.h; sourceTree = "<group>"; };
 		44FDCEF21C46D83400EB2C0A /* PlayGameMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayGameMenu.m; sourceTree = "<group>"; };
 		44FDCEF41C47077800EB2C0A /* Scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
@@ -331,8 +328,6 @@
 				44FDCEFE1C47201900EB2C0A /* GameScene.m */,
 				44FDCEBE1C46C6CD00EB2C0A /* MainMenu.h */,
 				44FDCEBF1C46C6DB00EB2C0A /* MainMenu.m */,
-				44FDCEEE1C46D81700EB2C0A /* HowToPlayMenu.h */,
-				44FDCEEF1C46D82000EB2C0A /* HowToPlayMenu.m */,
 				44FDCEF11C46D82B00EB2C0A /* PlayGameMenu.h */,
 				44FDCEF21C46D83400EB2C0A /* PlayGameMenu.m */,
 				44FDCF001C4724DE00EB2C0A /* ClassicOneGameScene.h */,
@@ -500,7 +495,6 @@
 			files = (
 				4492B8CC1C3F187B006CC877 /* AppDelegate.m in Sources */,
 				44FDCF0E1C472BEB00EB2C0A /* SquareGameScene.m in Sources */,
-				44FDCEF01C46D82000EB2C0A /* HowToPlayMenu.m in Sources */,
 				44FDCF081C472BA700EB2C0A /* SixCubeGameScene.m in Sources */,
 				4492B8D31C3F187B006CC877 /* GameViewController.m in Sources */,
 				4426F0271C415C82000D661B /* RenderableEntity.m in Sources */,

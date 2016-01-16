@@ -24,13 +24,22 @@
     Cube *m_cube3;
     Cube *m_cube4;
     
-    Plane *m_gameTitle;
-    Plane *m_classic1;
-    Plane *m_classic2;
-    Plane *m_5Cube;
-    Plane *m_6Cube;
-    Plane *m_2x2x1;
-    Plane *m_clocks;
+    Texture *m_gameTitle;
+    Texture *m_classic1;
+    Texture *m_classic2;
+    Texture *m_5Cube;
+    Texture *m_6Cube;
+    Texture *m_2x2x1;
+    Texture *m_clocks;
+    
+    Texture *m_howToPlayClassicOne;
+    Texture *m_howToPlayClassicTwo;
+    Texture *m_howToPlayFive;
+    Texture *m_howToPlaySix;
+    Texture *m_howToPlaySquare;
+    Texture *m_howToPlayClocks;
+    
+    Texture *m_htp;
 }
 - ( id ) initWithView: ( GLKView* ) view withShaders: ( NSMutableArray<Shader*>* ) shaders withCamera: ( Camera* ) camera;
 

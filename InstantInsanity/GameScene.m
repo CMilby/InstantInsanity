@@ -44,6 +44,10 @@
         
         m_stopwatch = [ [ Stopwatch alloc ] init ];
         
+        m_floor = [ [ Plane alloc ] init: @"Floor" ];
+        [ [ m_floor transform ] rotate: GLKVector3Make( 1.0f, 0.0f, 0.0f ) withAngle: 90.0f ];
+        [ [ m_floor transform ] setScale: GLKVector3Make( 5.0f, 5.0f, 5.0f ) ];
+        
         m_picked = false;
         m_shouldRotateX = m_shouldRotateY = m_shouldRotateZ = false;
         
@@ -154,7 +158,7 @@
     [ m_shaders[ SHADER_TEXT ] updateString: [ m_stopwatch getTimeString ] withX: 5 withY: 0 withSize: 32 ];
     [ m_shaders[ SHADER_OVERLAY ] updateTexture: m_pauseButton withX: 760 withY: 560 withSize: 32 ];
     
-    if ( m_currentMenu != -1 ) {
+    if ( m_currentMenu != MENU_NONE ) {
         [ m_menus[ m_currentMenu ] render ];
     }
 }

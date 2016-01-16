@@ -11,6 +11,7 @@
 
 #include "Cube.h"
 #include "PauseMenu.h"
+#include "Plane.h"
 #include "QuitMenu.h"
 #include "Scene.h"
 #include "Stopwatch.h"
@@ -51,6 +52,8 @@ typedef enum MyMenus {
     bool m_shouldRotateZ;
     
     int m_totalRotation;
+    
+    Plane *m_floor;
     
     Stopwatch *m_stopwatch;
     

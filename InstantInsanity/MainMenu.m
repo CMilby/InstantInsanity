@@ -37,11 +37,11 @@
         [ [ m_playGame transform ] setPosition: GLKVector3Make( -1, -0.5, 1 ) ];
         [ [ m_playGame transform ] setScale: GLKVector3Make( 2.66, 0.66, 0.56 ) ];
         
-        m_howToPlay = [ [ Plane alloc ] init: @"HowToPlay" ];
+        /*m_howToPlay = [ [ Plane alloc ] init: @"HowToPlay" ];
         [ m_howToPlay setCode: 3 ];
         [ [ m_howToPlay transform ] rotate: GLKVector3Make( 0.0f, 1.0f, 0.0f ) withAngle: -225.0f ];
         [ [ m_howToPlay transform ] setPosition: GLKVector3Make( -1, -2.0f, 1 ) ];
-        [ [ m_howToPlay transform ] setScale: GLKVector3Make( 2.66, 0.66, 0.56 ) ];
+        [ [ m_howToPlay transform ] setScale: GLKVector3Make( 2.66, 0.66, 0.56 ) ];*/
     }
     return self;
 }
@@ -62,7 +62,6 @@
     
     [ m_shaders[ SHADER_STANDARD ] updateEntity: m_gameTitle withProjection: [ [ m_gameTitle transform ] getProjectionMatrix ] withCamera: m_camera ];
     [ m_shaders[ SHADER_STANDARD ] updateEntity: m_playGame withProjection: m_orthMatrix withCamera: m_camera ];
-    [ m_shaders[ SHADER_STANDARD ] updateEntity: m_howToPlay withProjection: m_orthMatrix withCamera: m_camera ];
 }
 
 - ( void ) receivedFocus {
@@ -95,9 +94,7 @@
         NSLog( @"Framebuffer status: %x", ( int ) status );
     }
     
-    [ m_shaders[ SHADER_SELECTION ] updateEntity: m_gameTitle withProjection: m_orthMatrix withCamera: m_camera ];
     [ m_shaders[ SHADER_SELECTION ] updateEntity: m_playGame withProjection: m_orthMatrix withCamera: m_camera ];
-    [ m_shaders[ SHADER_SELECTION ] updateEntity: m_howToPlay withProjection: m_orthMatrix withCamera: m_camera ];
     
     CGFloat scale = UIScreen.mainScreen.scale;
     glReadPixels( point.x * scale, ( height - ( point.y * scale ) ), 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixelColor );
@@ -109,9 +106,7 @@
     
     if ( value == [ m_playGame getCode ] ) {
         CurrentScene = SCENE_PLAY_GAME_MENU;
-    } else if ( value == [ m_howToPlay getCode ] ) {
-        NSLog( @"How to play" );
-    }
+    } 
     
     [ self render ];
     
