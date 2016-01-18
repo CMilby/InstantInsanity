@@ -113,6 +113,8 @@
 }
 
 - ( void ) render {
+    [ super render ];
+    
     [ m_shaders[ SHADER_STANDARD ] updateEntity: m_cube1 withProjection: [ [ m_cube1 transform ] getProjectionMatrix ] withCamera: m_camera ];
     [ m_shaders[ SHADER_STANDARD ] updateEntity: m_cube2 withProjection: [ [ m_cube2 transform ] getProjectionMatrix ] withCamera: m_camera ];
     [ m_shaders[ SHADER_STANDARD ] updateEntity: m_cube3 withProjection: [ [ m_cube3 transform ] getProjectionMatrix ] withCamera: m_camera ];

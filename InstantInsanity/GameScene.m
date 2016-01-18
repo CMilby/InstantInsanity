@@ -150,6 +150,8 @@
 }
 
 - ( void ) render {
+    [ super render ];
+    
     if ( !m_picked ) {
         // Order doesnt matter
         for ( int i = 0; i < [ m_cubes count ]; i++ ) {
@@ -164,7 +166,7 @@
     }
     
     [ m_shaders[ SHADER_TEXT ] updateString: [ m_stopwatch getTimeString ] withX: 5 withY: 0 withSize: 32 ];
-    [ m_shaders[ SHADER_OVERLAY ] updateTexture: m_pauseButton withX: 760 withY: 560 withSize: 32 ];
+    [ m_shaders[ SHADER_OVERLAY ] updateTexture: m_pauseButton withX: 750 withY: 510 withSize: 40 ];
     
     if ( m_currentMenu != MENU_NONE ) {
         [ m_menus[ m_currentMenu ] render ];
@@ -234,7 +236,7 @@
     for ( int i = 0; i < [ m_cubes count ]; i++ ) {
         [ m_shaders[ SHADER_SELECTION ] updateEntity: m_cubes[ i ] withProjection: [ [ m_cubes[ i ] transform ] getProjectionMatrix ] withCamera:m_camera ];
     }
-    [ m_shaders[ SHADER_SELECTION_OVERLAY ] updateTexture: m_pauseButton withX: 760 withY: 560 withSize: 32 ];
+    [ m_shaders[ SHADER_SELECTION_OVERLAY ] updateTexture: m_pauseButton withX: 750 withY: 510 withSize: 40 ];
     
     CGFloat scale = UIScreen.mainScreen.scale;
     glReadPixels (point.x * scale, ( height - ( point.y * scale ) ), 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixelColor );

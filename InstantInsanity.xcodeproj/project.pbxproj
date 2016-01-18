@@ -41,6 +41,7 @@
 		4492B9131C400807006CC877 /* Cube.m in Sources */ = {isa = PBXBuildFile; fileRef = 4492B9121C400806006CC877 /* Cube.m */; };
 		4492B9161C400D66006CC877 /* Transform.m in Sources */ = {isa = PBXBuildFile; fileRef = 4492B9151C400D66006CC877 /* Transform.m */; };
 		4492B9191C401E6E006CC877 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4492B9181C401E6E006CC877 /* Constants.m */; };
+		449A0C2E1C4D6DBF0052E92D /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449A0C2D1C4D6DBF0052E92D /* iAd.framework */; };
 		44B4731F1C43020900451EB9 /* SelectionShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 44B4731E1C43020900451EB9 /* SelectionShader.fsh */; };
 		44B473211C43021300451EB9 /* SelectionShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 44B473201C43021300451EB9 /* SelectionShader.vsh */; };
 		44FDCEB71C46B2DD00EB2C0A /* Stopwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCEB61C46B2DD00EB2C0A /* Stopwatch.m */; };
@@ -135,6 +136,7 @@
 		4492B9151C400D66006CC877 /* Transform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transform.m; sourceTree = "<group>"; };
 		4492B9171C401E64006CC877 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		4492B9181C401E6E006CC877 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		449A0C2D1C4D6DBF0052E92D /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		44B4731E1C43020900451EB9 /* SelectionShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SelectionShader.fsh; sourceTree = "<group>"; };
 		44B473201C43021300451EB9 /* SelectionShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SelectionShader.vsh; sourceTree = "<group>"; };
 		44FDCEB51C46B2D300EB2C0A /* Stopwatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Stopwatch.h; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				449A0C2E1C4D6DBF0052E92D /* iAd.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +207,7 @@
 		4492B8BB1C3F187B006CC877 = {
 			isa = PBXGroup;
 			children = (
+				449A0C2C1C4D6DB30052E92D /* Frameworks */,
 				4492B8C61C3F187B006CC877 /* InstantInsanity */,
 				4492B8E41C3F187B006CC877 /* InstantInsanityTests */,
 				4492B8EF1C3F187B006CC877 /* InstantInsanityUITests */,
@@ -277,6 +281,14 @@
 				4492B8F21C3F187B006CC877 /* Info.plist */,
 			);
 			path = InstantInsanityUITests;
+			sourceTree = "<group>";
+		};
+		449A0C2C1C4D6DB30052E92D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				449A0C2D1C4D6DBF0052E92D /* iAd.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		44FDCEBB1C46C20100EB2C0A /* Rendering */ = {

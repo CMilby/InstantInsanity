@@ -6,10 +6,11 @@
 //  Copyright © 2016 Craig Milby. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
+#import <iAd/iAd.h>
+#import <UIKit/UIKit.h>
 
-@interface GameViewController : GLKViewController {
+@interface GameViewController : GLKViewController <ADBannerViewDelegate> {
     
 }
 

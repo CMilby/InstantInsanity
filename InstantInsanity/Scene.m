@@ -39,7 +39,7 @@ int CurrentScene = 0;
 }
 
 - ( void ) render {
-    
+   
 }
 
 - ( void ) receivedFocus {

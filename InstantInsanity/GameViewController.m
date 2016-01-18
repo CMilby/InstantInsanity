@@ -7,6 +7,7 @@
 //
 
 #import "GameViewController.h"
+
 #import <OpenGLES/ES2/glext.h>
 
 #include "ClassicOneGameScene.h"
@@ -24,6 +25,8 @@
 #include "TextShader.h"
 
 @interface GameViewController () {
+    ADBannerView *m_adView;
+    
     Camera *m_camera;
     
     NSMutableArray<Shader*> *m_shaders;
@@ -38,7 +41,7 @@
     
     Scene *m_mainMenu;
     Scene *m_playGameMenu;
-    
+
     Scene *m_classic1GameScene;
     Scene *m_classic2GameScene;
     Scene *m_fiveCubeScene;
@@ -53,11 +56,13 @@
     AVAudioPlayer *m_music;
 }
 
-@property (strong, nonatomic) EAGLContext *context;
+@property ( strong, nonatomic ) EAGLContext *context;
 
 @end
 
-@implementation GameViewController
+@implementation GameViewController {
+    
+}
 
 - ( void ) viewDidLoad {
     [ super viewDidLoad ];
@@ -72,6 +77,9 @@
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     view.multipleTouchEnabled = true;
+    
+    m_adView = [ [ ADBannerView alloc ] initWithFrame: CGRectZero ];
+    [ self.view addSubview: m_adView ];
     
     [ self setupGL ];
 }
@@ -169,21 +177,64 @@
 
 - ( void ) update {
     if ( m_lastScene != CurrentScene ) {
-        [ m_scenes[ m_lastScene ] lostFocus ];
+        if ( m_lastScene != -1 ) {
+            [ m_scenes[ m_lastScene ] lostFocus ];
+        }
+    
         [ m_scenes[ CurrentScene ] receivedFocus ];
         m_lastScene = CurrentScene;
         [ m_camera setup: -45.0f yAngle: 0.0f distance: 10.0f ];
     }
     
     [ m_camera updateView ];
-    
     [ m_scenes[ CurrentScene ] update ];
 }
 
 - ( void ) glkView: ( GLKView* ) view drawInRect: ( CGRect ) rect {
-    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT );
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     
     [ m_scenes[ CurrentScene ] render ];
 }
 
+- ( bool ) bannerViewActionShouldBegin: ( ADBannerView* ) banner willLeaveApplication: ( BOOL ) willLeave {
+    return true;
+}
+
+- ( void ) bannerView: ( ADBannerView* ) banner didFailToReceiveAdWithError: ( NSError* ) error {
+    [ self layoutAnimated: true ];
+}
+
+- ( void ) bannerViewDidLoadAd: ( ADBannerView* ) banner {
+    [ self layoutAnimated: true ];
+}
+
+- ( void ) layoutAnimated: ( bool ) animated {
+    CGRect contentFrame = self.view.bounds;
+    CGRect bannerFrame = m_adView.frame;
+    
+    if ( m_adView.bannerLoaded ) {
+        contentFrame.size.height -= bannerFrame.size.height;
+        bannerFrame.origin.y = contentFrame.size.height;
+    } else {
+        bannerFrame.origin.y = contentFrame.size.height;
+    }
+    
+    [ UIView animateWithDuration: animated ? 0.25 : 0.0 animations: ^{
+        self.view.frame = contentFrame;
+        [ self.view layoutIfNeeded ];
+        m_adView.frame = bannerFrame;
+    }];
+}
+
 @end
+
+
+
+
+
+
+
+
+
+
+
